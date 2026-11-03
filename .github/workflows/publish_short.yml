@@ -1,0 +1,145 @@
+name: publish_short
+# QA -> YouTube upload -> telemetry sync. Zapier stays in place until a workflow_dispatch test succeeds.
+# This file must exist on BOTH `main` (canonical) and `media` (push events read the workflow from the pushed branch).
+on:
+  push:
+    branches: [media]
+    paths: ['shorts/*.json']       # a staged episode = mp4 + metadata json
+  workflow_dispatch:
+    inputs:
+      privacy_status:
+        description: Privacy for the test upload
+        type: choice
+        options: [unlisted, public, private]
+        default: unlisted
+      metadata_path:
+        description: Metadata json on media (blank = newest unpublished)
+        default: ''
+      skip_upload:
+        description: QA + telemetry only
+        type: boolean
+        default: false
+      force:
+        description: Upload even if the episode_id is already logged
+        type: boolean
+        default: false
+
+concurrency:
+  group: publish-short
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      QA_MODEL: ${{ vars.QA_MODEL || 'gemini-4-argon' }}
+      YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+      YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+      YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+      GOOGLE_SPREADSHEET_ID: ${{ secrets.GOOGLE_SPREADSHEET_ID }}
+      GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+    steps:
+      - name: Checkout tools (main)
+        uses: actions/checkout@v4
+        with: { ref: main, path: tools_repo }
+      - name: Checkout staged episode (media)
+        uses: actions/checkout@v4
+        with: { ref: media, path: media }
+      - name: Checkout private-for-learning
+        uses: actions/checkout@v4
+        with:
+          repository: rekanthg06-eng/private-for-learning
+          token: ${{ secrets.PRIVATE_LEARNING_PAT }}
+          path: private
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Install
+        run: pip install "google-genai>=2.34.0" google-api-python-client google-auth
+
+      - name: Pick episode
+        id: pick
+        env:
+          INPUT_META: ${{ inputs.metadata_path }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          python - <<'PY'
+          import csv, glob, json, os
+          done = set()
+          p = 'private/results.csv'
+          if os.path.exists(p):
+              done = {r.get('episode_id', '') for r in csv.DictReader(open(p, newline=''))}
+          want = os.environ.get('INPUT_META', '').strip()
+          cands = [want] if want else sorted(glob.glob('media/shorts/*.json'), reverse=True)
+          chosen = None
+          for c in cands:
+              path = c if c.startswith('media/') else 'media/' + c
+              m = json.load(open(path))
+              if os.environ.get('FORCE') == 'true' or m.get('episode_id') not in done:
+                  chosen = (path, m); break
+          out = open(os.environ['GITHUB_OUTPUT'], 'a')
+          if not chosen:
+              print('Nothing new to publish.'); out.write('found=false\n')
+          else:
+              path, m = chosen
+              video = os.path.join(os.path.dirname(path), m['video_file'])
+              assert os.path.isfile(video), f'missing video {video}'
+              out.write(f'found=true\nmeta={path}\nvideo={video}\nepisode={m["episode_id"]}\n')
+              print('Episode:', m['episode_id'], video)
+          PY
+
+      - name: Gemini QA gate
+        id: qa
+        if: steps.pick.outputs.found == 'true'
+        run: |
+          set +e
+          python tools_repo/tools/gemini_qa_gate.py "${{ steps.pick.outputs.video }}" --out qa_verdict.json
+          code=$?
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          cat qa_verdict.json || true
+          exit 0
+
+      - name: Decide privacy
+        id: priv
+        if: steps.pick.outputs.found == 'true' && steps.qa.outputs.code == '0'
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            [ "${{ inputs.skip_upload }}" = "true" ] && p="" || p="${{ inputs.privacy_status }}"
+          else
+            [ "${{ vars.LIVE_PUBLISH }}" = "true" ] && p="public" || p=""
+          fi
+          echo "privacy=$p" >> "$GITHUB_OUTPUT"
+          [ -z "$p" ] && echo "Upload skipped (dry run: set repo variable LIVE_PUBLISH=true to go live)."
+          exit 0
+
+      - name: Upload to YouTube
+        id: up
+        if: steps.priv.outputs.privacy != ''
+        run: python tools_repo/tools/youtube_publisher.py upload --video "${{ steps.pick.outputs.video }}" --meta "${{ steps.pick.outputs.meta }}" --privacy "${{ steps.priv.outputs.privacy }}" --out upload_result.json
+
+      - name: Fetch 14-day telemetry
+        if: always() && env.YOUTUBE_REFRESH_TOKEN != ''
+        continue-on-error: true
+        run: python tools_repo/tools/youtube_publisher.py telemetry --days 14 --out telemetry.json
+
+      - name: Sync into private-for-learning
+        if: always()
+        env:
+          META: ${{ steps.pick.outputs.meta }}
+        run: |
+          args=(--repo-dir private)
+          [ -f telemetry.json ] && args+=(--telemetry telemetry.json)
+          [ -f upload_result.json ] && args+=(--upload upload_result.json)
+          [ -f qa_verdict.json ] && args+=(--qa qa_verdict.json)
+          [ -n "$META" ] && [ -f "$META" ] && args+=(--meta "$META")
+          python tools_repo/tools/telemetry_bridge.py "${args[@]}"
+
+      - name: Fail loudly if QA rejected
+        if: steps.qa.outputs.code != '' && steps.qa.outputs.code != '0'
+        run: |
+          echo "::error::Gemini QA gate did not approve (exit ${{ steps.qa.outputs.code }}). Logged to qa_rejections.csv; video NOT uploaded."
+          exit 1

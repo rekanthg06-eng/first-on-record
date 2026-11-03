@@ -78,6 +78,7 @@ class Verdict:
     def to_json(self) -> dict:
         d = dict(self.raw)
         d["passed"] = self.passed
+        d["clamped_overrides"] = safe_overrides(self.parameter_overrides_for_retry)
         return d
 
 
@@ -141,33 +142,30 @@ def evaluate(video_path: str, attempt: int = 1, client=None) -> Verdict:
         raise GateError(f"missing or empty video: {video_path}")
     client = client or _client()
     level = "medium" if attempt <= 1 else "high"
-    f = client.files.upload(file=video_path)
+    video_file = client.files.upload(file=video_path)
     try:
         deadline = time.time() + UPLOAD_TIMEOUT_S
-        while True:
-            state = getattr(f.state, "name", str(f.state))
-            if state == "ACTIVE":
-                break
-            if state == "FAILED" or time.time() > deadline:
-                raise GateError(f"file upload state {state}")
+        while not video_file.state or video_file.state.name != "ACTIVE":
+            if video_file.state and video_file.state.name == "FAILED":
+                raise GateError(f"Gemini File API processing failed for {video_path}")
+            if time.time() > deadline:
+                raise GateError("File API processing timed out")
             time.sleep(UPLOAD_POLL_S)
-            f = client.files.get(name=f.name)
-        # NOTE: no temperature/top_p/top_k: ignored by Gemini 4 models.
-        cfg = types.GenerateContentConfig(
-            max_output_tokens=MAX_OUTPUT_TOKENS,
-            thinking_config=types.ThinkingConfig(thinking_level=level),
-            response_mime_type="application/json",
-        )
-        resp = client.models.generate_content(
+            video_file = client.files.get(name=video_file.name)
+        # No temperature/top_p/top_k: ignored by Gemini 4 models.
+        response = client.models.generate_content(
             model=MODEL,
-            contents=[types.Part.from_uri(file_uri=f.uri, mime_type=f.mime_type or "video/mp4"), PROMPT],
-            config=cfg,
+            contents=[video_file, PROMPT],
+            config=types.GenerateContentConfig(
+                thinking_config=types.ThinkingConfig(thinking_level=level),
+                max_output_tokens=MAX_OUTPUT_TOKENS,
+                response_mime_type="application/json",
+            ),
         )
-        text = resp.text or ""
-        return parse_verdict(text)
+        return parse_verdict(response.text or "")
     finally:
         try:
-            client.files.delete(name=f.name)  # keep File API storage clean
+            client.files.delete(name=video_file.name)  # always clean File API storage
         except Exception:
             pass
 
