@@ -26,3 +26,11 @@ One idea per shot, one motion (slide-in, shake, pop), one sound cue on the key w
 - Clouds: draw as ONE path fill, else overlap rings show.
 - Anything in y 1250-1550 collides with captions.
 - Sample (Ea-nasir test): 1080x1920, 30 fps, 19.8 s, 7.5 MB, -15 LUFS, render ~31 s on cloud CPU.
+
+## Problem-chain shot pattern (build-up reels)
+For process/use stories (see runbook "PROBLEM CHAIN"): keep ONE central scene/object that accumulates a part per fix.
+- Beat = problem shot (the danger/need, caption on the problem word) -> fix shot (a new part slides/pops in with a `pop` cue on the fix word) -> next problem appears (weather, animal, crowd, fire, flood: `K.speedLines`, `K.angerMarks`, rain/dust overlays).
+- Reuse the same camera framing across beats (small zoom/pan only) so the viewer sees the object grow; cut every 2-3 s inside a beat with `cam` changes.
+- Callouts: one bold card per video (`K.tag` / `K.stamp`), e.g. a number, a height, a name.
+- Last shot: the finished object surviving the last problem, then return to the hook scene for the loop.
+Reference: jungle-hut reel (bed -> scorpions -> platform -> rain -> roof -> snakes -> 10 ft + ladder -> flood -> survives).
