@@ -1,0 +1,24 @@
+{
+  "title": "The Oldest Customer Complaint on Record (Epic Frame style test)",
+  "series": "FIRST ON RECORD",
+  "tag": "UR · c. 1750 BC",
+  "voice": "am_michael",
+  "speed": 1.05,
+  "lead": 0.35,
+  "outro": 0.9,
+  "gap": 0.28,
+  "music": "bed",
+  "sources": [
+    "British Museum, museum no. 1953,0411.71 (BM 131236): clay tablet, letter from Nanni to Ea-nasir about the wrong grade of copper, from Ur, Old Babylonian period, c. 1750 BC (date approximate)",
+    "Guinness World Records, 'Oldest written customer complaint'"
+  ],
+  "lines": [
+    { "text": "Three thousand seven hundred years ago, a man in Ur paid for fine copper,", "caps": "THREE *THOUSAND | SEVEN *HUNDRED YEARS AGO | A MAN IN *UR | PAID FOR *COPPER" },
+    { "text": "and got bad copper instead.", "caps": "AND GOT *BAD COPPER | *INSTEAD" },
+    { "text": "So he did what anyone would do.", "caps": "SO HE DID | WHAT *ANYONE | WOULD *DO" },
+    { "text": "He wrote the angriest letter he could.", "caps": "HE WROTE | THE *ANGRIEST | *LETTER" },
+    { "text": "It survives today in the British Museum,", "caps": "IT SURVIVES | IN THE *BRITISH | *MUSEUM" },
+    { "text": "the oldest customer complaint on record.", "caps": "THE OLDEST *CUSTOMER | *COMPLAINT | ON *RECORD" },
+    { "text": "Some things never change, do they?", "caps": "SOME THINGS | NEVER *CHANGE" }
+  ]
+}

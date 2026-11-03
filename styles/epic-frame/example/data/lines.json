@@ -1,0 +1,49 @@
+{
+ "duration": 19.82,
+ "voice": "am_michael",
+ "speed": 1.05,
+ "lines": [
+  {
+   "i": 0,
+   "text": "Three thousand seven hundred years ago, a man in Ur paid for fine copper,",
+   "start": 0.35,
+   "end": 4.91
+  },
+  {
+   "i": 1,
+   "text": "and got bad copper instead.",
+   "start": 5.32,
+   "end": 7.036
+  },
+  {
+   "i": 2,
+   "text": "So he did what anyone would do.",
+   "start": 7.316,
+   "end": 9.029
+  },
+  {
+   "i": 3,
+   "text": "He wrote the angriest letter he could.",
+   "start": 9.309,
+   "end": 11.195
+  },
+  {
+   "i": 4,
+   "text": "It survives today in the British Museum,",
+   "start": 11.475,
+   "end": 13.725
+  },
+  {
+   "i": 5,
+   "text": "the oldest customer complaint on record.",
+   "start": 14.225,
+   "end": 16.481
+  },
+  {
+   "i": 6,
+   "text": "Some things never change, do they?",
+   "start": 16.761,
+   "end": 18.64
+  }
+ ]
+}
