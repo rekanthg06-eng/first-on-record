@@ -115,7 +115,7 @@ function limb(x0, y0, x1, y1, w0, w1, color) {
  *       armL, armR ([upper, bend] see ARM), eyes 'n|wide|closed|angry|sad', mouth 'flat|open|frown|smile|o', brow, look (-1..1), t, face (mirror -1/1), holdR(x,y), holdL(x,y), tilt } */
 export function figure(o) {
   const { x = 540, y = 1000, s = 1, skin = 'M', dress = 'plain', cloth = C.lapis, trim = C.gold, beard = 'none', beardCol = C.hair, hat = 'none', hatCol = C.cream,
-    armL = ARM.down, armR = ARM.down, eyes = 'n', mouth = 'flat', brow = 0, look = 0, t = 0, face = 1, holdR = null, holdL = null, tilt = 0, shadow = true, fade = 1 } = o;
+    armL = ARM.down, armR = ARM.down, eyes = 'n', mouth = 'flat', brow = 0, look = 0, t = 0, face = 1, holdR = null, holdL = null, tilt = 0, shadow = true, fade = 1, hair = 'none', hairCol = '#1C1210', glasses = false, circlet = false } = o;
   const [sk, skS] = SKIN[skin] || SKIN.M, clothD = mix(cloth, '#000000', 0.28);
   ctx.save(); ctx.globalAlpha *= fade; ctx.translate(x, y); ctx.scale(s * face, s);
   if (shadow) { glow(0, 120, 380, 'rgba(0,0,0,0.38)', 0.55); }
@@ -161,6 +161,7 @@ export function figure(o) {
   }
   if (beard === 'long') { ctx.beginPath(); ctx.moveTo(-92, hy + 30); ctx.quadraticCurveTo(-110, hy + 250, -40, hy + 330); ctx.quadraticCurveTo(0, hy + 360, 40, hy + 330); ctx.quadraticCurveTo(110, hy + 250, 92, hy + 30); ctx.closePath(); ctx.fillStyle = beardCol; ctx.fill();
     ctx.strokeStyle = mix(beardCol, '#000000', 0.35); ctx.lineWidth = 5; for (let i = 0; i < 4; i++) { ctx.beginPath(); ctx.moveTo(-70 + i * 6, hy + 120 + i * 48); ctx.quadraticCurveTo(0, hy + 150 + i * 48, 70 - i * 6, hy + 120 + i * 48); ctx.stroke(); } }
+  if (hair === 'long') { ctx.beginPath(); ctx.moveTo(-112, hy - 40); ctx.bezierCurveTo(-150, hy + 120, -140, hy + 300, -120, hy + 330); ctx.lineTo(120, hy + 330); ctx.bezierCurveTo(140, hy + 300, 150, hy + 120, 112, hy - 40); ctx.closePath(); ctx.fillStyle = hairCol; ctx.fill(); }
   // head
   ctx.beginPath(); ctx.moveTo(-96, hy - 10); ctx.bezierCurveTo(-100, hy - 130, 100, hy - 130, 96, hy - 10); ctx.bezierCurveTo(98, hy + 70, 50, hy + 118, 0, hy + 120); ctx.bezierCurveTo(-50, hy + 118, -98, hy + 70, -96, hy - 10); ctx.closePath();
   ctx.fillStyle = sk; ctx.fill();
@@ -187,6 +188,9 @@ export function figure(o) {
   else { ctx.strokeStyle = beard === 'none' ? '#7A3A30' : '#2A1410'; ctx.lineWidth = 8; ctx.beginPath();
     if (mouth === 'frown') { ctx.moveTo(-26, my + 12); ctx.quadraticCurveTo(0, my - 8, 26, my + 12); } else if (mouth === 'smile') { ctx.moveTo(-28, my - 2); ctx.quadraticCurveTo(0, my + 22, 28, my - 2); } else { ctx.moveTo(-24, my + 4); ctx.lineTo(24, my + 4); } ctx.stroke(); }
   // headwear
+  if (hair !== 'none') { ctx.beginPath(); ctx.moveTo(-102, hy - 24); ctx.bezierCurveTo(-116, hy - 180, 116, hy - 180, 102, hy - 24); ctx.quadraticCurveTo(64, hy - 100, 0, hy - 92); ctx.quadraticCurveTo(-64, hy - 100, -102, hy - 24); ctx.closePath(); ctx.fillStyle = hairCol; ctx.fill(); }
+  if (circlet) { ctx.fillStyle = C.gold; ctx.fillRect(-100, hy - 78, 200, 14); circle(0, hy - 71, 13, C.crimson); }
+  if (glasses) { ctx.strokeStyle = C.ink; ctx.lineWidth = 6; for (const sd of [-1, 1]) { ctx.beginPath(); ctx.arc(sd * 42, hy - 10, 30, 0, TAU); ctx.stroke(); } ctx.beginPath(); ctx.moveTo(-12, hy - 12); ctx.lineTo(12, hy - 12); ctx.stroke(); }
   if (hat === 'cap') { ctx.beginPath(); ctx.moveTo(-100, hy - 60); ctx.bezierCurveTo(-110, hy - 170, 110, hy - 170, 100, hy - 60); ctx.closePath(); ctx.fillStyle = hatCol; ctx.fill(); ctx.fillStyle = C.gold; ctx.fillRect(-102, hy - 70, 204, 20); circle(0, hy - 60, 12, C.crimson); }
   if (hat === 'turban') { ell(0, hy - 90, 118, 70, hatCol); for (let i = 0; i < 3; i++) { ctx.strokeStyle = mix(hatCol, '#000000', 0.2); ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(-100 + i * 10, hy - 80 + i * 18); ctx.quadraticCurveTo(0, hy - 120 + i * 26, 100 - i * 10, hy - 80 + i * 18); ctx.stroke(); } }
   if (hat === 'crown') { ctx.beginPath(); ctx.moveTo(-78, hy - 78); ctx.lineTo(-42, hy - 290); ctx.lineTo(42, hy - 290); ctx.lineTo(78, hy - 78); ctx.closePath(); ctx.fillStyle = C.gold; ctx.fill(); ctx.fillStyle = C.goldHi; ctx.fillRect(-60, hy - 90, 120, 14); circle(0, hy - 150, 14, C.crimson); }
@@ -258,3 +262,40 @@ export function stamp(text, x, y, size = 80, p = 1, rot = -0.08) {
 export function angerMarks(x, y, t, a = 1) { ctx.save(); ctx.globalAlpha *= a; ctx.strokeStyle = C.red; ctx.lineWidth = 12; ctx.lineCap = 'round'; const k = 1 + 0.12 * Math.sin(t * 16);
   for (const [dx, dy, r] of [[-60, -20, 0], [40, 10, 0.4]]) { ctx.save(); ctx.translate(x + dx, y + dy); ctx.scale(k, k); ctx.rotate(r); ctx.beginPath(); ctx.moveTo(-30, -10); ctx.quadraticCurveTo(-10, -10, -10, -30); ctx.moveTo(30, -10); ctx.quadraticCurveTo(10, -10, 10, -30); ctx.moveTo(-30, 10); ctx.quadraticCurveTo(-10, 10, -10, 30); ctx.moveTo(30, 10); ctx.quadraticCurveTo(10, 10, 10, 30); ctx.stroke(); ctx.restore(); } ctx.restore(); }
 export function speedLines(x, y, a = 1, n = 14) { ctx.save(); ctx.globalAlpha *= a; ctx.strokeStyle = 'rgba(255,240,200,0.8)'; ctx.lineWidth = 6; for (let i = 0; i < n; i++) { const an = i / n * TAU + 0.2, r0 = 360 + rnd(i) * 120, r1 = r0 + 160 + rnd(i + 2) * 160; ctx.beginPath(); ctx.moveTo(x + Math.cos(an) * r0, y + Math.sin(an) * r0); ctx.lineTo(x + Math.cos(an) * r1, y + Math.sin(an) * r1); ctx.stroke(); } ctx.restore(); }
+
+// ───────────────────────── props added for Istanbul 2461 ─────────────────────────
+export function heart(x, y, s = 1, a = 1) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.globalAlpha *= a; ctx.beginPath(); ctx.moveTo(0, 34); ctx.bezierCurveTo(-70, -8, -46, -66, 0, -32); ctx.bezierCurveTo(46, -66, 70, -8, 0, 34); ctx.closePath();
+  ctx.fillStyle = '#E0455A'; ctx.fill(); ctx.fillStyle = 'rgba(255,255,255,0.35)'; ctx.beginPath(); ctx.ellipse(-26, -22, 12, 7, -0.6, 0, TAU); ctx.fill(); ctx.restore();
+}
+/** flat lion head: gold face in a ring of mane tufts */
+export function lion(x, y, s = 1, a = 1, t = 0) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.globalAlpha *= a; glow(0, 0, 360, 'rgba(255,200,110,0.8)', 0.5);
+  for (let i = 0; i < 18; i++) { const an = i / 18 * TAU + Math.sin(t * 1.4 + i) * 0.03; ctx.save(); ctx.rotate(an); ell(0, -150, 38, 78, i % 2 ? '#8A4A14' : '#B5651D'); ctx.restore(); }
+  circle(0, 0, 128, '#B5651D'); circle(-92, -96, 30, '#E3A94B'); circle(92, -96, 30, '#E3A94B'); circle(-92, -96, 14, '#8A4A14'); circle(92, -96, 14, '#8A4A14');
+  ell(0, 8, 104, 112, '#E3A94B'); ell(0, 52, 56, 40, '#F2CD84');
+  for (const sd of [-1, 1]) { ell(sd * 42, -16, 20, 12, '#F6EEDC'); circle(sd * 42, -15, 9, C.ink); circle(sd * 45, -19, 3, '#FFFFFF'); ctx.strokeStyle = '#8A4A14'; ctx.lineWidth = 9; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(sd * 20, -44); ctx.lineTo(sd * 66, -50); ctx.stroke(); }
+  ctx.beginPath(); ctx.moveTo(-22, 18); ctx.lineTo(22, 18); ctx.lineTo(0, 44); ctx.closePath(); ctx.fillStyle = '#7A3A30'; ctx.fill();
+  ctx.strokeStyle = '#7A3A30'; ctx.lineWidth = 7; ctx.beginPath(); ctx.moveTo(0, 44); ctx.lineTo(0, 62); ctx.moveTo(-34, 62); ctx.quadraticCurveTo(-14, 82, 0, 62); ctx.quadraticCurveTo(14, 82, 34, 62); ctx.stroke();
+  ctx.restore();
+}
+/** museum storage: dark wood shelves of small clay tablets; returns the centre of the tablet that can glow */
+export function shelves(pan = 0, hiA = 0, hiCol = 3, hiRow = 1) {
+  ctx.fillStyle = '#1E1018'; ctx.fillRect(-300, -300, W + 600, H + 600);
+  const rows = [560, 840, 1120, 1400]; let hit = [540, 800];
+  rows.forEach((y, r) => {
+    for (let c = -3; c < 14; c++) {
+      const k = r * 40 + c + 7, w = 104 + rnd(k) * 26, h = 66 + rnd(k + 3) * 34, x = c * 150 - pan + 20, top = y - h;
+      const isHi = r === hiRow && c === hiCol; if (isHi) { hit = [x + w / 2, top + h / 2]; continue; }
+      ctx.beginPath(); ctx.roundRect(x, top, w, h, 14); ctx.fillStyle = mix(C.clay, '#000000', 0.25 + rnd(k + 5) * 0.3); ctx.fill();
+      ctx.fillStyle = 'rgba(40,20,16,0.5)'; for (let m = 0; m < 3; m++) ctx.fillRect(x + 16 + m * 28, top + 18 + rnd(k + m) * 14, 16, 5);
+    }
+    ctx.fillStyle = '#5A3228'; ctx.fillRect(-300, y, W + 600, 30); ctx.fillStyle = 'rgba(0,0,0,0.35)'; ctx.fillRect(-300, y + 30, W + 600, 16);
+  });
+  if (hiA > 0) glow(hit[0], hit[1], 300, 'rgba(255,215,140,0.95)', hiA);
+  return hit;
+}
+export function qmark(x, y, s = 1, a = 1) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.globalAlpha *= a; ctx.font = '900 260px Inter'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.lineWidth = 22; ctx.strokeStyle = '#2A0F1C'; ctx.lineJoin = 'round'; ctx.strokeText('?', 0, 0); ctx.fillStyle = C.gold; ctx.fillText('?', 0, 0); ctx.restore();
+}

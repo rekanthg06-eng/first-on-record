@@ -25,7 +25,7 @@ let off = null, offCtx = null;
 function header(t, script) {
   const text = script.series || 'FIRST ON RECORD';
   ctx.save(); ctx.font = '700 46px Caladea'; ctx.letterSpacing = '9px'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-  const w = ctx.measureText(text).width, y = 250, a = clamp(t / 0.5);
+  const w = ctx.measureText(text).width, y = 250, a = 1; // header fade-in disabled so first and last frames match (loop)
   ctx.globalAlpha = a; ctx.shadowColor = 'rgba(30,8,16,0.6)'; ctx.shadowBlur = 10; ctx.fillStyle = C.gold; ctx.fillText(text, 540, y);
   ctx.shadowBlur = 0; ctx.strokeStyle = C.gold; ctx.lineWidth = 3; for (const sd of [-1, 1]) { ctx.beginPath(); ctx.moveTo(540 + sd * (w / 2 + 28), y); ctx.lineTo(540 + sd * (w / 2 + 28 + 90), y); ctx.stroke(); }
   if (script.tag) { ctx.font = '700 30px Caladea'; ctx.letterSpacing = '6px'; ctx.fillStyle = C.cream; ctx.globalAlpha = a * 0.85; ctx.fillText(script.tag, 540, y + 58); }
@@ -51,7 +51,7 @@ function draw(t) {
   ctx.globalAlpha = 1; ctx.letterSpacing = '0px';
   vignette(0.38);
   header(t, OP.script);
-  const fade = Math.min(clamp(t / 0.2), clamp((T.dur - t) / 0.4));
+  const fade = 1; // black fade in/out disabled so first and last frames match (loop)
   if (fade < 1) { ctx.fillStyle = '#000'; ctx.globalAlpha = 1 - fade; ctx.fillRect(0, 0, W, H); ctx.globalAlpha = 1; }
   drawCaption(t);
 }
