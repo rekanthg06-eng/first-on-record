@@ -1,0 +1,12 @@
+{
+ "slug": "20261108-cb-g-emph-strong-take2",
+ "provider": "chatterbox",
+ "exaggeration": null,
+ "cfg_weight": null,
+ "ref_audio": null,
+ "seed": 21,
+ "duration_s": 22.75,
+ "words": 68,
+ "timing": "whisper",
+ "chars": 373
+}

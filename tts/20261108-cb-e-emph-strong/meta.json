@@ -1,0 +1,12 @@
+{
+ "slug": "20261108-cb-e-emph-strong",
+ "provider": "chatterbox",
+ "exaggeration": null,
+ "cfg_weight": null,
+ "ref_audio": null,
+ "seed": 7,
+ "duration_s": 22.71,
+ "words": 68,
+ "timing": "whisper",
+ "chars": 373
+}
