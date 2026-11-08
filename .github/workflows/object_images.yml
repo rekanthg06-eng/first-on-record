@@ -1,0 +1,57 @@
+name: object_images
+# Finds reusable images (public domain / CC0 / CC BY) of a museum object on Wikimedia Commons and writes them,
+# with the license and credit lines, to branch img-out under img/<slug>/. The sandbox cannot reach Commons; the runner can.
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: yyyymmdd-slug of the episode
+        required: true
+      queries:
+        description: Search queries separated by ';' (object name, catalog number, museum + object)
+        required: true
+
+concurrency:
+  group: object-images
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  images:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SLUG: ${{ inputs.slug }}
+      QUERIES: ${{ inputs.queries }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - name: Search and download
+        run: |
+          slug=$(echo "$SLUG" | tr -cd 'a-zA-Z0-9_-')
+          [ -n "$slug" ] || { echo "bad slug"; exit 1; }
+          n=0
+          IFS=';' read -ra qs <<< "$QUERIES"
+          for q in "${qs[@]}"; do
+            q=$(echo "$q" | sed 's/^ *//;s/ *$//'); [ -n "$q" ] || continue
+            n=$((n+1)); python3 tools/commons_images.py "$q" --out "build/img/$slug/q$n" --limit 8
+          done
+      - name: Publish to img-out
+        run: |
+          slug=$(echo "$SLUG" | tr -cd 'a-zA-Z0-9_-')
+          mkdir img_out && cd img_out && git init -q
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git ls-remote --exit-code --heads origin img-out >/dev/null 2>&1; then
+            git fetch -q --depth 1 origin img-out && git checkout -q -b img-out FETCH_HEAD
+          else
+            git checkout -q --orphan img-out
+          fi
+          mkdir -p img && rm -rf "img/$slug" && cp -r "../build/img/$slug" img/
+          ls -1d img/*/ | sort | head -n -6 | xargs -r rm -rf      # keep the 6 newest
+          git add -A
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit -q -m "img: $slug" || { echo "nothing to commit"; exit 0; }
+          git push -q origin img-out
