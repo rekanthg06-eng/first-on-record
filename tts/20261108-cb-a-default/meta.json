@@ -1,0 +1,12 @@
+{
+ "slug": "20261108-cb-a-default",
+ "provider": "chatterbox",
+ "exaggeration": 0.5,
+ "cfg_weight": 0.5,
+ "ref_audio": null,
+ "seed": 7,
+ "duration_s": 23.84,
+ "words": 68,
+ "timing": "whisper",
+ "chars": 373
+}

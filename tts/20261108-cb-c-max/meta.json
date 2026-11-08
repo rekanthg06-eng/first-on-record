@@ -1,0 +1,12 @@
+{
+ "slug": "20261108-cb-c-max",
+ "provider": "chatterbox",
+ "exaggeration": 0.9,
+ "cfg_weight": 0.3,
+ "ref_audio": null,
+ "seed": 7,
+ "duration_s": 22.16,
+ "words": 68,
+ "timing": "whisper",
+ "chars": 373
+}
