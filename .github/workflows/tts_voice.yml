@@ -1,0 +1,64 @@
+name: tts_voice
+# Narration from a premium voice API, so the sandbox never needs the key or outbound access.
+# A run stages tts/requests/<slug>.json on main -> this job -> tts-out branch gets tts/<slug>/{voice.wav,words.json,meta.json}.
+# Output goes to a different branch so it never re-triggers this workflow. Keeps the 6 newest slugs.
+on:
+  push:
+    branches: [main]
+    paths: ['tts/requests/*.json']
+  workflow_dispatch:
+    inputs:
+      request_path:
+        description: Request json (default = newest in tts/requests)
+        default: ''
+
+concurrency:
+  group: tts-voice
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  tts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GOOGLE_TTS_API_KEY: ${{ secrets.GOOGLE_TTS_API_KEY }}
+      ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Tools
+        run: |
+          command -v ffmpeg >/dev/null || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
+          pip install -q faster-whisper
+      - name: Pick request
+        id: pick
+        env:
+          WANT: ${{ inputs.request_path }}
+        run: |
+          req="$WANT"
+          [ -z "$req" ] && req=$(ls -1 tts/requests/*.json 2>/dev/null | sort | tail -n 1)
+          [ -n "$req" ] && [ -f "$req" ] || { echo "No request found."; exit 1; }
+          echo "req=$req" >> "$GITHUB_OUTPUT"; echo "Request: $req"
+      - name: Synthesize and time
+        run: python tools/tts_remote.py "${{ steps.pick.outputs.req }}" --out build/tts
+      - name: Publish to tts-out
+        run: |
+          mkdir tts_out && cd tts_out && git init -q
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git ls-remote --exit-code --heads origin tts-out >/dev/null 2>&1; then
+            git fetch -q --depth 1 origin tts-out && git checkout -q -b tts-out FETCH_HEAD
+          else
+            git checkout -q --orphan tts-out
+          fi
+          mkdir -p tts && cp -r ../build/tts/* tts/
+          ls -1d tts/*/ | sort | head -n -6 | xargs -r rm -rf     # keep the 6 newest (slugs start with yyyymmdd)
+          git add -A
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit -q -m "tts: $(ls ../build/tts | tr '\n' ' ')" || { echo "nothing to commit"; exit 0; }
+          git push -q origin tts-out

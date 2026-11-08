@@ -25,3 +25,6 @@ Only after that succeeds: set repository **variable** `LIVE_PUBLISH` = `true`, a
  "tags": ["..."], "institution": "British Museum", "catalog_number": "1953,0411.71", "sources": ["url or citation 1", "url or citation 2"],
  "topic_type": "text", "lever": "comment", "hook_score": 90, "visual_style": "paper-atlas", "duration_s": 32.6}
 ```
+
+## 5. Voice (optional upgrade, workflow `tts_voice`)
+Premium narration runs in Actions so the sandbox needs no key. Secrets `GOOGLE_TTS_API_KEY` (Cloud Text-to-Speech API enabled in the same project, key restricted to it) or `ELEVENLABS_API_KEY`. Full contract and flow: `tts/README.md`.
