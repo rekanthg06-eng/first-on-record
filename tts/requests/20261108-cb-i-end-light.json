@@ -1,7 +1,7 @@
 {
- "slug": "20261108-cb-e-emph-strong",
+ "slug": "20261108-cb-i-end-light",
  "provider": "chatterbox",
- "seed": 7,
+ "seed": 21,
  "sentences": [
   {
    "text": "The first contract in history had one problem.",
@@ -53,14 +53,14 @@
   },
   {
    "text": "That little stone...",
-   "exaggeration": 0.6,
+   "exaggeration": 0.5,
    "cfg_weight": 0.5,
-   "pause": 0.6
+   "pause": 0.45
   },
   {
    "text": "was the first signature.",
-   "exaggeration": 0.85,
-   "cfg_weight": 0.3,
+   "exaggeration": 0.52,
+   "cfg_weight": 0.5,
    "pause": 0.0
   }
  ]
