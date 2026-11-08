@@ -1,0 +1,517 @@
+[
+ {
+  "word": "The",
+  "start": 0.0,
+  "end": 0.2
+ },
+ {
+  "word": "oldest",
+  "start": 0.2,
+  "end": 0.42
+ },
+ {
+  "word": "board",
+  "start": 0.42,
+  "end": 0.64
+ },
+ {
+  "word": "game",
+  "start": 0.64,
+  "end": 0.84
+ },
+ {
+  "word": "rules",
+  "start": 0.84,
+  "end": 1.04
+ },
+ {
+  "word": "on",
+  "start": 1.04,
+  "end": 1.2
+ },
+ {
+  "word": "record",
+  "start": 1.2,
+  "end": 1.48
+ },
+ {
+  "word": "hide",
+  "start": 1.62,
+  "end": 1.74
+ },
+ {
+  "word": "behind",
+  "start": 1.74,
+  "end": 2.0
+ },
+ {
+  "word": "a",
+  "start": 2.0,
+  "end": 2.08
+ },
+ {
+  "word": "list",
+  "start": 2.08,
+  "end": 2.2
+ },
+ {
+  "word": "of",
+  "start": 2.2,
+  "end": 2.34
+ },
+ {
+  "word": "fortunes",
+  "start": 2.34,
+  "end": 2.6
+ },
+ {
+  "word": "The",
+  "start": 3.66,
+  "end": 3.66
+ },
+ {
+  "word": "game",
+  "start": 3.66,
+  "end": 3.84
+ },
+ {
+  "word": "is",
+  "start": 3.84,
+  "end": 4.02
+ },
+ {
+  "word": "the",
+  "start": 4.02,
+  "end": 4.14
+ },
+ {
+  "word": "Royal",
+  "start": 4.14,
+  "end": 4.32
+ },
+ {
+  "word": "Game",
+  "start": 4.32,
+  "end": 4.58
+ },
+ {
+  "word": "of",
+  "start": 4.58,
+  "end": 4.76
+ },
+ {
+  "word": "Ur",
+  "start": 4.76,
+  "end": 4.92
+ },
+ {
+  "word": "played",
+  "start": 5.18,
+  "end": 5.38
+ },
+ {
+  "word": "since",
+  "start": 5.38,
+  "end": 5.64
+ },
+ {
+  "word": "around",
+  "start": 5.64,
+  "end": 5.88
+ },
+ {
+  "word": "twenty-six",
+  "start": 6.053,
+  "end": 6.209
+ },
+ {
+  "word": "hundred",
+  "start": 6.227,
+  "end": 6.383
+ },
+ {
+  "word": "BC",
+  "start": 6.4,
+  "end": 6.94
+ },
+ {
+  "word": "But",
+  "start": 7.68,
+  "end": 7.9
+ },
+ {
+  "word": "the",
+  "start": 7.9,
+  "end": 8.02
+ },
+ {
+  "word": "boards",
+  "start": 8.02,
+  "end": 8.18
+ },
+ {
+  "word": "survived",
+  "start": 8.18,
+  "end": 8.64
+ },
+ {
+  "word": "and",
+  "start": 8.84,
+  "end": 8.9
+ },
+ {
+  "word": "the",
+  "start": 8.9,
+  "end": 8.96
+ },
+ {
+  "word": "rules",
+  "start": 8.96,
+  "end": 9.2
+ },
+ {
+  "word": "did",
+  "start": 9.2,
+  "end": 9.42
+ },
+ {
+  "word": "not",
+  "start": 9.42,
+  "end": 9.68
+ },
+ {
+  "word": "So",
+  "start": 10.44,
+  "end": 10.62
+ },
+ {
+  "word": "for",
+  "start": 10.62,
+  "end": 10.8
+ },
+ {
+  "word": "ages",
+  "start": 10.8,
+  "end": 10.98
+ },
+ {
+  "word": "nobody",
+  "start": 11.18,
+  "end": 11.32
+ },
+ {
+  "word": "knew",
+  "start": 11.32,
+  "end": 11.52
+ },
+ {
+  "word": "how",
+  "start": 11.52,
+  "end": 11.64
+ },
+ {
+  "word": "to",
+  "start": 11.64,
+  "end": 11.72
+ },
+ {
+  "word": "play",
+  "start": 11.72,
+  "end": 11.94
+ },
+ {
+  "word": "Then",
+  "start": 12.72,
+  "end": 13.02
+ },
+ {
+  "word": "Irving",
+  "start": 13.16,
+  "end": 13.36
+ },
+ {
+  "word": "Finkel",
+  "start": 13.36,
+  "end": 13.74
+ },
+ {
+  "word": "at",
+  "start": 13.88,
+  "end": 14.02
+ },
+ {
+  "word": "the",
+  "start": 14.02,
+  "end": 14.14
+ },
+ {
+  "word": "British",
+  "start": 14.14,
+  "end": 14.36
+ },
+ {
+  "word": "Museum",
+  "start": 14.36,
+  "end": 14.8
+ },
+ {
+  "word": "read",
+  "start": 15.14,
+  "end": 15.28
+ },
+ {
+  "word": "a",
+  "start": 15.28,
+  "end": 15.46
+ },
+ {
+  "word": "clay",
+  "start": 15.46,
+  "end": 15.62
+ },
+ {
+  "word": "tablet",
+  "start": 15.62,
+  "end": 16.0
+ },
+ {
+  "word": "copied",
+  "start": 16.0,
+  "end": 16.32
+ },
+ {
+  "word": "in",
+  "start": 16.32,
+  "end": 16.54
+ },
+ {
+  "word": "one",
+  "start": 16.72,
+  "end": 16.882
+ },
+ {
+  "word": "hundred",
+  "start": 16.9,
+  "end": 17.062
+ },
+ {
+  "word": "seventy-seven",
+  "start": 17.08,
+  "end": 17.242
+ },
+ {
+  "word": "BC",
+  "start": 17.26,
+  "end": 18.08
+ },
+ {
+  "word": "But",
+  "start": 18.84,
+  "end": 19.06
+ },
+ {
+  "word": "this",
+  "start": 19.06,
+  "end": 19.2
+ },
+ {
+  "word": "was",
+  "start": 19.2,
+  "end": 19.34
+ },
+ {
+  "word": "no",
+  "start": 19.34,
+  "end": 19.54
+ },
+ {
+  "word": "friendly",
+  "start": 19.54,
+  "end": 19.78
+ },
+ {
+  "word": "game",
+  "start": 19.78,
+  "end": 20.02
+ },
+ {
+  "word": "night",
+  "start": 20.02,
+  "end": 20.24
+ },
+ {
+  "word": "It",
+  "start": 20.88,
+  "end": 21.04
+ },
+ {
+  "word": "was",
+  "start": 21.04,
+  "end": 21.16
+ },
+ {
+  "word": "a",
+  "start": 21.16,
+  "end": 21.28
+ },
+ {
+  "word": "betting",
+  "start": 21.28,
+  "end": 21.46
+ },
+ {
+  "word": "game",
+  "start": 21.46,
+  "end": 21.84
+ },
+ {
+  "word": "Land",
+  "start": 22.64,
+  "end": 22.78
+ },
+ {
+  "word": "on",
+  "start": 22.78,
+  "end": 22.96
+ },
+ {
+  "word": "a",
+  "start": 22.96,
+  "end": 23.08
+ },
+ {
+  "word": "rosette",
+  "start": 23.08,
+  "end": 23.52
+ },
+ {
+  "word": "and",
+  "start": 23.72,
+  "end": 23.84
+ },
+ {
+  "word": "you",
+  "start": 23.84,
+  "end": 23.98
+ },
+ {
+  "word": "are",
+  "start": 23.98,
+  "end": 24.08
+ },
+ {
+  "word": "lucky",
+  "start": 24.08,
+  "end": 24.36
+ },
+ {
+  "word": "Skip",
+  "start": 25.2,
+  "end": 25.28
+ },
+ {
+  "word": "one",
+  "start": 25.28,
+  "end": 25.56
+ },
+ {
+  "word": "and",
+  "start": 25.72,
+  "end": 25.88
+ },
+ {
+  "word": "you",
+  "start": 25.88,
+  "end": 25.96
+ },
+ {
+  "word": "pay",
+  "start": 25.96,
+  "end": 26.1
+ },
+ {
+  "word": "into",
+  "start": 26.1,
+  "end": 26.24
+ },
+ {
+  "word": "the",
+  "start": 26.24,
+  "end": 26.36
+ },
+ {
+  "word": "pot",
+  "start": 26.36,
+  "end": 26.54
+ },
+ {
+  "word": "And",
+  "start": 27.3,
+  "end": 27.48
+ },
+ {
+  "word": "the",
+  "start": 27.48,
+  "end": 27.6
+ },
+ {
+  "word": "other",
+  "start": 27.6,
+  "end": 27.78
+ },
+ {
+  "word": "side",
+  "start": 27.78,
+  "end": 27.98
+ },
+ {
+  "word": "of",
+  "start": 27.98,
+  "end": 28.08
+ },
+ {
+  "word": "the",
+  "start": 28.08,
+  "end": 28.18
+ },
+ {
+  "word": "tablet",
+  "start": 28.18,
+  "end": 28.46
+ },
+ {
+  "word": "So",
+  "start": 28.46,
+  "end": 29.48
+ },
+ {
+  "word": "before",
+  "start": 29.48,
+  "end": 29.8
+ },
+ {
+  "word": "you",
+  "start": 29.8,
+  "end": 29.96
+ },
+ {
+  "word": "roll",
+  "start": 29.96,
+  "end": 30.2
+ },
+ {
+  "word": "read",
+  "start": 30.52,
+  "end": 30.6
+ },
+ {
+  "word": "your",
+  "start": 30.6,
+  "end": 30.82
+ },
+ {
+  "word": "fortune",
+  "start": 30.82,
+  "end": 31.1
+ }
+]
