@@ -1,0 +1,9 @@
+{
+ "slug": "20261108-mock-smoke",
+ "provider": "mock",
+ "voice": "none",
+ "duration_s": 6.93,
+ "words": 21,
+ "timing": "spread",
+ "chars": 116
+}
