@@ -1,0 +1,84 @@
+{
+ "slug": "20261109-game-of-ur-rules",
+ "provider": "chatterbox",
+ "seed": 21,
+ "sentences": [
+  {
+   "text": "The oldest board game rules on record hide behind a list of fortunes.",
+   "exaggeration": 0.7,
+   "cfg_weight": 0.45,
+   "pause": 0.4,
+   "kind": "P"
+  },
+  {
+   "text": "The game is the Royal Game of Ur, played since around twenty-six hundred BC.",
+   "exaggeration": 0.5,
+   "cfg_weight": 0.5,
+   "pause": 0.35,
+   "kind": "F"
+  },
+  {
+   "text": "But the boards survived, and the rules did not.",
+   "exaggeration": 0.7,
+   "cfg_weight": 0.45,
+   "pause": 0.4,
+   "kind": "P"
+  },
+  {
+   "text": "So for ages, nobody knew how to play.",
+   "exaggeration": 0.8,
+   "cfg_weight": 0.4,
+   "pause": 0.45,
+   "kind": "H"
+  },
+  {
+   "text": "Then Irving Finkel, at the British Museum, read a clay tablet copied in one hundred seventy-seven BC.",
+   "exaggeration": 0.5,
+   "cfg_weight": 0.5,
+   "pause": 0.35,
+   "kind": "F"
+  },
+  {
+   "text": "But this was no friendly game night.",
+   "exaggeration": 0.7,
+   "cfg_weight": 0.45,
+   "pause": 0.4,
+   "kind": "P"
+  },
+  {
+   "text": "It was a betting game.",
+   "exaggeration": 0.8,
+   "cfg_weight": 0.4,
+   "pause": 0.45,
+   "kind": "H"
+  },
+  {
+   "text": "Land on a rosette, and you are lucky.",
+   "exaggeration": 0.5,
+   "cfg_weight": 0.5,
+   "pause": 0.35,
+   "kind": "F"
+  },
+  {
+   "text": "Skip one, and you pay into the pot.",
+   "exaggeration": 0.5,
+   "cfg_weight": 0.5,
+   "pause": 0.35,
+   "kind": "F"
+  },
+  {
+   "text": "And the other side of the tablet?",
+   "exaggeration": 0.55,
+   "cfg_weight": 0.5,
+   "pause": 0.5,
+   "kind": "L1"
+  },
+  {
+   "text": "So before you roll, read your fortune.",
+   "exaggeration": 0.65,
+   "cfg_weight": 0.4,
+   "pause": 0.0,
+   "kind": "L2"
+  }
+ ]
+}
