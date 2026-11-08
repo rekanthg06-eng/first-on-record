@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       request_path:
-        description: Request json (default = newest in tts/requests)
+        description: Request json path(s), space-separated (default = newest in tts/requests)
         default: ''
 
 concurrency:
@@ -41,7 +41,7 @@ jobs:
         run: |
           if [ -n "$WANT" ]; then reqs="$WANT"
           elif [ "${{ github.event_name }}" = "push" ] && [ -n "$BEFORE" ] && ! echo "$BEFORE" | grep -qE '^0+$'; then
-            reqs=$(git diff --name-only --diff-filter=AM "$BEFORE" "${{ github.sha }}" -- 'tts/requests/*.json')
+            reqs=$(git diff --no-renames --name-only --diff-filter=AM "$BEFORE" "${{ github.sha }}" -- 'tts/requests/*.json')
           else reqs=$(ls -1 tts/requests/*.json | sort | tail -n 1); fi
           [ -n "$reqs" ] || { echo "No request found."; exit 1; }
           echo "reqs=$(echo $reqs)" >> "$GITHUB_OUTPUT"; echo "Requests: $reqs"
