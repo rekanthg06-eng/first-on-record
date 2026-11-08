@@ -1,0 +1,70 @@
+{
+ "slug": "20261109-cylinder-seal",
+ "provider": "chatterbox",
+ "seed": 21,
+ "sentences": [
+  {
+   "text": "One of history's oldest signatures was a stone smaller than your thumb.",
+   "exaggeration": 0.7,
+   "cfg_weight": 0.45,
+   "pause": 0.4,
+   "kind": "P"
+  },
+  {
+   "text": "But how do you sign wet clay?",
+   "exaggeration": 0.7,
+   "cfg_weight": 0.45,
+   "pause": 0.4,
+   "kind": "P"
+  },
+  {
+   "text": "You carve a tiny picture into stone.",
+   "exaggeration": 0.5,
+   "cfg_weight": 0.5,
+   "pause": 0.35,
+   "kind": "F"
+  },
+  {
+   "text": "But one press makes one mark.",
+   "exaggeration": 0.7,
+   "cfg_weight": 0.45,
+   "pause": 0.4,
+   "kind": "P"
+  },
+  {
+   "text": "So you roll it, and the picture stands out raised.",
+   "exaggeration": 0.5,
+   "cfg_weight": 0.5,
+   "pause": 0.35,
+   "kind": "F"
+  },
+  {
+   "text": "But what about a tablet sealed inside an envelope?",
+   "exaggeration": 0.7,
+   "cfg_weight": 0.45,
+   "pause": 0.4,
+   "kind": "P"
+  },
+  {
+   "text": "You roll the stone across the envelope as well.",
+   "exaggeration": 0.5,
+   "cfg_weight": 0.5,
+   "pause": 0.35,
+   "kind": "F"
+  },
+  {
+   "text": "This one, at the Met, is about five thousand years old.",
+   "exaggeration": 0.55,
+   "cfg_weight": 0.5,
+   "pause": 0.5,
+   "kind": "L1"
+  },
+  {
+   "text": "And it's still smaller than your thumb.",
+   "exaggeration": 0.65,
+   "cfg_weight": 0.4,
+   "pause": 0.0,
+   "kind": "L2"
+  }
+ ]
+}
