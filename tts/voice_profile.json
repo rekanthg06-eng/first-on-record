@@ -1,0 +1,14 @@
+{
+  "name": "chatterbox-take-h",
+  "note": "Locked 2026-11-08 by the user (audition 'h': default voice, strong lift on problem lines, moderate ending). Kinds are tagged per script line with \"kind\"; untagged = F.",
+  "provider": "chatterbox",
+  "seed": 21,
+  "kinds": {
+    "P":  {"exaggeration": 0.70, "cfg_weight": 0.45, "pause": 0.40, "about": "problem line (\"But ...\", \"But who sealed it?\")"},
+    "H":  {"exaggeration": 0.80, "cfg_weight": 0.40, "pause": 0.45, "about": "punch line (the sting right after a problem)"},
+    "F":  {"exaggeration": 0.50, "cfg_weight": 0.50, "pause": 0.35, "about": "fix / plain narration (default)"},
+    "L1": {"exaggeration": 0.55, "cfg_weight": 0.50, "pause": 0.50, "about": "lead-in to the finish (\"That little stone...\")"},
+    "L2": {"exaggeration": 0.65, "cfg_weight": 0.40, "pause": 0.00, "about": "the finish; moderate, never heavier than this"}
+  },
+  "master": "highpass=f=60,equalizer=f=120:t=q:w=1:g=2,equalizer=f=3000:t=q:w=1:g=2,acompressor=threshold=-24dB:ratio=3:attack=5:release=80:makeup=3,alimiter=limit=0.9"
+}

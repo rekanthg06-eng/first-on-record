@@ -17,3 +17,11 @@ See the docstring in `tools/tts_remote.py` and `tts/examples/`. Knobs: `exaggera
 ## Notes
 - Every Chatterbox output carries Resemble's imperceptible Perth watermark (stated in its README).
 - Provider `mock` (tone, no model) proves the plumbing only.
+
+## Channel voice (locked 2026-11-08)
+`tts/voice_profile.json` = the approved Chatterbox take: default voice, a lift on problem lines, a moderate finish, seed 21. Tag script lines with `"kind"` (`P` problem, `H` punch, `F` fix = default, `L1` lead-in, `L2` finish) and use `tools/voice_tools.py`:
+
+    python tools/voice_tools.py request <project> --slug <yyyymmdd-slug>     # -> tts/requests/<slug>.json, push to main
+    python tools/voice_tools.py import  <project> voice.wav words.json       # Action output -> data/narration.wav, lines.json, words.json
+
+`import` adds the lead and outro silence, applies the master chain (EQ, compression, limiter; final loudness is still `mix.py`'s job) and writes the same files `voice.py` + `words.py` write, so the rest of the pipeline is unchanged. Chatterbox is stochastic: a different `--seed` gives a different take.
