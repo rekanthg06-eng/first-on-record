@@ -1,0 +1,100 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+html,body{margin:0;background:#0d0a08;overflow:hidden}
+#stage{position:relative;width:1080px;height:1920px;font-family:"DejaVu Sans","Liberation Sans",Arial,sans-serif}
+canvas{position:absolute;left:0;top:0}
+#grad{position:absolute;left:0;right:0;top:0;height:420px;background:linear-gradient(#0d0a08e6,#0d0a0800)}#gradb{position:absolute;left:0;right:0;bottom:0;height:700px;background:linear-gradient(#0d0a0800,#0d0a08d0)}
+#top{position:absolute;left:0;right:0;top:92px;text-align:center;color:#f3e6cf;letter-spacing:6px}
+#top b{display:block;font-size:44px;letter-spacing:10px}#top span{display:block;margin-top:10px;font-size:32px;color:#ffd27a;text-shadow:0 2px 8px #000}
+#card{position:absolute;left:0;right:0;top:300px;text-align:center;color:#fff;transition:none}
+#card .big{display:inline-block;font-size:150px;font-weight:900;color:#ffd27a;text-shadow:0 6px 0 #5a3a12,0 0 30px rgba(0,0,0,.6)}
+#card .sm{display:block;font-size:40px;font-weight:700;letter-spacing:3px;margin-top:6px;text-shadow:0 3px 10px #000}
+#cap{position:absolute;left:40px;right:40px;top:1290px;height:240px;display:flex;align-items:center;justify-content:center;text-align:center;
+ font-size:104px;line-height:1.05;font-weight:900;text-transform:uppercase;color:#fff;-webkit-text-stroke:10px #1a0f08;paint-order:stroke fill;text-shadow:0 8px 0 rgba(0,0,0,.45)}
+#cap .a{color:#ffd27a}#cap div{max-width:1000px}
+#src{position:absolute;left:0;right:0;top:1600px;text-align:center;color:#f3e6cf;font-size:36px;font-weight:700;letter-spacing:2px;text-shadow:0 3px 10px #000}
+#note{position:absolute;left:0;right:0;top:1850px;text-align:center;color:#b79c78;font-size:26px;letter-spacing:3px}
+</style></head><body><div id="stage"><canvas id="c" width="1080" height="1920"></canvas>
+<div id="grad"></div><div id="gradb"></div><div id="top"><b>FIRST ON RECORD</b><span id="tag"></span></div>
+<div id="card"><div class="big"></div><span class="sm"></span></div>
+<div id="cap"></div><div id="src"></div><div id="note">ILLUSTRATION · NOT TO SCALE</div></div>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three'; import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+const cfg = await (await fetch('cfg.json')).json();   // {duration, tag, lines:[{start,end}], words:[{w,s,e,line}]}
+document.getElementById('tag').textContent = cfg.tag;
+const W=1080,H=1920,c=document.getElementById('c');
+const r=new THREE.WebGLRenderer({canvas:c,antialias:true,preserveDrawingBuffer:true}); r.setSize(W,H,false); r.setPixelRatio(1);
+r.shadowMap.enabled=true; r.shadowMap.type=THREE.PCFSoftShadowMap; r.localClippingEnabled=true; r.toneMapping=THREE.ACESFilmicToneMapping; r.toneMappingExposure=0.85;
+const s=new THREE.Scene(); s.background=new THREE.Color(0x0d0a08); s.fog=new THREE.Fog(0x0d0a08,9,16);
+const cam=new THREE.PerspectiveCamera(40,W/H,0.1,60); cam.up.set(1,0,0);
+s.add(new THREE.HemisphereLight(0xffe2bd,0x1a0f08,0.45));
+const key=new THREE.DirectionalLight(0xfff0d8,2.1); key.position.set(-1.5,6,3); key.castShadow=true; key.shadow.mapSize.set(2048,2048);
+Object.assign(key.shadow.camera,{left:-4,right:4,top:4,bottom:-4,near:1,far:14}); key.shadow.bias=-0.0004; s.add(key);
+const rim=new THREE.DirectionalLight(0xffb070,1.2); rim.position.set(4,3,-4); s.add(rim);
+const g=await new GLTFLoader().loadAsync('seal.glb'); s.add(g.scene);
+g.scene.traverse(o=>{ if(o.isMesh){o.castShadow=true;o.receiveShadow=true; if(o.name==='Ground')o.castShadow=false;} });
+const seal=g.scene.getObjectByName('Seal'), env=g.scene.getObjectByName('Envelope'), imp1=g.scene.getObjectByName('Impression'), slab=g.scene.getObjectByName('Slab'), wed=g.scene.getObjectByName('Wedges');
+seal.traverse(o=>{ if(o.isMesh){ o.material=o.material.clone(); o.material.color.setRGB(0.07,0.50,0.33); o.material.roughness=0.42; o.material.metalness=0; }});
+wed.material=wed.material.clone(); imp1.material=imp1.material.clone();
+const imp2=imp1.clone(); imp2.material=imp1.material.clone(); g.scene.add(imp2); imp2.position.y+=0.14;
+const ASSIGN=(m)=>{m.transparent=true;}; ASSIGN(imp1.material); ASSIGN(imp2.material);
+const P1=new THREE.Plane(new THREE.Vector3(-1,0,0),-99), P2=new THREE.Plane(new THREE.Vector3(-1,0,0),-99);
+imp1.material.clippingPlanes=[P1]; imp2.material.clippingPlanes=[P2]; imp1.material.clipShadows=true; imp2.material.clipShadows=true;
+const X0=-1.55, R=0.5, YREST=0.78, CIRC=2*Math.PI*R, ENVY=0.14, TWO=Math.PI*2;
+const L=cfg.lines, D=cfg.duration;
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)), E=t=>t*t*(3-2*t), seg=(t,a,b)=>clamp((t-a)/(b-a)), mix=(a,b,k)=>a+(b-a)*k;
+const V=(x,y,z)=>new THREE.Vector3(x,y,z);
+// key times from the narration
+const T={ l1:L[1].start, l2:L[2].start, l3:L[3].start, l4:L[4].start, l4e:L[4].end, l5:L[5].start, l6:L[6].start, l6e:L[6].end, l7:L[7].start, l8:L[8].start };
+const HERO={x:0,y:1.0,z:0,tilt:0.30,spin:0.40};
+function sealState(t){
+  const st={x:HERO.x,y:HERO.y,z:HERO.z,tilt:HERO.tilt,spin:HERO.spin};
+  st.spin+=TWO*E(seg(t,T.l2,T.l3-0.2));                                  // turn it to show the carving
+  // descend to the start of the first roll
+  let a=E(seg(t,T.l3,T.l3+0.9));
+  if(t>=T.l3){ st.x=mix(HERO.x,X0,a); st.y=mix(HERO.y,YREST,a); st.tilt=mix(HERO.tilt,0,a); st.spin=mix(st.spin,0,a); st.z=mix(HERO.z,0,a);} 
+  // roll 1
+  let rl=E(seg(t,T.l4+0.2,T.l4e+0.4)); if(t>=T.l4){ st.x=X0+CIRC*rl; st.spin=-TWO*rl; st.y=YREST; st.tilt=0; st.z=0; }
+  // lift and return for the envelope
+  let b=E(seg(t,T.l5,T.l5+1.5)); if(t>=T.l5){ st.x=mix(X0+CIRC,X0,b); st.y=YREST+0.7*Math.sin(Math.PI*b); st.spin=-TWO*(1-b); st.tilt=0;}
+  // settle onto the envelope, roll 2
+  let c2=E(seg(t,T.l5+1.5,T.l6+0.3)); if(t>=T.l5+1.5){ st.y=YREST+ENVY*c2+0.0; }
+  let rl2=E(seg(t,T.l6+0.3,T.l7+0.3)); if(t>=T.l6){ st.x=X0+CIRC*rl2; st.spin=-TWO*rl2; st.y=YREST+ENVY; st.tilt=0; st.z=0; }
+  // back to the opening pose
+  let h=E(seg(t,T.l8-0.2,D-0.05)); if(t>=T.l8-0.2){ st.x=mix(X0+CIRC,HERO.x,h); st.y=mix(YREST+ENVY,HERO.y,h)+0.0; st.tilt=mix(0,HERO.tilt,h); st.spin=mix(-TWO,HERO.spin-TWO,h); st.z=0; }
+  return st;
+}
+// camera keyframes: target + distance factor
+const KF=[ {t:0,tg:V(0,1.0,0),k:1.18}, {t:T.l1+0.2,tg:V(0,0.7,0),k:1.15}, {t:T.l2-0.3,tg:V(0,0.3,0),k:1.45}, {t:T.l2+0.6,tg:V(0,0.95,0),k:0.85},
+  {t:T.l3-0.1,tg:V(0,0.9,0),k:0.9}, {t:T.l3+1.0,tg:V(X0+0.6,0.35,0),k:1.05}, {t:T.l4e-0.1,tg:V(X0+CIRC-0.5,0.35,0),k:1.05},
+  {t:T.l5+0.5,tg:V(0.0,0.4,0),k:1.5}, {t:T.l6+0.2,tg:V(X0+0.6,0.45,0),k:1.05}, {t:T.l6e,tg:V(X0+CIRC-0.5,0.45,0),k:1.05},
+  {t:T.l7+0.3,tg:V(0,0.4,0),k:1.7}, {t:D-0.05,tg:V(0,1.0,0),k:1.18} ].sort((a,b)=>a.t-b.t);
+function camState(t){ let i=0; while(i<KF.length-2 && t>KF[i+1].t) i++; const A=KF[i],B=KF[i+1]; const k=E(seg(t,A.t,B.t));
+  return {tg:A.tg.clone().lerp(B.tg,k), k:mix(A.k,B.k,k)}; }
+const OFF=V(-1.5,3.0,0.0);
+function wordsAt(t){ const ws=cfg.words; let out=[]; for(let i=0;i<ws.length;i++){ if(ws[i].s<=t+0.02) out.push(i); } return out; }
+// caption chunks (<=3 words, never across a sentence end)
+const chunks=[]; { let cur=[]; cfg.words.forEach((w,i)=>{ cur.push(i); const end=/[.?!]$/.test(w.w); if(cur.length==3||end||(cur.length==2&&/[,]$/.test(w.w))){chunks.push(cur);cur=[];} }); if(cur.length)chunks.push(cur); }
+function captionAt(t){ let best=null; for(const ch of chunks){ const s0=cfg.words[ch[0]].s, e1=cfg.words[ch[ch.length-1]].e; if(t>=s0-0.02) best=ch; } if(!best) return ''; const e1=cfg.words[best[best.length-1]].e; if(t>e1+0.35) return '';
+  const ws=best.map(i=>cfg.words[i].w), clean=x=>x.replace(/[^A-Za-z0-9']/g,''); let ai=0; ws.forEach((w,i)=>{ if(clean(w).length>=clean(ws[ai]).length) ai=i; });
+  return ws.map((w,i)=>i==ai?`<span class="a">${w}</span>`:w).join(' '); }
+const capEl=document.getElementById('cap'), cardEl=document.getElementById('card'), srcEl=document.getElementById('src');
+cardEl.querySelector('.big').textContent='1.45 cm'; cardEl.querySelector('.sm').textContent='TALL · THE SEAL IN THIS STORY';
+window.frame=(t)=>{
+  const st=sealState(t); if(t<0.001){ /* make float zero at t=0 for a clean loop */ }
+  const fl=0.05*Math.sin(t*1.6); const isHero=(t<T.l3||t>D-0.05);
+  seal.position.set(st.x, st.y, st.z); seal.rotation.set(st.tilt,0,st.spin);
+  // envelope: drop in during L5, lift away at the end
+  const ed=E(seg(t,T.l5,T.l5+1.2)), eu=E(seg(t,T.l8-0.2,T.l8+0.8)); env.position.y = (1-ed)*2.5 + eu*2.5; env.visible = ed>0 && eu<1;
+  // impressions: revealed behind the rolling seal
+  const xs1 = t<T.l4+0.2 ? -99 : X0+CIRC*E(seg(t,T.l4+0.2,T.l4e+0.4)); P1.constant = xs1;
+  const xs2 = t<T.l6+0.3 ? -99 : X0+CIRC*E(seg(t,T.l6+0.3,T.l7+0.3)); P2.constant = xs2;
+  const fade=1-E(seg(t,T.l8-0.2,T.l8+0.6)); imp1.material.opacity=fade; imp2.material.opacity=fade; imp2.visible = t>=T.l6+0.3 && fade>0; imp1.castShadow = imp2.castShadow = fade>0.999;
+  const cs=camState(t); { const f1=E(seg(t,T.l3+0.6,T.l3+1.3))*(1-E(seg(t,T.l4e+0.4,T.l4e+1.0))), f2=E(seg(t,T.l5+1.6,T.l6+0.2))*(1-E(seg(t,T.l7+0.3,T.l7+0.9))); const w=Math.max(f1,f2); cs.tg.x=mix(cs.tg.x, st.x-0.75, w); cs.tg.y=mix(cs.tg.y, 0.4+(f2>f1?ENVY:0), w); cs.k=mix(cs.k, 1.45, w); }
+  cam.position.copy(cs.tg).addScaledVector(OFF,cs.k); cam.lookAt(cs.tg); r.render(s,cam);
+  {const h=captionAt(t); capEl.innerHTML=h?`<div>${h}</div>`:'';}
+  const showCard = t<T.l1+0.1; cardEl.style.display=showCard?'block':'none'; cardEl.style.opacity=String(1-seg(t,T.l1-0.4,T.l1+0.1));
+  srcEl.textContent = (t>=T.l7 && t<D-0.4) ? 'METROPOLITAN MUSEUM · 1984.383.2 · CA. 3300–2900 BC' : '';
+  return true; };
+window.ready=true; window.fx={T,D};
+</script></body></html>

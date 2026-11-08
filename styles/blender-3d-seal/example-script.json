@@ -1,0 +1,16 @@
+{
+ "series": "FIRST ON RECORD",
+ "tag": "URUK · c. 3300 BC",
+ "lead": 0.4, "outro": 0.9,
+ "lines": [
+  {"text": "One of history's oldest signatures was a stone smaller than your thumb.", "kind": "P"},
+  {"text": "But how do you sign wet clay?", "kind": "P"},
+  {"text": "You carve a tiny picture into stone.", "kind": "F"},
+  {"text": "But one press makes one mark.", "kind": "P"},
+  {"text": "So you roll it, and the picture stands out raised.", "kind": "F"},
+  {"text": "But what about a tablet sealed inside an envelope?", "kind": "P"},
+  {"text": "You roll the stone across the envelope as well.", "kind": "F"},
+  {"text": "This one, at the Met, is about five thousand years old.", "kind": "L1"},
+  {"text": "And it's still smaller than your thumb.", "kind": "L2"}
+ ]
+}
