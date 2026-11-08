@@ -1,0 +1,37 @@
+{
+ "query": "clay tablet envelope cuneiform seal",
+ "kept": [
+  {
+   "title": "File:Cuneiform tablet in envelope with cylinder seal impressions, Ur III Period, c. 2100-2000 BC - Harvard Semitic Museum - Cambridge, MA - DSC06154.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Cuneiform_tablet_in_envelope_with_cylinder_seal_impressions,_Ur_III_Period,_c._2100-2000_BC_-_Harvard_Semitic_Museum_-_Cambridge,_MA_-_DSC06154.jpg",
+   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ec/Cuneiform_tablet_in_envelope_with_cylinder_seal_impressions%2C_Ur_III_Period%2C_c._2100-2000_BC_-_Harvard_Semitic_Museum_-_Cambridge%2C_MA_-_DSC06154.jpg/1280px-Cuneiform_tablet_in_envelope_with_cylinder_seal_impressions%2C_Ur_III_Period%2C_c._2100-2000_BC_-_Harvard_Semitic_Museum_-_Cambridge%2C_MA_-_DSC06154.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "orig": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Cuneiform_tablet_in_envelope_with_cylinder_seal_impressions%2C_Ur_III_Period%2C_c._2100-2000_BC_-_Harvard_Semitic_Museum_-_Cambridge%2C_MA_-_DSC06154.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "w": 1200,
+   "h": 962,
+   "license": "Public domain",
+   "kind": "pd",
+   "artist": "Daderot",
+   "credit": "Own work",
+   "desc": "Exhibit in the Harvard Semitic Museum, Harvard University - Cambridge, Massachusetts, USA. This work is old enough so that it is in the public domain.",
+   "attribution": "Daderot / Wikimedia Commons / Public domain",
+   "file": "01-cuneiform-tablet-in-envelope-with-cylinder-seal-im.jpg"
+  }
+ ],
+ "skipped": [
+  {
+   "title": "File:Cuneiform legal tablet in case from Aleppo.jpg",
+   "license": "CC BY-SA 3.0",
+   "why": "share-alike / non-commercial / no-derivatives / fair use"
+  },
+  {
+   "title": "File:CunEnv.jpg",
+   "license": "Public domain",
+   "why": "too small"
+  },
+  {
+   "title": "File:Vorderasiatisches Museum Berlin 022.jpg",
+   "license": "CC BY-SA 3.0",
+   "why": "share-alike / non-commercial / no-derivatives / fair use"
+  }
+ ]
+}
