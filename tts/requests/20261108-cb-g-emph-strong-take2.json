@@ -1,0 +1,67 @@
+{
+ "slug": "20261108-cb-g-emph-strong-take2",
+ "provider": "chatterbox",
+ "seed": 21,
+ "sentences": [
+  {
+   "text": "The first contract in history had one problem.",
+   "exaggeration": 0.7,
+   "cfg_weight": 0.45,
+   "pause": 0.4
+  },
+  {
+   "text": "Anyone could lie about it.",
+   "exaggeration": 0.8,
+   "cfg_weight": 0.4,
+   "pause": 0.45
+  },
+  {
+   "text": "So scribes pressed the deal into wet clay.",
+   "exaggeration": 0.5,
+   "cfg_weight": 0.5,
+   "pause": 0.35
+  },
+  {
+   "text": "But clay can be scratched out, and rewritten!",
+   "exaggeration": 0.7,
+   "cfg_weight": 0.45,
+   "pause": 0.4
+  },
+  {
+   "text": "So they wrapped it in a clay envelope.",
+   "exaggeration": 0.5,
+   "cfg_weight": 0.5,
+   "pause": 0.35
+  },
+  {
+   "text": "But who sealed it?",
+   "exaggeration": 0.7,
+   "cfg_weight": 0.45,
+   "pause": 0.4
+  },
+  {
+   "text": "Anyone could claim they did.",
+   "exaggeration": 0.8,
+   "cfg_weight": 0.4,
+   "pause": 0.45
+  },
+  {
+   "text": "So every man carved his own tiny stone roller, and rolled it across the clay.",
+   "exaggeration": 0.5,
+   "cfg_weight": 0.5,
+   "pause": 0.35
+  },
+  {
+   "text": "That little stone...",
+   "exaggeration": 0.6,
+   "cfg_weight": 0.5,
+   "pause": 0.6
+  },
+  {
+   "text": "was the first signature.",
+   "exaggeration": 0.85,
+   "cfg_weight": 0.3,
+   "pause": 0.0
+  }
+ ]
+}
