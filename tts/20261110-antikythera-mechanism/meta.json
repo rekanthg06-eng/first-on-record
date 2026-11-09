@@ -1,12 +1,12 @@
 {
- "slug": "20261108-cb-f-emph-gentle",
+ "slug": "20261110-antikythera-mechanism",
  "provider": "chatterbox",
  "exaggeration": null,
  "cfg_weight": null,
  "ref_audio": null,
- "seed": 7,
- "duration_s": 22.82,
- "words": 68,
+ "seed": 21,
+ "duration_s": 30.7,
+ "words": 94,
  "timing": "whisper",
- "chars": 373
+ "chars": 491
 }
