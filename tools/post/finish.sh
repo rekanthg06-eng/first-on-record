@@ -1,5 +1,7 @@
+# usage: bash finish.sh   (run inside the project dir that has script.json, data/, render.mp4)
 set -e
-V=render.mp4; D=27.36
+V=render.mp4; D=$(python3 -c "import json;print(json.load(open('data/lines.json'))['duration'])")
+python3 "$(dirname "$0")/gen_ass.py"
 # loop blend: last 0.5s crossfades to the first frame, grain + vignette, burn captions
 ffmpeg -loglevel error -y -i $V -vf "select=eq(n\,0),loop=loop=15:size=1,setpts=N/24/TB,fps=24" -frames:v 12 first.mp4
 ffmpeg -loglevel error -y -i $V -i first.mp4 -filter_complex "[0][1]xfade=transition=fade:duration=0.5:offset=$(python3 -c "print(round($D-0.5-0.01,3))"),vignette=PI/5,noise=alls=7:allf=t,subtitles=cap.ass,format=yuv420p[v]" -map "[v]" -r 24 -t $D -c:v libx264 -crf 17 -preset veryfast vid.mp4

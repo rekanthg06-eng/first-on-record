@@ -1,4 +1,5 @@
-import json, re
+import json, re, sys
+SC=json.load(open('script.json'))   # run inside the project dir; script.json may carry: tag, note, pills[{text,line,off,end_off}], source{line,off,text}
 W=json.load(open('data/words.json')); L=json.load(open('data/lines.json'))['lines']
 def t(s):
     h=int(s//3600); m=int(s%3600//60); x=s%60
@@ -24,8 +25,8 @@ GOLD=r'{\c&H3CC8FF&}'; WHITE=r'{\c&HFFFFFF&}'
 STOP=set('a the of to in it is and on at for with how do you that this they so but now one an'.split())
 ev=[]
 dur=json.load(open('data/lines.json'))['duration']
-ev.append(f"Dialogue: 0,{t(0)},{t(dur)},Tag,,0,0,0,,FIRST ON RECORD  ·  UR  ·  c. 2100 BC")
-ev.append(f"Dialogue: 0,{t(0)},{t(dur)},Note,,0,0,0,,RECONSTRUCTION  ·  CUT-AWAY  ·  NOT TO SCALE")
+ev.append(f"Dialogue: 0,{t(0)},{t(dur)},Tag,,0,0,0,,{SC.get("series","FIRST ON RECORD")}  ·  {SC.get("tag","")}")
+ev.append(f"Dialogue: 0,{t(0)},{t(dur)},Note,,0,0,0,,{SC.get("note","RECONSTRUCTION  ·  NOT TO SCALE")}")
 # caption groups: <=3 words, never across lines
 for li,l in enumerate(L):
     ws=[w for w in W if w['line']==li]
@@ -46,10 +47,8 @@ for li,l in enumerate(L):
         ev.append(f"Dialogue: 1,{t(s)},{t(e)},Cap,,0,0,0,,{{\\fad(60,60)\\fscx92\\fscy92\\t(0,120,\\fscx100\\fscy100)}}{txt}")
 def pill(text, s, e): ev.append(f"Dialogue: 2,{t(s)},{t(e)},Pill,,0,0,0,,{{\\fad(120,120)}} {text} ")
 T=lambda i:L[i]['start']; E=lambda i:L[i]['end']
-pill("MUD-BRICK CORE", T(0)+0.4, E(1))
-pill("BAKED BRICK + BITUMEN (TAR)", T(3)+0.3, E(3)+0.8)
-pill("REED MATS  +  DRAIN HOLES", T(5)+0.4, E(5)+0.2)
-pill("STAMPED: UR-NAMMU", T(7)+0.2, E(7)+0.4)
-ev.append(f"Dialogue: 2,{t(T(8)+0.2)},{t(dur)},Src,,0,0,0,,{{\\fad(150,200)}}BRITISH MUSEUM · 1935,0112.116 · BRICK FROM THE ZIGGURAT")
+for p in SC.get("pills",[]): pill(p["text"], T(p["line"])+p.get("off",0.3), E(p.get("end_line",p["line"]))+p.get("end_off",0.4))
+src=SC.get("source")
+if src: ev.append(f"Dialogue: 2,{t(T(src['line'])+src.get('off',0.2))},{t(dur)},Src,,0,0,0,,{{\\fad(150,200)}}{src['text']}")
 open('cap.ass','w').write(hdr+'\n'.join(ev)+'\n')
 print(len(ev),'events')
