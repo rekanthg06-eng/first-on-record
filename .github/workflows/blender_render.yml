@@ -1,0 +1,71 @@
+name: blender_render
+# Renders a Blender (bpy, Cycles CPU) scene in parallel shards, stitches an mp4 and publishes it to branch render-out.
+# Scene lives in blender/<scene>/scene.py (+ assets) on main. No GPU, so shards split the frames.
+on:
+  workflow_dispatch:
+    inputs:
+      scene: { description: "folder name under blender/", required: true }
+      frames: { description: "total frames (must match scene.py)", required: true }
+      shards: { description: "parallel shards (1-20)", required: true, default: "10" }
+      fps: { description: "frames per second", required: true, default: "30" }
+
+permissions:
+  contents: write
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.m.outputs.matrix }}
+    steps:
+      - id: m
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, math, os
+          n=int(os.environ["F"]); s=max(1,min(20,int(os.environ["S"]))); per=math.ceil(n/s)
+          print("matrix="+json.dumps({"include":[{"i":i,"start":i*per+1,"end":min(n,(i+1)*per)} for i in range(s) if i*per<n]}))
+          PY
+        env: { F: "${{ inputs.frames }}", S: "${{ inputs.shards }}" }
+  render:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.13" }
+      - run: pip install bpy
+      - name: Render shard
+        run: |
+          scene=$(echo "${{ inputs.scene }}" | tr -cd 'a-zA-Z0-9_-')
+          nproc; time python tools/blender_render.py "blender/$scene" --start ${{ matrix.start }} --end ${{ matrix.end }} --out out
+      - uses: actions/upload-artifact@v4
+        with: { name: "shard-${{ matrix.i }}", path: out, retention-days: 2 }
+  stitch:
+    needs: render
+    runs-on: ubuntu-latest
+    env: { GH_TOKEN: "${{ github.token }}" }
+    steps:
+      - uses: actions/download-artifact@v4
+        with: { path: shards, pattern: "shard-*", merge-multiple: true }
+      - run: |
+          ls shards | wc -l
+          ffmpeg -loglevel error -framerate ${{ inputs.fps }} -pattern_type glob -i 'shards/f*.png' -c:v libx264 -pix_fmt yuv420p -crf 18 out.mp4
+          ls -l out.mp4
+      - name: Publish to render-out
+        run: |
+          scene=$(echo "${{ inputs.scene }}" | tr -cd 'a-zA-Z0-9_-')
+          mkdir pub && cd pub && git init -q
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git ls-remote --exit-code --heads origin render-out >/dev/null 2>&1; then
+            git fetch -q --depth 1 origin render-out && git checkout -q -b render-out FETCH_HEAD
+          else git checkout -q --orphan render-out; fi
+          mkdir -p render && cp ../out.mp4 "render/$scene.mp4"
+          ls -1t render | tail -n +4 | sed 's#^#render/#' | xargs -r rm -f
+          git add -A
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -q -m "render: $scene"
+          git push -q origin render-out
