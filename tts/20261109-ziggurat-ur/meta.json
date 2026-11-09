@@ -1,12 +1,12 @@
 {
- "slug": "20261108-cb-e-emph-strong",
+ "slug": "20261109-ziggurat-ur",
  "provider": "chatterbox",
  "exaggeration": null,
  "cfg_weight": null,
  "ref_audio": null,
- "seed": 7,
- "duration_s": 22.71,
- "words": 68,
+ "seed": 21,
+ "duration_s": 26.06,
+ "words": 91,
  "timing": "whisper",
- "chars": 373
+ "chars": 444
 }
