@@ -11,4 +11,8 @@ sc = bpy.context.scene; sc.render.engine = "CYCLES"; sc.cycles.device = "CPU"; s
 sc.render.resolution_x, sc.render.resolution_y = a.w, a.h; os.makedirs(a.out, exist_ok=True)
 for t in [float(x) for x in a.times.split(",")]:
     sc.frame_set(int(t * cfg["fps"]) + 1); sc.render.filepath = os.path.join(a.out, f"t{t:05.1f}.png"); t0 = time.time()
-    bpy.ops.render.render(write_still=True); print(f"t={t}s {time.time()-t0:.1f}s/frame", flush=True)
+    bpy.ops.render.render(write_still=True)
+    im = bpy.data.images.load(sc.render.filepath); px = list(im.pixels); n = len(px)//4
+    lum = sum(0.2126*px[i*4] + 0.7152*px[i*4+1] + 0.0722*px[i*4+2] for i in range(0, n, 37)) / len(range(0, n, 37))
+    flag = "  <-- WARNING: too dark/black" if lum < 0.06 else ("  <-- WARNING: blown out" if lum > 0.85 else "")
+    print(f"t={t}s {time.time()-t0:.1f}s/frame mean_luma={lum:.2f}{flag}", flush=True)

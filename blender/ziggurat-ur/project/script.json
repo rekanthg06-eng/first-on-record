@@ -1,0 +1,87 @@
+{
+ "series": "FIRST ON RECORD",
+ "tag": "UR \u00b7 c. 2100 BC",
+ "lead": 0.4,
+ "outro": 0.9,
+ "lines": [
+  {
+   "text": "How do you build a mountain out of mud?",
+   "kind": "P"
+  },
+  {
+   "text": "A king of Ur did it around 2100 BC.",
+   "kind": "F"
+  },
+  {
+   "text": "But mud melts in the rain.",
+   "kind": "P"
+  },
+  {
+   "text": "So they wrapped the mud in baked brick, set in tar.",
+   "kind": "F"
+  },
+  {
+   "text": "But water still gets inside.",
+   "kind": "P"
+  },
+  {
+   "text": "So they cut holes through the wall, and laid reed mats between the layers.",
+   "kind": "F"
+  },
+  {
+   "text": "But whose mountain is it?",
+   "kind": "P"
+  },
+  {
+   "text": "So the bricks were stamped with the king's name.",
+   "kind": "F"
+  },
+  {
+   "text": "One now sits in the British Museum, with two dog paw prints on it.",
+   "kind": "L1"
+  },
+  {
+   "text": "That's how you build a mountain out of mud.",
+   "kind": "L2"
+  }
+ ],
+ "note": "RECONSTRUCTION  \u00b7  CUT-AWAY  \u00b7  NOT TO SCALE",
+ "pills": [
+  {
+   "text": "MUD-BRICK CORE",
+   "line": 0,
+   "off": 0.4,
+   "end_line": 1,
+   "end_off": 0
+  },
+  {
+   "text": "BAKED BRICK + BITUMEN (TAR)",
+   "line": 3,
+   "off": 0.3,
+   "end_off": 0.8
+  },
+  {
+   "text": "REED MATS  +  DRAIN HOLES",
+   "line": 5,
+   "off": 0.4,
+   "end_off": 0.2
+  },
+  {
+   "text": "MAGNIFIED WALL SECTION",
+   "line": 6,
+   "off": 0.1,
+   "end_off": 0.4
+  },
+  {
+   "text": "STAMPED: UR-NAMMU",
+   "line": 7,
+   "off": 0.2,
+   "end_off": 0.4
+  }
+ ],
+ "source": {
+  "line": 8,
+  "off": 0.2,
+  "text": "BRITISH MUSEUM \u00b7 1935,0112.116 \u00b7 BRICK FROM THE ZIGGURAT"
+ }
+}
