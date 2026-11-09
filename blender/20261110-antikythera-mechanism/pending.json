@@ -1,0 +1,17 @@
+{
+ "slug": "20261110-antikythera-mechanism",
+ "title": "Antikythera Mechanism: The Oldest Computer on Record",
+ "description": "The oldest computer on record is a hand-cranked box of bronze gears, built by Greeks over 2,000 years ago. It tracked the Moon's uneven speed with a pin-and-slot gear and marked eclipses on a 223-month spiral dial.\n\nSources:\nAntikythera mechanism, National Archaeological Museum, Athens (fragment inv. X 15087). Dated c. 150-100 BC / late 2nd century BC (dates are debated); found in the Antikythera shipwreck by sponge divers, recovered 1901.\nGears (about 30 survive), hand crank, Saros eclipse dial (223 months) and pin-and-slot lunar gearing: Deutsches Patent- und Markenamt, 'Antikythera-Mechanismus' (computer pioneers series); The New York Times (2006) on Freeth et al., Nature 444; Wikipedia, 'Antikythera mechanism'.\n3D scene is a reconstruction, exploded view, not to scale.\n\n#Shorts #History #FirstOnRecord #AntikytheraMechanism #AncientGreece",
+ "tags": [
+  "antikythera mechanism",
+  "the antikythera mechanism",
+  "ancient computer",
+  "ancient technology",
+  "ancient greece",
+  "antikythera",
+  "oldest computer",
+  "history"
+ ],
+ "episode_log_line": "2026-11-10 | <id> | 20261110-antikythera-mechanism | blender-3d | invention | National Archaeological Museum Athens, Antikythera mechanism (inv. X 15087), c. 150-100 BC | rewatch | 32.0 s: problem chain (crank -> 30 gears -> pin-and-slot moon -> Saros eclipse dial), exploded view, macro pin-and-slot, eclipse beat; superlative hook (A/B vs premise-first ziggurat); hook 92; vidIQ 'antikythera mechanism' ~121k/month",
+ "results_row": "2026-11-10,<id>,short,Antikythera Mechanism: The Oldest Computer on Record,invention,rewatch,32.0,,,,,,,,blender-3d; hook 92; superlative hook (A/B vs premise-first); problem chain 4 fixes; loop line 'All of it, turned by one hand crank'; vidIQ antikythera mechanism ~121k searches/month"
+}

@@ -134,7 +134,7 @@ class Kit:
         return body
     def walk(s, body, p0, p1, t0, t1, bob=0.004):
         """linear walk with footfall bob"""
-        s.linear(True); s.key(body, "location", t0, p0); s.key(body, "location", t1, p1); s.linear(False)
+        s.linear(True); s.key(body, "location", t0, p0); s.key(body, "location", t1, p1); s.linear(False); s.force_linear(body, "location")
     def scatter(s, name, mat, n, area, size=(0.01, 0.04), avoid=None):
         x0, x1, y0, y1 = area; out = []
         for i in range(n):
@@ -197,5 +197,65 @@ class Kit:
         for (tt, v) in ((t0 - 0.1, 0.0), (t1 + 0.5, -12.0)): s.key_socket(mp.inputs["Location"], tt, (0, v, 0))
         s.linear(False)
         return rp
+    # ---- machines (added 2026-11-09 for the Antikythera Short) ----
+    def metal(s, name, c, rough=0.35, metallic=1.0):
+        m = s.plain(name, c, rough); m.node_tree.nodes["Principled BSDF"].inputs["Metallic"].default_value = metallic; return m
+    def gear(s, name, r, teeth, thick, loc, m, tooth=None, axis="y", hub=0.0):
+        """flat spur gear with triangular teeth (one mesh). axis 'y' = gear faces the camera (-y); spin it via rotation_euler[1].
+        origin at the gear centre. tooth = tooth height (default ~2.2x pitch/2)."""
+        tooth = tooth or max(0.006, 2.2 * math.pi * r / teeth / 2)
+        pts = []
+        for k in range(teeth * 2):
+            a = math.pi * k / teeth; rr = r + (tooth if k % 2 == 0 else 0)
+            pts.append((rr * math.cos(a), rr * math.sin(a)))
+        n = len(pts); h = thick / 2
+        if axis == "y": v = [(x, -h, z) for x, z in pts] + [(x, h, z) for x, z in pts]
+        else: v = [(x, y, -h) for x, y in pts] + [(x, y, h) for x, y in pts]
+        f = [tuple(range(n)), tuple(range(2*n - 1, n - 1, -1))] + [(i, (i+1) % n, n + (i+1) % n, n + i) for i in range(n)]
+        o = s.mk(name, v, f, m); o.location = loc
+        if hub: s.cyl(name + "_hub", hub, thick * 1.6, loc, m, rot=(math.pi/2, 0, 0) if axis == "y" else (0, 0, 0), seg=16).parent = o; o.children[0].location = (0, 0, 0); o.children[0].rotation_euler = (math.pi/2, 0, 0) if axis == "y" else (0, 0, 0)
+        return o
+    def spin(s, ob, t0, t1, a0, a1, idx=1, steps=None, fn=None):
+        """rotation_euler[idx] from a0 to a1 (radians), linear; with fn(u)->angle keys every 1/6 s (uneven motion)"""
+        s.linear(True)
+        if fn is None:
+            r = list(ob.rotation_euler); r[idx] = a0; s.key(ob, "rotation_euler", t0, tuple(r)); r[idx] = a1; s.key(ob, "rotation_euler", t1, tuple(r))
+        else:
+            n = steps or max(2, int((t1 - t0) * 6))
+            for k in range(n + 1):
+                u = k / n; r = list(ob.rotation_euler); r[idx] = fn(u); s.key(ob, "rotation_euler", t0 + u * (t1 - t0), tuple(r))
+        s.linear(False); s.force_linear(ob, "rotation_euler")
+    def force_linear(s, ob, path):
+        """set LINEAR on every key of ob.<path> (the preferences route in linear() does not reach keys in the bpy module)"""
+        ad = ob.animation_data
+        if not ad or not ad.action: return
+        fcs = []
+        try:
+            for ly in ad.action.layers:
+                for st in ly.strips:
+                    for cb in st.channelbags: fcs += list(cb.fcurves)
+        except Exception:
+            fcs = list(getattr(ad.action, "fcurves", []))
+        for fc in fcs:
+            if fc.data_path == path:
+                for kp in fc.keyframe_points: kp.interpolation = "LINEAR"
+    def pop(s, ob, t0, t1, full=None):
+        """scale in from nothing (for parts that appear mid-air, where rise() would pass through other parts)"""
+        full = full or tuple(ob.scale)
+        ob.scale = (0.001, 0.001, 0.001); ob.keyframe_insert("scale", frame=max(1, s.fr(t0) - 1))
+        ob.scale = full; ob.keyframe_insert("scale", frame=s.fr(t1)); s.show(ob, t0)
+    def boxes(s, name, items, m):
+        """many small boxes as ONE mesh: items = [(w,d,h,(x,y,z)), ...] (z = bottom)"""
+        v, f = [], []
+        for (w, d, h, (x, y, z)) in items:
+            b = len(v); hw, hd = w/2, d/2
+            v += [(x-hw, y-hd, z), (x+hw, y-hd, z), (x+hw, y+hd, z), (x-hw, y+hd, z), (x-hw, y-hd, z+h), (x+hw, y-hd, z+h), (x+hw, y+hd, z+h), (x-hw, y+hd, z+h)]
+            f += [tuple(b+i for i in q) for q in ((3,2,1,0), (0,1,5,4), (1,2,6,5), (2,3,7,6), (3,0,4,7), (4,5,6,7))]
+        return s.mk(name, v, f, m)
+    def emit(s, name, c, strength=4.0):
+        """emission material; animate via K.key_socket(m.node_tree.nodes['Emission'].inputs['Strength'], t, v)"""
+        m = s.bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; nt.nodes.clear()
+        out = nt.nodes.new("ShaderNodeOutputMaterial"); e = nt.nodes.new("ShaderNodeEmission"); e.name = "Emission"
+        e.inputs["Color"].default_value = (*c, 1); e.inputs["Strength"].default_value = strength; nt.links.new(e.outputs[0], out.inputs[0]); return m
     def finish(s, width=1080, height=1920):
         return dict(fps=s.fps, frames=s.frames, width=width, height=height, samples=s.samples)

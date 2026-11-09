@@ -1,0 +1,26 @@
+{
+ "series": "FIRST ON RECORD",
+ "tag": "GREECE · c. 100 BC",
+ "lead": 0.4,
+ "outro": 0.9,
+ "lines": [
+  {"text": "The oldest computer on record ran on a hand crank.", "kind": "P"},
+  {"text": "Greeks built it over two thousand years ago.", "kind": "F"},
+  {"text": "But the sky runs on too many cycles to count.", "kind": "P"},
+  {"text": "So they cut thirty bronze gears, and turned them with the crank.", "kind": "F"},
+  {"text": "But the Moon speeds up and slows down.", "kind": "P"},
+  {"text": "So one gear drives the next through a pin in a slot.", "kind": "F"},
+  {"text": "But eclipses still came without warning.", "kind": "P"},
+  {"text": "So a back dial spirals through 223 months, marking the eclipses.", "kind": "F"},
+  {"text": "Sponge divers pulled it from a shipwreck in 1901.", "kind": "L1"},
+  {"text": "All of it, turned by one hand crank.", "kind": "L2"}
+ ],
+ "note": "RECONSTRUCTION  ·  EXPLODED VIEW  ·  NOT TO SCALE",
+ "pills": [
+  {"text": "HAND CRANK", "line": 0, "off": 0.5, "end_line": 1, "end_off": 0},
+  {"text": "BRONZE GEARS (30 SURVIVE)", "line": 3, "off": 0.3, "end_off": 0.6},
+  {"text": "PIN-AND-SLOT GEARS", "line": 5, "off": 0.2, "end_off": 0.8},
+  {"text": "SAROS DIAL · 223 MONTHS", "line": 7, "off": 0.2, "end_off": 0.6}
+ ],
+ "source": {"line": 8, "off": 0.2, "text": "NATIONAL ARCHAEOLOGICAL MUSEUM, ATHENS · X 15087 · ANTIKYTHERA MECHANISM"}
+}
