@@ -1,0 +1,55 @@
+import json, re
+W=json.load(open('data/words.json')); L=json.load(open('data/lines.json'))['lines']
+def t(s):
+    h=int(s//3600); m=int(s%3600//60); x=s%60
+    return f"{h}:{m:02d}:{x:05.2f}"
+hdr='''[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name,Fontname,Fontsize,PrimaryColour,SecondaryColour,OutlineColour,BackColour,Bold,Italic,Underline,StrikeOut,ScaleX,ScaleY,Spacing,Angle,BorderStyle,Outline,Shadow,Alignment,MarginL,MarginR,MarginV,Encoding
+Style: Cap,DejaVu Sans,92,&H00FFFFFF,&H000000FF,&H00101010,&H80000000,-1,0,0,0,100,100,0,0,1,7,2,2,40,40,380,1
+Style: Tag,DejaVu Sans,34,&H00E6E6E6,&H000000FF,&H00101010,&H80000000,-1,0,0,0,100,100,4,0,1,3,1,8,40,40,70,1
+Style: Pill,DejaVu Sans,46,&H00101010,&H000000FF,&H0050C8FF,&H0050C8FF,-1,0,0,0,100,100,1,0,3,14,0,8,40,40,260,1
+Style: Src,DejaVu Sans,30,&H00D8D8D8,&H000000FF,&H00101010,&H80000000,0,0,0,0,100,100,1,0,1,3,1,2,40,40,150,1
+Style: Note,DejaVu Sans,26,&H00B8B8B8,&H000000FF,&H00101010,&H80000000,0,0,0,0,100,100,2,0,1,2,1,2,40,40,70,1
+
+[Events]
+Format: Layer,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text
+'''
+GOLD=r'{\c&H3CC8FF&}'; WHITE=r'{\c&HFFFFFF&}'
+STOP=set('a the of to in it is and on at for with how do you that this they so but now one an'.split())
+ev=[]
+dur=json.load(open('data/lines.json'))['duration']
+ev.append(f"Dialogue: 0,{t(0)},{t(dur)},Tag,,0,0,0,,FIRST ON RECORD  ·  UR  ·  c. 2100 BC")
+ev.append(f"Dialogue: 0,{t(0)},{t(dur)},Note,,0,0,0,,RECONSTRUCTION  ·  CUT-AWAY  ·  NOT TO SCALE")
+# caption groups: <=3 words, never across lines
+for li,l in enumerate(L):
+    ws=[w for w in W if w['line']==li]
+    groups=[];cur=[]
+    for w in ws:
+        cur.append(w)
+        if len(cur)==3 or re.search(r'[,.?!]$',w['w']): groups.append(cur);cur=[]
+    if cur:
+        if groups and len(cur)==1 and len(groups[-1])<3: groups[-1]+=cur
+        else: groups.append(cur)
+    for gi,g in enumerate(groups):
+        s=g[0]['s']; e=groups[gi+1][0]['s'] if gi+1<len(groups) else min(l['end']+0.25,g[-1]['e']+0.4)
+        words=[re.sub(r'[^A-Za-z0-9\'\-]','',x['w']) for x in g]
+        # accent word: longest non-stopword
+        cand=[(len(w),i) for i,w in enumerate(words) if w.lower() not in STOP]
+        ai=max(cand)[1] if cand else len(words)-1
+        txt=' '.join((GOLD+w.upper()+WHITE) if i==ai else w.upper() for i,w in enumerate(words))
+        ev.append(f"Dialogue: 1,{t(s)},{t(e)},Cap,,0,0,0,,{{\\fad(60,60)\\fscx92\\fscy92\\t(0,120,\\fscx100\\fscy100)}}{txt}")
+def pill(text, s, e): ev.append(f"Dialogue: 2,{t(s)},{t(e)},Pill,,0,0,0,,{{\\fad(120,120)}} {text} ")
+T=lambda i:L[i]['start']; E=lambda i:L[i]['end']
+pill("MUD-BRICK CORE", T(0)+0.4, E(1))
+pill("BAKED BRICK + BITUMEN (TAR)", T(3)+0.3, E(3)+0.8)
+pill("REED MATS  +  DRAIN HOLES", T(5)+0.4, E(5)+0.2)
+pill("STAMPED: UR-NAMMU", T(7)+0.2, E(7)+0.4)
+ev.append(f"Dialogue: 2,{t(T(8)+0.2)},{t(dur)},Src,,0,0,0,,{{\\fad(150,200)}}BRITISH MUSEUM · 1935,0112.116 · BRICK FROM THE ZIGGURAT")
+open('cap.ass','w').write(hdr+'\n'.join(ev)+'\n')
+print(len(ev),'events')
