@@ -343,6 +343,27 @@ class Kit:
         rl = s.area("rim", (1.5*h, 2.4*h, 1.9*h), (0, 0, 0.6*h), kp * 1.3, size=0.9*h, color=rim)
         fill = s.area("fill", (2.4*h, -1.8*h, 0.6*h), (0, 0, 0.4*h), kp * 0.18, size=2.0*h, color=(1, 0.95, 0.9))
         return key, rl, fill
+    def raking(s, target=(0, 0, 0.5), h=1.0, side=-1, power=None, t_on=None, t_off=None):
+        """low GRAZING light across a surface (QA 2026-11-10: seal impression read as 'faint mush'): a small hard area light
+        almost level with the surface, from the side, so shallow relief (signs, seal rolls, carving, tool marks) throws long
+        shadows. Optionally only during a macro beat (t_on/t_off seconds, keyed on energy)."""
+        tx, ty, tz = target; pw = power or 45 * h * h   # tested 2026-11-10: 220 washed the clay out; 45 adds edge shadows without blowing highlights
+        o = s.area("rake", (tx + side * 1.6 * h, ty - 0.25 * h, tz + 0.02 * h), target, pw, size=0.08 * h, color=(1.0, 0.9, 0.78))
+        if t_on is not None:
+            ld = o.data; fps = s.sc.render.fps
+            for tt, e in ((0, 0.0), (t_on - 0.4, 0.0), (t_on, pw), (t_off, pw), (t_off + 0.4, 0.0)):
+                if tt is None or tt < 0: continue
+                ld.energy = e; ld.keyframe_insert("energy", frame=int(round(tt * fps)) + 1)
+            # while the rake is on, the key and fill drop to 35 % so the grazing shadows actually read (flat fill kills them)
+            for nm in ("key", "fill"):
+                ob = s.bpy.data.objects.get(nm)
+                if not ob or ob.type != "LIGHT": continue
+                full = ob.data.energy
+                for tt, e in ((0, full), (t_on - 0.4, full), (t_on, full * 0.35), (t_off, full * 0.35), (t_off + 0.4, full)):
+                    if tt < 0: continue
+                    ob.data.energy = e; ob.data.keyframe_insert("energy", frame=int(round(tt * fps)) + 1)
+                ob.data.energy = full
+        return o
     def backdrop(s, h=1.0, c=(0.010, 0.009, 0.008), plinth=True, stone=(0.05, 0.045, 0.042)):
         """curved seamless backdrop (cyclorama) + a stone plinth: the 'museum vitrine' set. Dark, textured, never empty white."""
         bpy = s.bpy; m = s.noisy("backdrop", c, scale=3, contrast=0.25, bump=0.05)

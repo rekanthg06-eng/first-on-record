@@ -16,6 +16,7 @@ Style: Cap,DejaVu Sans,92,&H00FFFFFF,&H000000FF,&H00101010,&H80000000,-1,0,0,0,1
 Style: Tag,DejaVu Sans,34,&H00E6E6E6,&H000000FF,&H00101010,&H80000000,-1,0,0,0,100,100,4,0,1,3,1,8,40,40,70,1
 Style: Pill,DejaVu Sans,46,&H00101010,&H000000FF,&H0050C8FF,&H0050C8FF,-1,0,0,0,100,100,1,0,3,14,0,8,40,40,260,1
 Style: Src,DejaVu Sans,30,&H00D8D8D8,&H000000FF,&H00101010,&H80000000,0,0,0,0,100,100,1,0,1,3,1,2,40,40,150,1
+Style: Hook,DejaVu Sans,104,&H00FFFFFF,&H000000FF,&H00101010,&H90000000,-1,0,0,0,100,100,0,0,1,8,3,2,60,60,400,1
 Style: Note,DejaVu Sans,26,&H00B8B8B8,&H000000FF,&H00101010,&H80000000,0,0,0,0,100,100,2,0,1,2,1,2,40,40,70,1
 
 [Events]
@@ -55,13 +56,26 @@ for li,l in enumerate(L):
         ai=max(cand)[1] if cand else len(words)-1
         txt=' '.join((GOLD+w.upper()+WHITE) if i==ai else w.upper() for i,w in enumerate(words))
         k=fit(txt,92,True,1000)
-        ev.append(f"Dialogue: 1,{t(s)},{t(e)},Cap,,0,0,0,,{{\\fad(60,60)\\fscx{int(k*.92)}\\fscy{int(k*.92)}\\t(0,120,\\fscx{k}\\fscy{k})}}{txt}")
-HITS=[]
+        ev.append(f"Dialogue: 1,{t(s)},{t(e)},Cap,,0,0,0,,{{\\fad(30,40)\\fscx{int(k*.96)}\\fscy{int(k*.96)}\\t(0,80,\\fscx{k}\\fscy{k})}}{txt}")
+HITS=[]; _PILLS=[]
 def pill(text, s, e):
-    HITS.append(round(s,3))
+    # never show the same pill twice at once (QA 2026-11-10: 'TAOTIE MASKS' appeared doubled)
+    for (tx, a, b) in _PILLS:
+        if tx.strip().upper() == text.strip().upper() and s < b and a < e: return
+    _PILLS.append((text, s, e)); HITS.append(round(s,3))
     k=fit(text,46,True,960,1); ev.append(f"Dialogue: 2,{t(s)},{t(e)},Pill,,0,0,0,,{{\\fad(120,120)\\fscx{k}\\fscy{k}}} {text} ")
 T=lambda i:L[i]['start']; E=lambda i:L[i]['end']
 for p in SC.get("pills",[]): pill(p["text"], T(p["line"])+p.get("off",0.3), E(p.get("end_line",p["line"]))+p.get("end_off",0.4))
+# HOOK CARD (QA 2026-11-10: "no hook on frame 0"): big 1-2 line text visible from the very first frame, in the dark band
+# above the caption zone, until the first narration line ends (max 2.4 s). script.json: "hook_card": "THIS CLAY HAS A SIGNATURE"
+hk=SC.get("hook_card")
+if hk:
+    he=min(2.4, L[0]['end']); words=hk.upper().split(); mid=(len(words)+1)//2
+    two=' '.join(words[:mid])+(r'\N'+' '.join(words[mid:]) if len(words)>3 else '')
+    kk=min(fit(' '.join(words[:mid]),104,True,960), fit(' '.join(words[mid:]) or 'X',104,True,960))
+    ev.append(f"Dialogue: 3,{t(0)},{t(he)},Hook,,0,0,0,,{{\\fad(0,180)\\fscx{kk}\\fscy{kk}}}{GOLD}{two}")
+    # the spoken captions start after the card so the two never stack
+    ev[:] = [x for x in ev if not (x.startswith('Dialogue: 1,') and x.split(',')[1] < t(he - 0.05))]
 src=SC.get("source")
 if src: ev.append(f"Dialogue: 2,{t(T(src['line'])+src.get('off',0.2))},{t(dur)},Src,,0,0,0,,{{\\fad(150,200)\\fscx{fit(src['text'],30,False,1000,1)}\\fscy{fit(src['text'],30,False,1000,1)}}}{src['text']}")
 open('cap.ass','w').write(hdr+'\n'.join(ev)+'\n')
