@@ -1,0 +1,442 @@
+[
+ {
+  "word": "A",
+  "start": 0.0,
+  "end": 0.22
+ },
+ {
+  "word": "Chinese",
+  "start": 0.22,
+  "end": 0.46
+ },
+ {
+  "word": "scribe",
+  "start": 0.46,
+  "end": 0.8
+ },
+ {
+  "word": "got",
+  "start": 0.8,
+  "end": 1.02
+ },
+ {
+  "word": "a",
+  "start": 1.02,
+  "end": 1.16
+ },
+ {
+  "word": "bonus",
+  "start": 1.16,
+  "end": 1.36
+ },
+ {
+  "word": "of",
+  "start": 1.36,
+  "end": 1.56
+ },
+ {
+  "word": "oxen",
+  "start": 1.56,
+  "end": 2.0
+ },
+ {
+  "word": "This",
+  "start": 2.3,
+  "end": 2.52
+ },
+ {
+  "word": "bronze",
+  "start": 2.52,
+  "end": 2.76
+ },
+ {
+  "word": "is",
+  "start": 2.76,
+  "end": 2.96
+ },
+ {
+  "word": "his",
+  "start": 2.96,
+  "end": 3.1
+ },
+ {
+  "word": "receipt",
+  "start": 3.1,
+  "end": 3.48
+ },
+ {
+  "word": "But",
+  "start": 4.1,
+  "end": 4.34
+ },
+ {
+  "word": "words",
+  "start": 4.34,
+  "end": 4.58
+ },
+ {
+  "word": "on",
+  "start": 4.58,
+  "end": 4.76
+ },
+ {
+  "word": "perishable",
+  "start": 4.76,
+  "end": 5.04
+ },
+ {
+  "word": "things",
+  "start": 5.04,
+  "end": 5.38
+ },
+ {
+  "word": "vanish",
+  "start": 5.38,
+  "end": 5.66
+ },
+ {
+  "word": "So",
+  "start": 6.4,
+  "end": 6.68
+ },
+ {
+  "word": "Ling",
+  "start": 6.9,
+  "end": 6.96
+ },
+ {
+  "word": "had",
+  "start": 6.96,
+  "end": 7.12
+ },
+ {
+  "word": "them",
+  "start": 7.12,
+  "end": 7.28
+ },
+ {
+  "word": "cast",
+  "start": 7.28,
+  "end": 7.42
+ },
+ {
+  "word": "in",
+  "start": 7.42,
+  "end": 7.64
+ },
+ {
+  "word": "bronze",
+  "start": 7.64,
+  "end": 7.84
+ },
+ {
+  "word": "But",
+  "start": 8.74,
+  "end": 8.94
+ },
+ {
+  "word": "how",
+  "start": 8.94,
+  "end": 9.14
+ },
+ {
+  "word": "do",
+  "start": 9.14,
+  "end": 9.28
+ },
+ {
+  "word": "you",
+  "start": 9.28,
+  "end": 9.38
+ },
+ {
+  "word": "cast",
+  "start": 9.38,
+  "end": 9.6
+ },
+ {
+  "word": "words",
+  "start": 9.6,
+  "end": 9.92
+ },
+ {
+  "word": "The",
+  "start": 10.6,
+  "end": 10.88
+ },
+ {
+  "word": "text",
+  "start": 10.88,
+  "end": 11.1
+ },
+ {
+  "word": "was",
+  "start": 11.1,
+  "end": 11.32
+ },
+ {
+  "word": "probably",
+  "start": 11.32,
+  "end": 11.58
+ },
+ {
+  "word": "copied",
+  "start": 11.58,
+  "end": 11.96
+ },
+ {
+  "word": "into",
+  "start": 11.96,
+  "end": 12.2
+ },
+ {
+  "word": "the",
+  "start": 12.2,
+  "end": 12.36
+ },
+ {
+  "word": "clay",
+  "start": 12.36,
+  "end": 12.52
+ },
+ {
+  "word": "mould",
+  "start": 12.52,
+  "end": 12.7
+ },
+ {
+  "word": "first",
+  "start": 12.7,
+  "end": 13.1
+ },
+ {
+  "word": "But",
+  "start": 13.72,
+  "end": 13.96
+ },
+ {
+  "word": "a",
+  "start": 13.96,
+  "end": 14.04
+ },
+ {
+  "word": "mould",
+  "start": 14.04,
+  "end": 14.22
+ },
+ {
+  "word": "around",
+  "start": 14.22,
+  "end": 14.46
+ },
+ {
+  "word": "a",
+  "start": 14.46,
+  "end": 14.6
+ },
+ {
+  "word": "model",
+  "start": 14.6,
+  "end": 14.84
+ },
+ {
+  "word": "must",
+  "start": 14.84,
+  "end": 15.04
+ },
+ {
+  "word": "come",
+  "start": 15.04,
+  "end": 15.22
+ },
+ {
+  "word": "off",
+  "start": 15.22,
+  "end": 15.5
+ },
+ {
+  "word": "So",
+  "start": 16.0,
+  "end": 16.3
+ },
+ {
+  "word": "it",
+  "start": 16.3,
+  "end": 16.42
+ },
+ {
+  "word": "was",
+  "start": 16.42,
+  "end": 16.54
+ },
+ {
+  "word": "cut",
+  "start": 16.54,
+  "end": 16.68
+ },
+ {
+  "word": "in",
+  "start": 16.68,
+  "end": 16.8
+ },
+ {
+  "word": "sections",
+  "start": 16.8,
+  "end": 17.12
+ },
+ {
+  "word": "The",
+  "start": 17.42,
+  "end": 17.52
+ },
+ {
+  "word": "model",
+  "start": 17.52,
+  "end": 17.82
+ },
+ {
+  "word": "became",
+  "start": 17.82,
+  "end": 18.08
+ },
+ {
+  "word": "the",
+  "start": 18.08,
+  "end": 18.26
+ },
+ {
+  "word": "core",
+  "start": 18.26,
+  "end": 18.48
+ },
+ {
+  "word": "Then",
+  "start": 19.3,
+  "end": 19.52
+ },
+ {
+  "word": "bronze",
+  "start": 19.52,
+  "end": 19.86
+ },
+ {
+  "word": "filled",
+  "start": 19.86,
+  "end": 20.14
+ },
+ {
+  "word": "the",
+  "start": 20.14,
+  "end": 20.32
+ },
+ {
+  "word": "gap",
+  "start": 20.32,
+  "end": 20.56
+ },
+ {
+  "word": "carved",
+  "start": 20.94,
+  "end": 21.06
+ },
+ {
+  "word": "masks",
+  "start": 21.06,
+  "end": 21.46
+ },
+ {
+  "word": "and",
+  "start": 21.46,
+  "end": 21.66
+ },
+ {
+  "word": "all",
+  "start": 21.66,
+  "end": 21.9
+ },
+ {
+  "word": "Nearly",
+  "start": 22.64,
+  "end": 22.84
+ },
+ {
+  "word": "190",
+  "start": 22.84,
+  "end": 23.2
+ },
+ {
+  "word": "characters",
+  "start": 23.2,
+  "end": 23.7
+ },
+ {
+  "word": "cast",
+  "start": 23.96,
+  "end": 24.18
+ },
+ {
+  "word": "twice",
+  "start": 24.18,
+  "end": 24.54
+ },
+ {
+  "word": "still",
+  "start": 24.84,
+  "end": 25.06
+ },
+ {
+  "word": "readable",
+  "start": 25.06,
+  "end": 25.34
+ },
+ {
+  "word": "about",
+  "start": 25.34,
+  "end": 25.8
+ },
+ {
+  "word": "three",
+  "start": 25.8,
+  "end": 26.04
+ },
+ {
+  "word": "thousand",
+  "start": 26.04,
+  "end": 26.34
+ },
+ {
+  "word": "years",
+  "start": 26.34,
+  "end": 26.5
+ },
+ {
+  "word": "later",
+  "start": 26.5,
+  "end": 26.86
+ },
+ {
+  "word": "And",
+  "start": 27.4,
+  "end": 27.86
+ },
+ {
+  "word": "they",
+  "start": 27.86,
+  "end": 27.98
+ },
+ {
+  "word": "still",
+  "start": 27.98,
+  "end": 28.16
+ },
+ {
+  "word": "tell",
+  "start": 28.16,
+  "end": 28.34
+ },
+ {
+  "word": "you",
+  "start": 28.34,
+  "end": 28.74
+ }
+]

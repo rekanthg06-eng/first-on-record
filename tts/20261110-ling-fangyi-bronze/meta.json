@@ -1,12 +1,12 @@
 {
- "slug": "20261108-cb-g-emph-strong-take2",
+ "slug": "20261110-ling-fangyi-bronze",
  "provider": "chatterbox",
  "exaggeration": null,
  "cfg_weight": null,
  "ref_audio": null,
  "seed": 21,
- "duration_s": 22.75,
- "words": 68,
+ "duration_s": 28.77,
+ "words": 88,
  "timing": "whisper",
- "chars": 373
+ "chars": 475
 }
