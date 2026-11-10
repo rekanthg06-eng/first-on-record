@@ -4,7 +4,11 @@ import argparse, time
 ap = argparse.ArgumentParser(); ap.add_argument("--prompt", required=True); ap.add_argument("--seconds", type=float, default=40)
 ap.add_argument("--out", required=True); ap.add_argument("--steps", type=int, default=27); ap.add_argument("--seed", type=int, default=7)
 a = ap.parse_args()
-import torch
+import torch, torchaudio, soundfile as sf
+def _save(path, wav, sample_rate, *a, **k):          # new torchaudio.save routes through torchcodec, whose libs fail on the runner
+    path = str(path); x = wav.detach().cpu().float().numpy()
+    sf.write(path if path.endswith((".wav", ".flac")) else path + ".wav", x.T if x.ndim == 2 else x, int(sample_rate))
+torchaudio.save = _save
 from acestep.pipeline_ace_step import ACEStepPipeline
 t0 = time.time()
 p = ACEStepPipeline(device_id=0, dtype="float32", torch_compile=False, cpu_offload=False)
