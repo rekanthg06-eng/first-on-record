@@ -1,4 +1,5 @@
 {"items":[
  {"id":"hero","kind":"smithsonian_3d","si_id":"ld1-1643390182193-1643390191311-0"},
+ {"id":"body","kind":"url","url":"https://3d-api.si.edu/content/document/3d_package:d8c62f94-4ebc-11ea-b77f-2e728ce88125/resources/f1930_54-part_01-smartscan-fixed-textured-150k-4096_std.glb","license":"CC0","credit":"Smithsonian Institution, National Museum of Asian Art, Ritual wine container (fangyi), F1930.54a-b, vessel body (3D, CC0)","source_page":"https://3d.si.edu/"},
  {"id":"hdri","kind":"polyhaven_hdri","name":"studio_small_09","res":"2k"}
 ]}
