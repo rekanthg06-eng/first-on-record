@@ -1,0 +1,30 @@
+[
+ {
+  "id": "hdri",
+  "file": "hdri.hdr",
+  "license": "CC0",
+  "credit": "Poly Haven, studio_small_09 (CC0)",
+  "source_page": "https://polyhaven.com/a/studio_small_09"
+ },
+ {
+  "id": "photo",
+  "file": "photo.jpg",
+  "license": "CC0",
+  "credit": "The Metropolitan Museum of Art, Head of Gudea, 49.26 (CC0)",
+  "source_page": "https://www.metmuseum.org/art/collection/search/324061"
+ },
+ {
+  "id": "depth",
+  "file": "depth.png",
+  "license": "derived",
+  "credit": "depth map from 'photo' (depth-anything/Depth-Anything-V2-Small-hf)",
+  "source_page": ""
+ },
+ {
+  "id": "cut",
+  "file": "cut.png",
+  "license": "derived",
+  "credit": "cut-out of 'photo'",
+  "source_page": ""
+ }
+]
