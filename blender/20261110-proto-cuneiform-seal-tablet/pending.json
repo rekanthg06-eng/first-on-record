@@ -1,0 +1,48 @@
+{
+ "slug": "20261110-proto-cuneiform-seal-tablet",
+ "title": "5,000-Year-Old Cuneiform Tablet With a Seal Signature",
+ "description": "Five thousand years ago, someone rolled a carved stone seal across wet clay to vouch for what was probably a barley record. The stone seems lost, but its signature (a man leading dogs after wild boars) survives on this Mesopotamian tablet, among the earliest writing known.\n\nSources:\nThe Metropolitan Museum of Art, proto-cuneiform tablet with seal impressions, accession 1988.433.1, ca. 3100-2900 BCE (Jemdet Nasr period; date approximate), probably from Uruk, Mesopotamia. metmuseum.org/art/collection/search/329081\nThe Met, \"The Origins of Writing\" (essay)\nThe Met, \"Cylinder Seals: Tiny Treasures That Leave a Big Impression\"\nCDLI P005393\nBritannica, \"cylinder seal\"\nUnicode proposal L2/19-284 (proto-cuneiform)\nAntiquity (2024), \"Rolling back the origins of writing\"\nThe reading as a barley handout is the Met's (early texts have no verbs, so it is uncertain); per the Met, the seal itself apparently has not survived.\n\nVisuals: The Met 3D scan of 1988.433.1 (CC0), rendered in Blender; lighting: Poly Haven studio_small_09 (CC0). Narration voice is synthetic.\n\n#Shorts #History #FirstOnRecord #Cuneiform #Mesopotamia",
+ "tags": [
+  "cuneiform",
+  "sumerian tablet",
+  "mesopotamia",
+  "ancient history",
+  "archaeology",
+  "cylinder seal",
+  "proto-cuneiform",
+  "Metropolitan Museum of Art"
+ ],
+ "route": "SCAN",
+ "assets_credits": [
+  "The Metropolitan Museum of Art, Proto-Cuneiform tablet with seal impressions, 1988.433.1 (3D model, Open Access CC0)",
+  "Poly Haven, studio_small_09 (CC0)"
+ ],
+ "episode_log_line": "2026-11-10 | <id> | 20261110-proto-cuneiform-seal-tablet | blender-v2 SCAN | text | The Met, proto-cuneiform tablet with seal impressions, 1988.433.1, ca. 3100-2900 BCE | comment | 29.6 s: problem chain (track barley -> signs in wet clay -> number marks -> who vouched? -> rolled cylinder seal), real Met 3D scan on a turntable (front -> reverse seal -> front), macro on number marks and seal relief; hook 85 (panel 88/84/83); visual QA FAIL avg 6.0 after 4 rounds (dispatched best); TEST RUN fired manually",
+ "results_row": "2026-11-10,<id>,short,5,000-Year-Old Cuneiform Tablet With a Seal Signature,text,comment,29.6,,,,,,,,blender-v2 SCAN (real Met scan); hook 85; visual QA FAIL 6.0/10 after 4 rounds; test run",
+ "qa": {
+  "stage1": "PASS",
+  "rounds": 4,
+  "final_verdict": "FAIL",
+  "final_scores": {
+   "first_frame": 6,
+   "materials": 7,
+   "lighting_depth": 6,
+   "composition": 5,
+   "legibility": 7,
+   "clarity": 5,
+   "polish": 6
+  },
+  "avg": 6.0,
+  "round_avgs": [
+   5.6,
+   6.0,
+   6.0,
+   6.0
+  ],
+  "worst": [
+   "wide shots width-limited: tablet small, side clipped",
+   "mid-turn frame is a blank side face",
+   "seal relief faint in places, man figure hard to see"
+  ]
+ }
+}

@@ -1,0 +1,67 @@
+{
+ "duration": 29.55,
+ "voice": "chatterbox-take-h",
+ "speed": 1.0,
+ "lines": [
+  {
+   "i": 0,
+   "text": "The stone that signed this tablet seems lost. Its signature isn't.",
+   "start": 0.4,
+   "end": 3.6
+  },
+  {
+   "i": 1,
+   "text": "Five thousand years ago, someone had to track barley.",
+   "start": 4.28,
+   "end": 6.5
+  },
+  {
+   "i": 2,
+   "text": "So signs were drawn in wet clay, probably for a handout.",
+   "start": 7.12,
+   "end": 10.18
+  },
+  {
+   "i": 3,
+   "text": "But signs alone can't count.",
+   "start": 10.7,
+   "end": 11.96
+  },
+  {
+   "i": 4,
+   "text": "So they pressed round marks: numbers.",
+   "start": 12.58,
+   "end": 14.14
+  },
+  {
+   "i": 5,
+   "text": "But who vouched for it?",
+   "start": 15.16,
+   "end": 16.42
+  },
+  {
+   "i": 6,
+   "text": "A carved stone seal, rolled across like a signature.",
+   "start": 16.86,
+   "end": 19.44
+  },
+  {
+   "i": 7,
+   "text": "A man leading leashed dogs after wild boars in a marsh.",
+   "start": 20.02,
+   "end": 22.6
+  },
+  {
+   "i": 8,
+   "text": "Among the earliest writing known, and mostly record-keeping.",
+   "start": 23.32,
+   "end": 26.516
+  },
+  {
+   "i": 9,
+   "text": "The stone's gone. The picture stays.",
+   "start": 26.58,
+   "end": 28.28
+  }
+ ]
+}
