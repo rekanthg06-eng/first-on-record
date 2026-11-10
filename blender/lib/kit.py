@@ -257,5 +257,43 @@ class Kit:
         m = s.bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; nt.nodes.clear()
         out = nt.nodes.new("ShaderNodeOutputMaterial"); e = nt.nodes.new("ShaderNodeEmission"); e.name = "Emission"
         e.inputs["Color"].default_value = (*c, 1); e.inputs["Strength"].default_value = strength; nt.links.new(e.outputs[0], out.inputs[0]); return m
+    # ---- LOOK upgrade (2026-11-10, after the user rejected the flat "cardboard" Antikythera Short). EXPERIMENTAL: one test did not yet pass visual QA; tune, then log what worked ----
+    def look(s, sun_el=14, sun_az=215, sun_power=4.5, sky=0.12, exposure=-0.4):
+        """hard raking key sun (crisp, dark shadows) + dim sky fill + punchy grade. Call AFTER world()."""
+        bpy = s.bpy; ld = bpy.data.lights.new("sunkey", "SUN"); ld.energy = sun_power; ld.angle = math.radians(1.2); ld.color = (1.0, 0.82, 0.62)
+        o = bpy.data.objects.new("sunkey", ld); s.sc.collection.objects.link(o)
+        o.rotation_euler = (math.radians(90 - sun_el), 0, math.radians(sun_az))
+        s.sc.world.node_tree.nodes["Background"].inputs["Strength"].default_value = sky
+        s.sc.view_settings.exposure = exposure
+        for lk in ("AgX - Punchy", "Punchy", "AgX - High Contrast", "High Contrast"):
+            try: s.sc.view_settings.look = lk; break
+            except Exception: pass
+        return o
+    def bevel(s, ob, w=0.02, seg=2):
+        """rounded edges catch highlights; flat 90-degree CG edges are the #1 'placeholder' tell"""
+        m = ob.modifiers.new("bev", "BEVEL"); m.width = w; m.segments = seg; m.limit_method = "ANGLE"; return ob
+    def wood(s, name, c=(0.30, 0.16, 0.07), scale=3.0, rough=0.6):
+        """wood grain (stretched wave + noise), varied colour and a little bump"""
+        m = s.bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; b = nt.nodes["Principled BSDF"]
+        co = nt.nodes.new("ShaderNodeTexCoord"); mp = nt.nodes.new("ShaderNodeMapping"); mp.inputs["Scale"].default_value = (scale, scale, scale * 12)
+        wv = nt.nodes.new("ShaderNodeTexWave"); wv.inputs["Scale"].default_value = 2.0; wv.inputs["Distortion"].default_value = 9; wv.inputs["Detail"].default_value = 6
+        no = nt.nodes.new("ShaderNodeTexNoise"); no.inputs["Scale"].default_value = 30
+        ramp = nt.nodes.new("ShaderNodeValToRGB"); ramp.color_ramp.elements[0].color = (c[0]*0.45, c[1]*0.45, c[2]*0.45, 1); ramp.color_ramp.elements[1].color = (min(1, c[0]*1.5), min(1, c[1]*1.5), min(1, c[2]*1.5), 1)
+        nt.links.new(co.outputs["Object"], mp.inputs["Vector"]); nt.links.new(mp.outputs["Vector"], wv.inputs["Vector"]); nt.links.new(wv.outputs["Fac"], ramp.inputs["Fac"]); nt.links.new(ramp.outputs["Color"], b.inputs["Base Color"])
+        bp = nt.nodes.new("ShaderNodeBump"); bp.inputs["Strength"].default_value = 0.25; nt.links.new(wv.outputs["Fac"], bp.inputs["Height"]); nt.links.new(bp.outputs["Normal"], b.inputs["Normal"])
+        nt.links.new(co.outputs["Object"], no.inputs["Vector"]); nt.links.new(no.outputs["Fac"], b.inputs["Roughness"]); return m
+    def bronze(s, name, c=(0.62, 0.36, 0.14), patina=(0.16, 0.36, 0.28), amount=0.35, scale=9):
+        """polished bronze with noisy roughness and green patina in the crevices (noise mask); metallic needs dark surroundings to read"""
+        m = s.bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; b = nt.nodes["Principled BSDF"]
+        co = nt.nodes.new("ShaderNodeTexCoord"); no = nt.nodes.new("ShaderNodeTexNoise"); no.inputs["Scale"].default_value = scale; no.inputs["Detail"].default_value = 12
+        ramp = nt.nodes.new("ShaderNodeValToRGB"); ramp.color_ramp.elements[0].position = 1 - amount; ramp.color_ramp.elements[1].position = 1 - amount + 0.08
+        mix = nt.nodes.new("ShaderNodeMix"); mix.data_type = "RGBA"; mix.inputs[6].default_value = (*c, 1); mix.inputs[7].default_value = (*patina, 1)
+        met = nt.nodes.new("ShaderNodeMath"); met.operation = "SUBTRACT"; met.inputs[0].default_value = 1.0
+        rg = nt.nodes.new("ShaderNodeMapRange"); rg.inputs["To Min"].default_value = 0.22; rg.inputs["To Max"].default_value = 0.75
+        nt.links.new(co.outputs["Object"], no.inputs["Vector"]); nt.links.new(no.outputs["Fac"], ramp.inputs["Fac"]); nt.links.new(ramp.outputs["Color"], mix.inputs[0])
+        nt.links.new(mix.outputs[2], b.inputs["Base Color"]); nt.links.new(ramp.outputs["Color"], met.inputs[1]); nt.links.new(met.outputs[0], b.inputs["Metallic"])
+        nt.links.new(no.outputs["Fac"], rg.inputs["Value"]); nt.links.new(rg.outputs["Result"], b.inputs["Roughness"])
+        bp = nt.nodes.new("ShaderNodeBump"); bp.inputs["Strength"].default_value = 0.2; nt.links.new(no.outputs["Fac"], bp.inputs["Height"]); nt.links.new(bp.outputs["Normal"], b.inputs["Normal"])
+        return m
     def finish(s, width=1080, height=1920):
         return dict(fps=s.fps, frames=s.frames, width=width, height=height, samples=s.samples)

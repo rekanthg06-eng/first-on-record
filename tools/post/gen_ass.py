@@ -21,6 +21,16 @@ Style: Note,DejaVu Sans,26,&H00B8B8B8,&H000000FF,&H00101010,&H80000000,0,0,0,0,1
 [Events]
 Format: Layer,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text
 '''
+def fit(text, size, bold=True, maxw=1000, spacing=0):
+    """percent scale so the text fits maxw px (1080 wide frame): stops captions/source running off the edge (QA 2026-11-10)"""
+    plain = re.sub(r'\{[^}]*\}', '', text)
+    try:
+        from PIL import ImageFont
+        f = ImageFont.truetype('DejaVuSans-Bold.ttf' if bold else 'DejaVuSans.ttf', size); w = f.getlength(plain)
+    except Exception:
+        w = len(plain) * size * (0.72 if bold else 0.62)
+    w += spacing * len(plain)
+    return min(100, int(100 * maxw / max(w, 1)))
 GOLD=r'{\c&H3CC8FF&}'; WHITE=r'{\c&HFFFFFF&}'
 STOP=set('a the of to in it is and on at for with how do you that this they so but now one an'.split())
 ev=[]
@@ -44,11 +54,13 @@ for li,l in enumerate(L):
         cand=[(len(w),i) for i,w in enumerate(words) if w.lower() not in STOP]
         ai=max(cand)[1] if cand else len(words)-1
         txt=' '.join((GOLD+w.upper()+WHITE) if i==ai else w.upper() for i,w in enumerate(words))
-        ev.append(f"Dialogue: 1,{t(s)},{t(e)},Cap,,0,0,0,,{{\\fad(60,60)\\fscx92\\fscy92\\t(0,120,\\fscx100\\fscy100)}}{txt}")
-def pill(text, s, e): ev.append(f"Dialogue: 2,{t(s)},{t(e)},Pill,,0,0,0,,{{\\fad(120,120)}} {text} ")
+        k=fit(txt,92,True,1000)
+        ev.append(f"Dialogue: 1,{t(s)},{t(e)},Cap,,0,0,0,,{{\\fad(60,60)\\fscx{int(k*.92)}\\fscy{int(k*.92)}\\t(0,120,\\fscx{k}\\fscy{k})}}{txt}")
+def pill(text, s, e):
+    k=fit(text,46,True,960,1); ev.append(f"Dialogue: 2,{t(s)},{t(e)},Pill,,0,0,0,,{{\\fad(120,120)\\fscx{k}\\fscy{k}}} {text} ")
 T=lambda i:L[i]['start']; E=lambda i:L[i]['end']
 for p in SC.get("pills",[]): pill(p["text"], T(p["line"])+p.get("off",0.3), E(p.get("end_line",p["line"]))+p.get("end_off",0.4))
 src=SC.get("source")
-if src: ev.append(f"Dialogue: 2,{t(T(src['line'])+src.get('off',0.2))},{t(dur)},Src,,0,0,0,,{{\\fad(150,200)}}{src['text']}")
+if src: ev.append(f"Dialogue: 2,{t(T(src['line'])+src.get('off',0.2))},{t(dur)},Src,,0,0,0,,{{\\fad(150,200)\\fscx{fit(src['text'],30,False,1000,1)}\\fscy{fit(src['text'],30,False,1000,1)}}}{src['text']}")
 open('cap.ass','w').write(hdr+'\n'.join(ev)+'\n')
 print(len(ev),'events')
