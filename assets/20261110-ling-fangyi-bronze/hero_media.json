@@ -1,0 +1,12 @@
+[
+ {
+  "media": 8,
+  "caption": "",
+  "idsId": "",
+  "glbs": [
+   "https://3d-api.si.edu/content/document/3d_package:d8c62f94-4ebc-11ea-b77f-2e728ce88125/resources/f1930_54-part_01-2-smartscan-fixed-textured-100k-2048_std_draco.glb",
+   "https://3d-api.si.edu/content/document/3d_package:d8c62f94-4ebc-11ea-b77f-2e728ce88125/resources/f1930_54-part_02-smartscan-fixed-textured-150k-4096_std.glb",
+   "https://3d-api.si.edu/content/document/3d_package:d8c62f94-4ebc-11ea-b77f-2e728ce88125/resources/f1930_54-part_01-smartscan-fixed-textured-150k-4096_std.glb"
+  ]
+ }
+]
