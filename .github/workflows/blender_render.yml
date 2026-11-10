@@ -100,6 +100,10 @@ jobs:
           git fetch -q --depth 1 origin render-out
           mkdir work && cp -r "blender/$scene/project/." work/
           git show FETCH_HEAD:render/$scene.mp4 > work/render.mp4
+          # generated music bed (music_bed.yml), if one exists for this scene; finish.sh falls back to a synthesized drone
+          if git ls-remote --exit-code --heads origin music-out >/dev/null 2>&1; then
+            git fetch -q --depth 1 origin music-out && git show FETCH_HEAD:music/$scene.wav > work/music.wav 2>/dev/null || rm -f work/music.wav
+          fi
           cd work && bash "$GITHUB_WORKSPACE/tools/post/finish.sh"
           ls -l final.mp4
       - name: Publish to media
