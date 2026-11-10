@@ -1,0 +1,47 @@
+name: fetch_assets
+# Downloads the real-object assets listed in blender/<scene>/assets.json (museum scans, public-domain photos, CC0 HDRIs), derives
+# depth maps / cut-outs for the parallax route, and publishes them with their licences to branch assets-out under assets/<scene>/.
+# The sandbox cannot reach museum sites; the runner can. blender_render.yml copies assets/<scene>/ into blender/<scene>/assets/.
+on:
+  workflow_dispatch:
+    inputs:
+      scene: { description: "folder name under blender/ (yyyymmdd-slug) that has assets.json", required: true }
+
+concurrency:
+  group: fetch-assets
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env: { GH_TOKEN: "${{ github.token }}" }
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Install (only what assets.json needs)
+        run: |
+          scene=$(echo "${{ inputs.scene }}" | tr -cd 'a-zA-Z0-9_-'); echo "SCENE=$scene" >> "$GITHUB_ENV"
+          [ -f "blender/$scene/assets.json" ] || { echo "missing blender/$scene/assets.json"; exit 1; }
+          pip install -q pillow numpy
+          if grep -q '"depth"' "blender/$scene/assets.json"; then pip install -q --index-url https://download.pytorch.org/whl/cpu torch && pip install -q transformers; fi
+          if grep -q '"cutout"' "blender/$scene/assets.json"; then pip install -q "rembg[cpu]"; fi
+      - name: Fetch
+        run: python tools/assets/fetch.py "blender/$SCENE/assets.json" --out "build/assets/$SCENE"
+      - name: Publish to assets-out
+        run: |
+          mkdir pub && cd pub && git init -q
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git ls-remote --exit-code --heads origin assets-out >/dev/null 2>&1; then
+            git fetch -q --depth 1 origin assets-out && git checkout -q -b assets-out FETCH_HEAD
+          else git checkout -q --orphan assets-out; fi
+          mkdir -p assets && rm -rf "assets/$SCENE" && cp -r "../build/assets/$SCENE" assets/ && rm -rf assets/$SCENE/_c_*
+          ls -1dt assets/*/ | tail -n +9 | xargs -r rm -rf          # keep the 8 newest scenes
+          git add -A
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -q -m "assets: $SCENE" || { echo "nothing new"; exit 0; }
+          git push -q origin assets-out

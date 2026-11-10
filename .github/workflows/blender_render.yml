@@ -42,6 +42,15 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.13" }
       - run: pip install bpy
+      - name: Real-object assets (from fetch_assets.yml, if the scene uses any)
+        run: |
+          scene=$(echo "${{ inputs.scene }}" | tr -cd 'a-zA-Z0-9_-')
+          if [ -f "blender/$scene/assets.json" ]; then
+            git fetch -q --depth 1 origin assets-out
+            mkdir -p "blender/$scene/assets"
+            git archive FETCH_HEAD "assets/$scene" | tar -x --strip-components=2 -C "blender/$scene/assets"
+            ls -l "blender/$scene/assets"
+          fi
       - name: Render shard (one automatic retry)
         run: |
           scene=$(echo "${{ inputs.scene }}" | tr -cd 'a-zA-Z0-9_-')

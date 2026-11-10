@@ -295,5 +295,136 @@ class Kit:
         nt.links.new(no.outputs["Fac"], rg.inputs["Value"]); nt.links.new(rg.outputs["Result"], b.inputs["Roughness"])
         bp = nt.nodes.new("ShaderNodeBump"); bp.inputs["Strength"].default_value = 0.2; nt.links.new(no.outputs["Fac"], bp.inputs["Height"]); nt.links.new(bp.outputs["Normal"], b.inputs["Normal"])
         return m
+    # ---- v2 REAL-OBJECT ROUTES (2026-11-10): the hero is a real museum scan or a real museum photo, never code primitives ----
+    # assets come from fetch_assets.yml (licences in <scene>/assets/manifest.json); path helper:
+    def asset(s, stem):
+        """path of <scene>/assets/<stem>.* (first match), or None"""
+        ad = os.path.join(s.d, "assets")
+        if not os.path.isdir(ad): return None
+        for f in sorted(os.listdir(ad)):
+            if os.path.splitext(f)[0] == stem: return os.path.join(ad, f)
+        return None
+    def hdri(s, path, strength=0.6, rot_deg=0.0, exposure=-0.2, blur_bg=True):
+        """image-based lighting from a CC0 HDRI (real reflections on scans and metals). The HDRI lights the scene but the camera
+        sees a dark backdrop (Light Path 'Is Camera Ray' mix), so frames never show a busy or empty photo sky."""
+        bpy = s.bpy; w = bpy.data.worlds.new("w"); s.sc.world = w; w.use_nodes = True; nt = w.node_tree
+        bg = nt.nodes["Background"]; out = nt.nodes["World Output"]
+        tc = nt.nodes.new("ShaderNodeTexCoord"); mp = nt.nodes.new("ShaderNodeMapping"); mp.inputs["Rotation"].default_value = (0, 0, math.radians(rot_deg))
+        env = nt.nodes.new("ShaderNodeTexEnvironment"); env.image = bpy.data.images.load(path)
+        nt.links.new(tc.outputs["Generated"], mp.inputs["Vector"]); nt.links.new(mp.outputs["Vector"], env.inputs["Vector"]); nt.links.new(env.outputs["Color"], bg.inputs["Color"])
+        bg.inputs["Strength"].default_value = strength
+        if blur_bg:
+            dark = nt.nodes.new("ShaderNodeBackground"); dark.inputs["Color"].default_value = (0.012, 0.010, 0.009, 1)
+            lp = nt.nodes.new("ShaderNodeLightPath"); mx = nt.nodes.new("ShaderNodeMixShader")
+            nt.links.new(lp.outputs["Is Camera Ray"], mx.inputs[0]); nt.links.new(bg.outputs[0], mx.inputs[1]); nt.links.new(dark.outputs[0], mx.inputs[2])
+            nt.links.new(mx.outputs[0], out.inputs["Surface"])
+        s.grade(exposure)
+    def grade(s, exposure=-0.2):
+        try: s.sc.view_settings.view_transform = "AgX"
+        except Exception: pass
+        for lk in ("AgX - Medium High Contrast", "Medium High Contrast"):
+            try: s.sc.view_settings.look = lk; break
+            except Exception: pass
+        s.sc.view_settings.exposure = exposure
+    def dark_world(s, c=(0.012, 0.010, 0.009), strength=1.0, exposure=-0.2):
+        """fallback when no HDRI was fetched: near-black world; the studio lights do the work"""
+        w = s.bpy.data.worlds.new("w"); s.sc.world = w; w.use_nodes = True
+        bg = w.node_tree.nodes["Background"]; bg.inputs["Color"].default_value = (*c, 1); bg.inputs["Strength"].default_value = strength; s.grade(exposure)
+    def area(s, name, loc, target, power, size=1.0, color=(1, 1, 1)):
+        bpy = s.bpy; ld = bpy.data.lights.new(name, "AREA"); ld.energy = power; ld.size = size; ld.color = color
+        o = bpy.data.objects.new(name, ld); s.sc.collection.objects.link(o); o.location = loc
+        c = o.constraints.new("TRACK_TO"); tg = bpy.data.objects.new(name + "_t", None); s.sc.collection.objects.link(tg); tg.location = target
+        c.target = tg; c.track_axis = "TRACK_NEGATIVE_Z"; c.up_axis = "UP_Y"; return o
+    def studio(s, h=1.0, warm=(1.0, 0.86, 0.70), rim=(0.70, 0.82, 1.0), key_power=None):
+        """museum-display lighting scaled to hero height h: warm hard-ish key from front-left-above, cool rim from behind
+        (separates the object from the dark backdrop: the single biggest 'looks real' cue), weak fill. Returns (key, rim, fill)."""
+        kp = key_power or 260 * h * h
+        key = s.area("key", (-1.6*h, -2.2*h, 2.2*h), (0, 0, 0.5*h), kp, size=0.6*h, color=warm)
+        rl = s.area("rim", (1.5*h, 2.4*h, 1.9*h), (0, 0, 0.6*h), kp * 1.3, size=0.9*h, color=rim)
+        fill = s.area("fill", (2.4*h, -1.8*h, 0.6*h), (0, 0, 0.4*h), kp * 0.18, size=2.0*h, color=(1, 0.95, 0.9))
+        return key, rl, fill
+    def backdrop(s, h=1.0, c=(0.035, 0.030, 0.027), plinth=True, stone=(0.11, 0.10, 0.09)):
+        """curved seamless backdrop (cyclorama) + a stone plinth: the 'museum vitrine' set. Dark, textured, never empty white."""
+        bpy = s.bpy; m = s.noisy("backdrop", c, scale=3, contrast=0.25, bump=0.05)
+        v, f = [], []; R = 2.0*h; W = 6*h; n = 12
+        for i in range(n + 1):                 # floor -> quarter circle -> wall, in y-z, extruded along x
+            a = math.pi/2 * i / n; y = 1.2*h + R*math.sin(a); z = R - R*math.cos(a)
+            v += [(-W, y, z), (W, y, z)]
+        v = [(-W, -6*h, 0), (W, -6*h, 0)] + v + [(-W, 1.2*h + R, 8*h), (W, 1.2*h + R, 8*h)]
+        fz = -0.35*h if plinth else 0.0            # floor sits under the plinth; the hero stands on z=0 either way
+        v = [(x, y, z + fz) for x, y, z in v]
+        for i in range(len(v)//2 - 1): f.append((2*i, 2*i+1, 2*i+3, 2*i+2))
+        cyc = s.mk("cyc", v, f, m, smooth=True)
+        out = [cyc]
+        if plinth:
+            pm = s.noisy("plinth", stone, scale=9, contrast=0.3, bump=0.25, rough=0.85)
+            p = s.box("plinth", 1.4*h, 1.4*h, 0.35*h, (0, 0, -0.35*h), pm); s.bevel(p, 0.02*h, 3); out.append(p)
+            for poly in p.data.polygons: poly.use_smooth = False
+        return out
+    def hero_glb(s, path, height=1.0, rot=(0, 0, 0), z=0.0):
+        """import a real scan (GLB/GLTF/OBJ/PLY), keep its scanned textures, scale it to `height`, centre it on x/y, stand it on z.
+        Returns the parent empty (animate that). Big scans are decimated to ~400k faces so CPU render stays fast."""
+        bpy = s.bpy; before = set(bpy.data.objects)
+        ext = os.path.splitext(path)[1].lower()
+        if ext in (".glb", ".gltf"): bpy.ops.import_scene.gltf(filepath=path)
+        elif ext == ".obj": bpy.ops.wm.obj_import(filepath=path)
+        elif ext == ".ply": bpy.ops.wm.ply_import(filepath=path)
+        elif ext == ".stl": bpy.ops.wm.stl_import(filepath=path)
+        else: raise SystemExit(f"unsupported scan format {ext}")
+        obs = [o for o in bpy.data.objects if o not in before and o.type == "MESH"]
+        if not obs: raise SystemExit("scan has no mesh")
+        tops = [o for o in bpy.data.objects if o not in before and o.parent is None]
+        root = bpy.data.objects.new("hero", None); s.sc.collection.objects.link(root)
+        for o in tops: o.parent = root
+        root.rotation_euler = rot; bpy.context.view_layer.update()
+        import mathutils
+        pts = [o.matrix_world @ mathutils.Vector(c) for o in obs for c in o.bound_box]
+        lo = mathutils.Vector((min(p.x for p in pts), min(p.y for p in pts), min(p.z for p in pts)))
+        hi = mathutils.Vector((max(p.x for p in pts), max(p.y for p in pts), max(p.z for p in pts)))
+        k = height / max(1e-6, hi.z - lo.z); root.scale = (k, k, k)
+        root.location = (-(lo.x + hi.x) / 2 * k, -(lo.y + hi.y) / 2 * k, z - lo.z * k)
+        faces = sum(len(o.data.polygons) for o in obs)
+        if faces > 400000:
+            for o in obs:
+                d = o.modifiers.new("dec", "DECIMATE"); d.ratio = 400000 / faces
+        for o in obs:
+            for p in o.data.polygons: p.use_smooth = True
+        s.hero_size = (k * (hi.x - lo.x), k * (hi.y - lo.y), height)
+        return root
+    def turn(s, ob, t0, t1, deg):
+        """slow linear turntable (z) so the scan shows its depth; 15-40 degrees over a Short reads as 'real object', more is a gimmick"""
+        r0 = ob.rotation_euler.z; s.spin(ob, t0, t1, r0, r0 + math.radians(deg), idx=2)
+    def photo_relief(s, img, depth=None, cut=None, width=1.0, relief=0.12, y=0.0, res=256):
+        """2.5D parallax from ONE real photo: a finely subdivided card standing in the x-z plane (facing -y), photo as colour,
+        depth map pushes near parts toward the camera, cut-out alpha removes the background. A blurred, darker copy of the
+        photo sits behind as the plate. Returns (card, plate). Move the camera slowly (dolly + small lateral drift) for parallax."""
+        bpy = s.bpy; im = bpy.data.images.load(img); W, H = im.size; h = width * H / W
+        bpy.ops.mesh.primitive_grid_add(x_subdivisions=res, y_subdivisions=int(res * H / W), size=1)
+        card = bpy.context.object; card.name = "photo"; card.scale = (width, h, 1); card.rotation_euler = (math.pi/2, 0, 0); card.location = (0, y, h/2)
+        m = bpy.data.materials.new("photo"); m.use_nodes = True; nt = m.node_tree; b = nt.nodes["Principled BSDF"]
+        tx = nt.nodes.new("ShaderNodeTexImage"); tx.image = im; tx.interpolation = "Cubic"
+        nt.links.new(tx.outputs["Color"], b.inputs["Base Color"]); b.inputs["Roughness"].default_value = 0.75
+        em = b.inputs.get("Emission Color") or b.inputs.get("Emission"); nt.links.new(tx.outputs["Color"], em)
+        b.inputs["Emission Strength"].default_value = 0.35          # keeps the photo's own lighting readable under the studio lights
+        if cut:
+            ct = nt.nodes.new("ShaderNodeTexImage"); ct.image = bpy.data.images.load(cut); nt.links.new(ct.outputs["Alpha"], b.inputs["Alpha"])
+            try: m.blend_method = "HASHED"
+            except Exception: pass
+        card.data.materials.append(m)
+        if depth:
+            dt = bpy.data.textures.new("depth", "IMAGE"); dt.image = bpy.data.images.load(depth); dt.image.colorspace_settings.name = "Non-Color"
+            d = card.modifiers.new("relief", "DISPLACE"); d.texture = dt; d.texture_coords = "UV"; d.strength = relief; d.mid_level = 0.0
+            d.direction = "Z"; card.modifiers.new("smooth", "SMOOTH").factor = 0.5
+            for p in card.data.polygons: p.use_smooth = True
+        # plate: same photo, bigger, darker, blurred-looking (low-res sampling) far behind
+        bpy.ops.mesh.primitive_plane_add(size=1); plate = bpy.context.object; plate.name = "plate"
+        plate.scale = (width * 2.6, h * 2.6, 1); plate.rotation_euler = (math.pi/2, 0, 0); plate.location = (0, y + 1.6 * width, h * 0.6)
+        pm = bpy.data.materials.new("plate"); pm.use_nodes = True; pt = pm.node_tree; pt.nodes.clear()
+        o = pt.nodes.new("ShaderNodeOutputMaterial"); e = pt.nodes.new("ShaderNodeEmission"); t2 = pt.nodes.new("ShaderNodeTexImage"); t2.image = im; t2.interpolation = "Closest"
+        hsv = pt.nodes.new("ShaderNodeHueSaturation"); hsv.inputs["Value"].default_value = 0.25; hsv.inputs["Saturation"].default_value = 0.6
+        pt.links.new(t2.outputs["Color"], hsv.inputs["Color"]); pt.links.new(hsv.outputs["Color"], e.inputs["Color"]); e.inputs["Strength"].default_value = 0.6; pt.links.new(e.outputs[0], o.inputs[0])
+        plate.data.materials.append(pm)
+        s.hero_size = (width, 0.0, h)
+        return card, plate
     def finish(s, width=1080, height=1920):
         return dict(fps=s.fps, frames=s.frames, width=width, height=height, samples=s.samples)
