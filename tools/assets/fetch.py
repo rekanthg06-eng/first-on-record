@@ -96,14 +96,16 @@ def do_si3d(it, out):
     key = os.environ.get("SI_API_KEY") or "DEMO_KEY"
     r = json.loads(get(f"https://api.si.edu/openaccess/api/v1.0/content/{it["si_id"]}?api_key={key}"))["response"]
     media = (((r.get("content") or {}).get("descriptiveNonRepeating") or {}).get("online_media") or {}).get("media", [])
-    best = None
-    for m in media:
+    best = None; listing = []      # one record can hold several 3D models (e.g. vessel body and lid): "media": <index> picks one
+    for j, m in enumerate(media):
         if m.get("type") != "3d_voyager" or (m.get("usage") or {}).get("access") != "CC0": continue
-        for res in m.get("resources", []):
-            u = res.get("url", "")
-            if u.endswith(".glb"):
-                score = (("150k" in u) * 3) + (("std" in u) * 2) + ("high" in u)
-                if not best or score > best[0]: best = (score, u)
+        glbs = [res.get("url", "") for res in m.get("resources", []) if res.get("url", "").endswith(".glb")]
+        listing.append(dict(media=j, caption=m.get("caption", ""), idsId=m.get("idsId", ""), glbs=glbs))
+        if "media" in it and int(it["media"]) != j: continue
+        for u in glbs:
+            score = (("150k" in u) * 3) + (("std" in u) * 2) + ("high" in u)
+            if not best or score > best[0]: best = (score, u)
+    json.dump(listing, open(os.path.join(out, it["id"] + "_media.json"), "w"), indent=1)
     if not best: raise SystemExit(f"no CC0 GLB for Smithsonian {it["si_id"]}")
     f = os.path.join(out, it["id"] + ".glb"); get(best[1], f)
     return f, "CC0", f"Smithsonian Institution, {r.get('title','')} (3D, CC0)", (r.get("content") or {}).get("descriptiveNonRepeating", {}).get("record_link", "")
