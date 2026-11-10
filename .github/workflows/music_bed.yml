@@ -1,0 +1,42 @@
+name: music_bed
+# Generates an instrumental bed for one Short with ACE-Step on CPU (Apache 2.0) and publishes it to branch music-out as
+# music/<scene>.wav. Output must be checked by ear/QA before use; the post stack mixes it under the narration.
+on:
+  workflow_dispatch:
+    inputs:
+      scene: { description: "yyyymmdd-slug", required: true }
+      prompt: { description: "style tags, e.g. 'ancient ambient, low drone, frame drum, oud, slow, cinematic, instrumental'", required: true }
+      seconds: { description: "length in seconds", required: true, default: "40" }
+      steps: { description: "diffusion steps (fewer = faster)", required: false, default: "27" }
+permissions:
+  contents: write
+jobs:
+  gen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env: { GH_TOKEN: "${{ github.token }}" }
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.10" }
+      - uses: actions/cache@v4
+        with: { path: ~/.cache/ace-step, key: acestep-v1 }
+      - name: Install ACE-Step (CPU torch)
+        run: |
+          pip install -q --index-url https://download.pytorch.org/whl/cpu torch torchaudio
+          pip install -q "git+https://github.com/ace-step/ACE-Step.git"
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Generate
+        run: |
+          scene=$(echo "${{ inputs.scene }}" | tr -cd 'a-zA-Z0-9_-'); echo "SCENE=$scene" >> "$GITHUB_ENV"
+          mkdir -p out && python tools/music/acestep_gen.py --prompt "${{ inputs.prompt }}" --seconds "${{ inputs.seconds }}" --steps "${{ inputs.steps }}" --out out/
+          f=$(ls out/*.wav out/*.mp3 out/*.flac 2>/dev/null | head -1); [ -n "$f" ] || { ls -R out; exit 1; }
+          ffmpeg -loglevel error -y -i "$f" -ar 48000 -ac 2 "out/$scene.wav" && ls -l out
+      - name: Publish to music-out
+        run: |
+          mkdir pub && cd pub && git init -q
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git ls-remote --exit-code --heads origin music-out >/dev/null 2>&1; then git fetch -q --depth 1 origin music-out && git checkout -q -b music-out FETCH_HEAD; else git checkout -q --orphan music-out; fi
+          mkdir -p music && cp "../out/$SCENE.wav" music/ && ls -1t music/*.wav | tail -n +9 | xargs -r git rm -q --ignore-unmatch
+          git add -A && git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -q -m "music: $SCENE" && git push -q origin music-out

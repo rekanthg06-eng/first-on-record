@@ -343,7 +343,7 @@ class Kit:
         rl = s.area("rim", (1.5*h, 2.4*h, 1.9*h), (0, 0, 0.6*h), kp * 1.3, size=0.9*h, color=rim)
         fill = s.area("fill", (2.4*h, -1.8*h, 0.6*h), (0, 0, 0.4*h), kp * 0.18, size=2.0*h, color=(1, 0.95, 0.9))
         return key, rl, fill
-    def backdrop(s, h=1.0, c=(0.035, 0.030, 0.027), plinth=True, stone=(0.11, 0.10, 0.09)):
+    def backdrop(s, h=1.0, c=(0.016, 0.014, 0.013), plinth=True, stone=(0.11, 0.10, 0.09)):
         """curved seamless backdrop (cyclorama) + a stone plinth: the 'museum vitrine' set. Dark, textured, never empty white."""
         bpy = s.bpy; m = s.noisy("backdrop", c, scale=3, contrast=0.25, bump=0.05)
         v, f = [], []; R = 2.0*h; W = 6*h; n = 12
@@ -361,6 +361,15 @@ class Kit:
             p = s.box("plinth", 1.4*h, 1.4*h, 0.35*h, (0, 0, -0.35*h), pm); s.bevel(p, 0.02*h, 3); out.append(p)
             for poly in p.data.polygons: poly.use_smooth = False
         return out
+    def stand(s, top_z=None, h=1.0, base=(0.55, 0.55, 0.22)):
+        """museum mount for a fragment: stone base on the floor + a thin dark rod up to the object (objects never float).
+        top_z defaults to the bottom of the last photo_relief cut-out + 4 % so the rod enters the object."""
+        if top_z is None: top_z = getattr(s, "hero_bottom_z", 0.4) + 0.04 * h
+        pm = s.noisy("standstone", (0.045, 0.04, 0.038), scale=9, contrast=0.3, bump=0.25, rough=0.85)
+        b = s.box("standbase", base[0]*h, base[1]*h, base[2]*h, (0, 0.05*h, 0), pm); s.bevel(b, 0.015*h, 3)
+        for p in b.data.polygons: p.use_smooth = False
+        rod = s.cyl("rod", 0.012*h, top_z - base[2]*h + 0.02*h, (0, 0.05*h, (top_z + base[2]*h) / 2), s.metal("rodm", (0.05, 0.05, 0.05), 0.4), seg=12)
+        return b, rod
     def hero_glb(s, path, height=1.0, rot=(0, 0, 0), z=0.0):
         """import a real scan (GLB/GLTF/OBJ/PLY), keep its scanned textures, scale it to `height`, centre it on x/y, stand it on z.
         Returns the parent empty (animate that). Big scans are decimated to ~400k faces so CPU render stays fast."""
@@ -394,13 +403,13 @@ class Kit:
     def turn(s, ob, t0, t1, deg):
         """slow linear turntable (z) so the scan shows its depth; 15-40 degrees over a Short reads as 'real object', more is a gimmick"""
         r0 = ob.rotation_euler.z; s.spin(ob, t0, t1, r0, r0 + math.radians(deg), idx=2)
-    def photo_relief(s, img, depth=None, cut=None, width=1.0, relief=0.12, y=0.0, res=256):
+    def photo_relief(s, img, depth=None, cut=None, width=1.0, relief=0.12, y=0.0, res=256, z=0.0):
         """2.5D parallax from ONE real photo: a finely subdivided card standing in the x-z plane (facing -y), photo as colour,
         depth map pushes near parts toward the camera, cut-out alpha removes the background. A blurred, darker copy of the
         photo sits behind as the plate. Returns (card, plate). Move the camera slowly (dolly + small lateral drift) for parallax."""
         bpy = s.bpy; im = bpy.data.images.load(img); W, H = im.size; h = width * H / W
         bpy.ops.mesh.primitive_grid_add(x_subdivisions=res, y_subdivisions=int(res * H / W), size=1)
-        card = bpy.context.object; card.name = "photo"; card.scale = (width, h, 1); card.rotation_euler = (math.pi/2, 0, 0); card.location = (0, y, h/2)
+        card = bpy.context.object; card.name = "photo"; card.scale = (width, h, 1); card.rotation_euler = (math.pi/2, 0, 0); card.location = (0, y, z + h/2)
         m = bpy.data.materials.new("photo"); m.use_nodes = True; nt = m.node_tree; b = nt.nodes["Principled BSDF"]
         tx = nt.nodes.new("ShaderNodeTexImage"); tx.image = im; tx.interpolation = "Cubic"
         nt.links.new(tx.outputs["Color"], b.inputs["Base Color"]); b.inputs["Roughness"].default_value = 0.75
@@ -408,6 +417,11 @@ class Kit:
         b.inputs["Emission Strength"].default_value = 0.35          # keeps the photo's own lighting readable under the studio lights
         if cut:
             ct = nt.nodes.new("ShaderNodeTexImage"); ct.image = bpy.data.images.load(cut); nt.links.new(ct.outputs["Alpha"], b.inputs["Alpha"])
+            try:   # lowest opaque row -> where the object really ends (stand() uses it so the rod touches the object)
+                import numpy as np
+                cw, chh = ct.image.size; a = np.array(ct.image.pixels[:], dtype="float32").reshape(chh, cw, 4)[:, :, 3]
+                rows = np.where(a.max(axis=1) > 0.5)[0]; s.hero_bottom_z = z + h * (rows.min() / chh) if len(rows) else z
+            except Exception: s.hero_bottom_z = z
             try: m.blend_method = "HASHED"
             except Exception: pass
         card.data.materials.append(m)

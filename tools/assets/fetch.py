@@ -78,7 +78,11 @@ def do_cutout(it, out):
     from rembg import remove, new_session
     from PIL import Image
     im = Image.open(src_file(out, it["from"])).convert("RGB")
-    res = remove(im, session=new_session(it.get("model", "isnet-general-use")))
+    from PIL import ImageFilter
+    res = remove(im, session=new_session(it.get("model", "birefnet-general"))   # MIT weights; NOT the rembg default (bria-rmbg needs a paid licence) nor isnet (weights licence unstated))
+    # pull the edge in a few px and feather it: kills the bright background halo around cut-out objects (seen in test 2026-11-10)
+    r, g, b, a = res.split(); px = max(3, im.size[0] // 600) | 1
+    a = a.filter(ImageFilter.MinFilter(px)).filter(ImageFilter.GaussianBlur(px / 2)); res = Image.merge("RGBA", (r, g, b, a))
     f = os.path.join(out, it["id"] + ".png"); res.save(f)
     return f, "derived", f"cut-out of '{it['from']}'", ""
 
