@@ -1,0 +1,6 @@
+{"items":[
+ {"id":"hdri","kind":"polyhaven_hdri","name":"studio_small_09","res":"2k"},
+ {"id":"photo","kind":"met_image","object_id":324061},
+ {"id":"depth","kind":"depth","from":"photo"},
+ {"id":"cut","kind":"cutout","from":"photo"}
+]}
