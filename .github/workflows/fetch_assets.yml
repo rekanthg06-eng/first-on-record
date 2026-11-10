@@ -33,6 +33,18 @@ jobs:
           if grep -q '"cutout"' "blender/$scene/assets.json"; then pip install -q "rembg[cpu]"; fi
       - name: Fetch
         run: python tools/assets/fetch.py "blender/$SCENE/assets.json" --out "build/assets/$SCENE"
+        env: { SI_API_KEY: "${{ secrets.SI_API_KEY }}", SKETCHFAB_TOKEN: "${{ secrets.SKETCHFAB_TOKEN }}" }
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - name: Decompress Draco scans (pip Blender has no Draco library)
+        run: |
+          for f in build/assets/$SCENE/*.glb; do
+            [ -f "$f" ] || continue
+            if python -c "import json,struct,sys;b=open(sys.argv[1],'rb').read(12+8+4*10**6);n=struct.unpack('<I',b[12:16])[0];sys.exit(0 if 'KHR_draco_mesh_compression' in json.loads(b[20:20+n]).get('extensionsUsed',[]) else 1)" "$f"; then
+              [ -d /tmp/gt/node_modules ] || (mkdir -p /tmp/gt && cd /tmp/gt && npm init -y >/dev/null && npm i -s @gltf-transform/core @gltf-transform/extensions draco3dgltf)
+              cp tools/assets/undraco.mjs /tmp/gt/ && node /tmp/gt/undraco.mjs "$f" "$f.tmp.glb" && mv "$f.tmp.glb" "$f"
+            fi
+          done
       - name: Publish to assets-out
         run: |
           mkdir pub && cd pub && git init -q

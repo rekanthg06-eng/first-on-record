@@ -304,7 +304,7 @@ class Kit:
         for f in sorted(os.listdir(ad)):
             if os.path.splitext(f)[0] == stem: return os.path.join(ad, f)
         return None
-    def hdri(s, path, strength=0.6, rot_deg=0.0, exposure=-0.2, blur_bg=True):
+    def hdri(s, path, strength=0.4, rot_deg=0.0, exposure=-0.7, blur_bg=True):
         """image-based lighting from a CC0 HDRI (real reflections on scans and metals). The HDRI lights the scene but the camera
         sees a dark backdrop (Light Path 'Is Camera Ray' mix), so frames never show a busy or empty photo sky."""
         bpy = s.bpy; w = bpy.data.worlds.new("w"); s.sc.world = w; w.use_nodes = True; nt = w.node_tree
@@ -338,12 +338,12 @@ class Kit:
     def studio(s, h=1.0, warm=(1.0, 0.86, 0.70), rim=(0.70, 0.82, 1.0), key_power=None):
         """museum-display lighting scaled to hero height h: warm hard-ish key from front-left-above, cool rim from behind
         (separates the object from the dark backdrop: the single biggest 'looks real' cue), weak fill. Returns (key, rim, fill)."""
-        kp = key_power or 260 * h * h
+        kp = key_power or 170 * h * h
         key = s.area("key", (-1.6*h, -2.2*h, 2.2*h), (0, 0, 0.5*h), kp, size=0.6*h, color=warm)
         rl = s.area("rim", (1.5*h, 2.4*h, 1.9*h), (0, 0, 0.6*h), kp * 1.3, size=0.9*h, color=rim)
         fill = s.area("fill", (2.4*h, -1.8*h, 0.6*h), (0, 0, 0.4*h), kp * 0.18, size=2.0*h, color=(1, 0.95, 0.9))
         return key, rl, fill
-    def backdrop(s, h=1.0, c=(0.016, 0.014, 0.013), plinth=True, stone=(0.11, 0.10, 0.09)):
+    def backdrop(s, h=1.0, c=(0.010, 0.009, 0.008), plinth=True, stone=(0.05, 0.045, 0.042)):
         """curved seamless backdrop (cyclorama) + a stone plinth: the 'museum vitrine' set. Dark, textured, never empty white."""
         bpy = s.bpy; m = s.noisy("backdrop", c, scale=3, contrast=0.25, bump=0.05)
         v, f = [], []; R = 2.0*h; W = 6*h; n = 12
