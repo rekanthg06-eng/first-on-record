@@ -24,8 +24,12 @@ jobs:
         with: { path: ~/.cache/ace-step, key: acestep-v1 }
       - name: Install ACE-Step (CPU torch)
         run: |
-          pip install -q --index-url https://download.pytorch.org/whl/cpu torch torchaudio
           pip install -q "git+https://github.com/ace-step/ACE-Step.git"
+          # ACE-Step pulls CUDA torch/torchvision from PyPI; swap all three for matching CPU builds (torchvision::nms mismatch otherwise)
+          V=$(python -c "import torch;print(torch.__version__.split('+')[0])")
+          pip install -q --force-reinstall --no-deps --index-url https://download.pytorch.org/whl/cpu "torch==$V" torchvision torchaudio || \
+          pip install -q --force-reinstall --index-url https://download.pytorch.org/whl/cpu "torch==$V" torchvision torchaudio
+          python -c "import torch, torchvision, torchaudio; print(torch.__version__, torchvision.__version__, torchaudio.__version__)"
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
       - name: Generate
         run: |
