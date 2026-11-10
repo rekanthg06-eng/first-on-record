@@ -56,11 +56,14 @@ for li,l in enumerate(L):
         txt=' '.join((GOLD+w.upper()+WHITE) if i==ai else w.upper() for i,w in enumerate(words))
         k=fit(txt,92,True,1000)
         ev.append(f"Dialogue: 1,{t(s)},{t(e)},Cap,,0,0,0,,{{\\fad(60,60)\\fscx{int(k*.92)}\\fscy{int(k*.92)}\\t(0,120,\\fscx{k}\\fscy{k})}}{txt}")
+HITS=[]
 def pill(text, s, e):
+    HITS.append(round(s,3))
     k=fit(text,46,True,960,1); ev.append(f"Dialogue: 2,{t(s)},{t(e)},Pill,,0,0,0,,{{\\fad(120,120)\\fscx{k}\\fscy{k}}} {text} ")
 T=lambda i:L[i]['start']; E=lambda i:L[i]['end']
 for p in SC.get("pills",[]): pill(p["text"], T(p["line"])+p.get("off",0.3), E(p.get("end_line",p["line"]))+p.get("end_off",0.4))
 src=SC.get("source")
 if src: ev.append(f"Dialogue: 2,{t(T(src['line'])+src.get('off',0.2))},{t(dur)},Src,,0,0,0,,{{\\fad(150,200)\\fscx{fit(src['text'],30,False,1000,1)}\\fscy{fit(src['text'],30,False,1000,1)}}}{src['text']}")
 open('cap.ass','w').write(hdr+'\n'.join(ev)+'\n')
+open('hits.txt','w').write('\n'.join(str(h) for h in HITS)+'\n')   # SFX cue times for finish.sh
 print(len(ev),'events')
