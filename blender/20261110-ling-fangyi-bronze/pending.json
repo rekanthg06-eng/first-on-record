@@ -1,0 +1,44 @@
+{
+ "slug": "20261110-ling-fangyi-bronze",
+ "title": "Ancient China's 3,000-Year-Old Receipt: Ling Fangyi",
+ "description": "A scribe named Ling received gifts of ritual wine, bronze and oxen, and had the record cast into a bronze wine vessel in about 187 characters. Cast twice (inside the vessel and inside the lid), it is still readable roughly 3,000 years later: ancient China's receipt written in metal.\n\nSources:\n- Smithsonian National Museum of Asian Art (Freer Gallery of Art), Ling fangyi (square lidded ritual wine container), accession F1930.54a-b. Early Western Zhou dynasty, China. Date debated: the museum gives ca. 1100 BCE in one record and ca. 1025-975 BCE in others. Said to come from Luoyang.\n- Smithsonian NMAA collection record F1930.54a-b (asia.si.edu) and educator page on the square lidded ritual wine container\n- Guo Moruo, study of the Ling fangyi inscription (aisixiang.com/data/105134.html)\n- Smithsonian glossary, \"piece-mold casting\"; University of Washington, \"Bronzes from Fu Hao's Tomb\"\n- Metropolitan Museum of Art, Heilbrunn Timeline, \"Shang and Zhou Dynasties\"\n\nThe inscription records ceremonies at the Zhou eastern capital Chengzhou and gifts from Mingbao to the scribe Ling (and to Captain Kang); Ling had the vessel made. The text was probably copied into the clay mould before piece-mould casting. Narration voice is synthetic.\n\nVisuals: Smithsonian 3D scan of F1930.54a-b (CC0), rendered in Blender; lighting: Poly Haven studio_small_09 (CC0).\n\n#Shorts #History #FirstOnRecord #AncientChina #BronzeAge",
+ "tags": [
+  "ancient china",
+  "chinese history",
+  "bronze age",
+  "ancient chinese bronze",
+  "Western Zhou dynasty",
+  "Ling fangyi",
+  "piece-mould casting",
+  "history shorts"
+ ],
+ "route": "SCAN",
+ "assets_credits": [
+  "Smithsonian Institution, National Museum of Asian Art, Ritual wine container (fangyi), F1930.54a-b, body + lid 3D scans (CC0)",
+  "Poly Haven, studio_small_09 (CC0)"
+ ],
+ "episode_log_line": "2026-11-10 | <id> | 20261110-ling-fangyi-bronze | blender-v2 SCAN (first v2 Short) | object | Smithsonian NMAA (Freer), Ling fangyi, F1930.54a-b, early Western Zhou (c. 1000 BCE, debated) | rewatch | 30.1 s: problem chain (words vanish -> cast in bronze -> text into clay mould -> piece-mould sections + core -> pour), real Smithsonian 3D scan body+lid, lid lift, macro on taotie; hook 79 (panel 80/85/72); vidIQ 'ancient china' ~90k/month; visual QA FAIL avg 5.7 after 4 rounds (dispatched best)",
+ "results_row": "2026-11-10,<id>,short,Ancient China's 3,000-Year-Old Receipt: Ling Fangyi,object,rewatch,30.1,,,,,,,,blender-v2 SCAN (real Smithsonian scan); hook 79; visual QA FAIL 5.7/10 after 4 rounds; vidIQ ancient china ~90k",
+ "qa": {
+  "stage1": "PASS",
+  "rounds": 4,
+  "final_verdict": "FAIL",
+  "final_scores": {
+   "first_frame": 6,
+   "materials": 7,
+   "lighting_depth": 6,
+   "composition": 5,
+   "legibility": 5,
+   "clarity": 5,
+   "polish": 6
+  },
+  "avg": 5.7,
+  "best_round": 3,
+  "best_avg": 5.9,
+  "worst": [
+   "inscription never visible (inside the vessel, not legible in the scan; not faked)",
+   "caption band partly over patterned foot / grey plinth",
+   "opening/closing framing tight, finial near title tag"
+  ]
+ }
+}

@@ -1,0 +1,67 @@
+{
+ "duration": 30.07,
+ "voice": "chatterbox-take-h",
+ "speed": 1.0,
+ "lines": [
+  {
+   "i": 0,
+   "text": "A Chinese scribe got a bonus of oxen. This bronze is his receipt.",
+   "start": 0.4,
+   "end": 3.88
+  },
+  {
+   "i": 1,
+   "text": "But words on perishable things vanish.",
+   "start": 4.5,
+   "end": 6.06
+  },
+  {
+   "i": 2,
+   "text": "So Ling had them cast in bronze.",
+   "start": 6.8,
+   "end": 8.24
+  },
+  {
+   "i": 3,
+   "text": "But how do you cast words?",
+   "start": 9.14,
+   "end": 10.32
+  },
+  {
+   "i": 4,
+   "text": "The text was probably copied into the clay mould first.",
+   "start": 11.0,
+   "end": 13.5
+  },
+  {
+   "i": 5,
+   "text": "But a mould around a model must come off.",
+   "start": 14.12,
+   "end": 15.9
+  },
+  {
+   "i": 6,
+   "text": "So it was cut in sections. The model became the core.",
+   "start": 16.4,
+   "end": 18.88
+  },
+  {
+   "i": 7,
+   "text": "Then bronze filled the gap, carved masks and all.",
+   "start": 19.7,
+   "end": 22.3
+  },
+  {
+   "i": 8,
+   "text": "Nearly 190 characters, cast twice, still readable about three thousand years later.",
+   "start": 23.04,
+   "end": 27.26
+  },
+  {
+   "i": 9,
+   "text": "And they still tell you:",
+   "start": 27.8,
+   "end": 29.14
+  }
+ ]
+}
