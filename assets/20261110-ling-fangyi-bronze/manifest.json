@@ -7,6 +7,13 @@
   "source_page": "https://asia.si.edu/object/F1930.54a-b/"
  },
  {
+  "id": "body",
+  "file": "body.glb",
+  "license": "CC0",
+  "credit": "Smithsonian Institution, National Museum of Asian Art, Ritual wine container (fangyi), F1930.54a-b, vessel body (3D, CC0)",
+  "source_page": "https://3d.si.edu/"
+ },
+ {
   "id": "hdri",
   "file": "hdri.hdr",
   "license": "CC0",
