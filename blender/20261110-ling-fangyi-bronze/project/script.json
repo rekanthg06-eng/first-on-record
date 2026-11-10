@@ -1,0 +1,28 @@
+{
+ "series": "FIRST ON RECORD",
+ "tag": "CHINA · EARLY WESTERN ZHOU",
+ "lead": 0.4,
+ "outro": 0.9,
+ "hook_text": "Cast twice, c. 3,000 years",
+ "lines": [
+  {"text": "A Chinese scribe got a bonus of oxen. This bronze is his receipt.", "kind": "F"},
+  {"text": "But words on perishable things vanish.", "kind": "P"},
+  {"text": "So Ling had them cast in bronze.", "kind": "H"},
+  {"text": "But how do you cast words?", "kind": "P"},
+  {"text": "The text was probably copied into the clay mould first.", "kind": "F"},
+  {"text": "But a mould around a model must come off.", "kind": "P"},
+  {"text": "So it was cut in sections. The model became the core.", "kind": "H"},
+  {"text": "Then bronze filled the gap, carved masks and all.", "kind": "F"},
+  {"text": "Nearly 190 characters, cast twice, still readable about three thousand years later.", "kind": "L1"},
+  {"text": "And they still tell you:", "kind": "L2"}
+ ],
+ "note": "MUSEUM 3D SCAN",
+ "pills": [
+  {"text": "SCRIBE LING", "line": 2, "off": 0.2, "end_off": 0.9},
+  {"text": "CLAY MOULD", "line": 4, "off": 0.3, "end_off": 0.9},
+  {"text": "PIECE-MOULD CASTING", "line": 6, "off": 0.2, "end_off": 0.9},
+  {"text": "TAOTIE MASKS", "line": 7, "off": 0.4, "end_off": 0.95},
+  {"text": "~190 CHARACTERS · CAST TWICE", "line": 8, "off": 0.15, "end_off": 0.8}
+ ],
+ "source": {"line": 8, "off": 0.85, "text": "SMITHSONIAN NMAA · F1930.54a-b"}
+}

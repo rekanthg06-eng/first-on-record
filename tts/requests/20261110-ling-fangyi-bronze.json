@@ -1,0 +1,77 @@
+{
+ "slug": "20261110-ling-fangyi-bronze",
+ "provider": "chatterbox",
+ "seed": 21,
+ "sentences": [
+  {
+   "text": "A Chinese scribe got a bonus of oxen. This bronze is his receipt.",
+   "exaggeration": 0.5,
+   "cfg_weight": 0.5,
+   "pause": 0.35,
+   "kind": "F"
+  },
+  {
+   "text": "But words on perishable things vanish.",
+   "exaggeration": 0.7,
+   "cfg_weight": 0.45,
+   "pause": 0.4,
+   "kind": "P"
+  },
+  {
+   "text": "So Ling had them cast in bronze.",
+   "exaggeration": 0.8,
+   "cfg_weight": 0.4,
+   "pause": 0.45,
+   "kind": "H"
+  },
+  {
+   "text": "But how do you cast words?",
+   "exaggeration": 0.7,
+   "cfg_weight": 0.45,
+   "pause": 0.4,
+   "kind": "P"
+  },
+  {
+   "text": "The text was probably copied into the clay mould first.",
+   "exaggeration": 0.5,
+   "cfg_weight": 0.5,
+   "pause": 0.35,
+   "kind": "F"
+  },
+  {
+   "text": "But a mould around a model must come off.",
+   "exaggeration": 0.7,
+   "cfg_weight": 0.45,
+   "pause": 0.4,
+   "kind": "P"
+  },
+  {
+   "text": "So it was cut in sections. The model became the core.",
+   "exaggeration": 0.8,
+   "cfg_weight": 0.4,
+   "pause": 0.45,
+   "kind": "H"
+  },
+  {
+   "text": "Then bronze filled the gap, carved masks and all.",
+   "exaggeration": 0.5,
+   "cfg_weight": 0.5,
+   "pause": 0.35,
+   "kind": "F"
+  },
+  {
+   "text": "Nearly 190 characters, cast twice, still readable about three thousand years later.",
+   "exaggeration": 0.55,
+   "cfg_weight": 0.5,
+   "pause": 0.5,
+   "kind": "L1"
+  },
+  {
+   "text": "And they still tell you:",
+   "exaggeration": 0.65,
+   "cfg_weight": 0.4,
+   "pause": 0.0,
+   "kind": "L2"
+  }
+ ]
+}
