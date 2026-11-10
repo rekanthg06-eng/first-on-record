@@ -1,0 +1,16 @@
+[
+ {
+  "id": "hero",
+  "file": "hero.glb",
+  "license": "CC0",
+  "credit": "Smithsonian Institution, Ritual wine container (<em>fangyi</em>) with masks(<em>taotie</em>), serpents, and birds (3D, CC0)",
+  "source_page": "https://asia.si.edu/object/F1930.54a-b/"
+ },
+ {
+  "id": "hdri",
+  "file": "hdri.hdr",
+  "license": "CC0",
+  "credit": "Poly Haven, studio_small_09 (CC0)",
+  "source_page": "https://polyhaven.com/a/studio_small_09"
+ }
+]
