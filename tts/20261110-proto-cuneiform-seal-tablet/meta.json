@@ -1,12 +1,12 @@
 {
- "slug": "20261108-cb-h-end-moderate",
+ "slug": "20261110-proto-cuneiform-seal-tablet",
  "provider": "chatterbox",
  "exaggeration": null,
  "cfg_weight": null,
  "ref_audio": null,
  "seed": 21,
- "duration_s": 22.81,
- "words": 68,
+ "duration_s": 28.25,
+ "words": 81,
  "timing": "whisper",
- "chars": 373
+ "chars": 475
 }
