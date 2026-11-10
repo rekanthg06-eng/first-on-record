@@ -1,0 +1,77 @@
+{
+ "slug": "20261110-proto-cuneiform-seal-tablet",
+ "provider": "chatterbox",
+ "seed": 21,
+ "sentences": [
+  {
+   "text": "The stone that signed this tablet seems lost. Its signature isn't.",
+   "exaggeration": 0.5,
+   "cfg_weight": 0.5,
+   "pause": 0.35,
+   "kind": "F"
+  },
+  {
+   "text": "Five thousand years ago, someone had to track barley.",
+   "exaggeration": 0.7,
+   "cfg_weight": 0.45,
+   "pause": 0.4,
+   "kind": "P"
+  },
+  {
+   "text": "So signs were drawn in wet clay, probably for a handout.",
+   "exaggeration": 0.5,
+   "cfg_weight": 0.5,
+   "pause": 0.35,
+   "kind": "F"
+  },
+  {
+   "text": "But signs alone can't count.",
+   "exaggeration": 0.7,
+   "cfg_weight": 0.45,
+   "pause": 0.4,
+   "kind": "P"
+  },
+  {
+   "text": "So they pressed round marks: numbers.",
+   "exaggeration": 0.8,
+   "cfg_weight": 0.4,
+   "pause": 0.45,
+   "kind": "H"
+  },
+  {
+   "text": "But who vouched for it?",
+   "exaggeration": 0.7,
+   "cfg_weight": 0.45,
+   "pause": 0.4,
+   "kind": "P"
+  },
+  {
+   "text": "A carved stone seal, rolled across like a signature.",
+   "exaggeration": 0.8,
+   "cfg_weight": 0.4,
+   "pause": 0.45,
+   "kind": "H"
+  },
+  {
+   "text": "A man leading leashed dogs after wild boars in a marsh.",
+   "exaggeration": 0.5,
+   "cfg_weight": 0.5,
+   "pause": 0.35,
+   "kind": "F"
+  },
+  {
+   "text": "Among the earliest writing known, and mostly record-keeping.",
+   "exaggeration": 0.55,
+   "cfg_weight": 0.5,
+   "pause": 0.5,
+   "kind": "L1"
+  },
+  {
+   "text": "The stone's gone. The picture stays.",
+   "exaggeration": 0.65,
+   "cfg_weight": 0.4,
+   "pause": 0.0,
+   "kind": "L2"
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "series": "FIRST ON RECORD",
+ "tag": "MESOPOTAMIA · c. 3100 BCE",
+ "lead": 0.4,
+ "outro": 0.9,
+ "hook_text": "PALM-SIZED. 5,000 YEARS OLD.",
+ "lines": [
+  {"text": "The stone that signed this tablet seems lost. Its signature isn't.", "kind": "F"},
+  {"text": "Five thousand years ago, someone had to track barley.", "kind": "P"},
+  {"text": "So signs were drawn in wet clay, probably for a handout.", "kind": "F"},
+  {"text": "But signs alone can't count.", "kind": "P"},
+  {"text": "So they pressed round marks: numbers.", "kind": "H"},
+  {"text": "But who vouched for it?", "kind": "P"},
+  {"text": "A carved stone seal, rolled across like a signature.", "kind": "H"},
+  {"text": "A man leading leashed dogs after wild boars in a marsh.", "kind": "F"},
+  {"text": "Among the earliest writing known, and mostly record-keeping.", "kind": "L1"},
+  {"text": "The stone's gone. The picture stays.", "kind": "L2"}
+ ],
+ "note": "MUSEUM 3D SCAN",
+ "pills": [
+  {"text": "STYLUS SIGNS", "line": 2, "off": 0.3, "end_off": 0.9},
+  {"text": "NUMBER SIGNS", "line": 4, "off": 0.2, "end_off": 0.95},
+  {"text": "CYLINDER SEAL", "line": 6, "off": 0.2, "end_off": 0.95},
+  {"text": "MAN · DOGS · BOARS", "line": 7, "off": 0.2, "end_off": 0.95}
+ ],
+ "source": {"line": 8, "off": 0.1, "text": "THE MET · 1988.433.1"}
+}
