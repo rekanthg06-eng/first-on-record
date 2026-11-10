@@ -80,7 +80,11 @@ def do_met3d(it, out):
     except Exception as e:
         print("met page parse failed:", e, flush=True)
     if not urls:  # fallback: community catalog of the same CDN links
-        cat = json.loads(get("https://raw.githubusercontent.com/InconsolableCellist/met_scans/main/catalog.json"))
+        cat = None
+        for br in ("master", "main"):   # the Met site answers bots with 429; this public catalog lists the same CDN links
+            try: cat = json.loads(get(f"https://raw.githubusercontent.com/InconsolableCellist/met_scans/{br}/catalog.json")); break
+            except Exception as e: print("catalog", br, e, flush=True)
+        cat = cat or []
         for e in (cat if isinstance(cat, list) else cat.values()):
             if int(e.get("object_id", 0)) == int(it["object_id"]):
                 urls += [f["download_url"] for f in e.get("files", []) if f.get("format") == "GLB"]
