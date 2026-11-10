@@ -113,7 +113,10 @@ jobs:
           git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git fetch -q --depth 1 origin media && git checkout -q -b media FETCH_HEAD
           mkdir -p shorts && cp ../work/final.mp4 "shorts/$scene.mp4"
-          for f in shorts/*.mp4; do [ "$f" = "shorts/$scene.mp4" ] || git rm -q "$f"; done
+          # keep Shorts from the last 3 days (two packages can wait for the upload task at once); drop older ones
+          cut=$(date -u -d '3 days ago' +%Y%m%d)
+          for f in shorts/*.mp4; do b=$(basename "$f"); d=${b:0:8}; [ "$f" = "shorts/$scene.mp4" ] && continue
+            if [[ "$d" =~ ^[0-9]{8}$ ]] && [ "$d" -ge "$cut" ]; then continue; fi; git rm -q "$f"; done
           git add -A
           git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -q -m "media: $scene (finished by blender_render)"
           git push -q origin media
