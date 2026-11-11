@@ -1,0 +1,26 @@
+{
+ "fps": 30, "duration": 29.5, "caption_y": 0.66,
+ "audio": "/home/claude/work/audio.m4a", "words": "data/words.json",
+ "img_dir": "/home/claude/work/img", "clip": "/home/claude/work/clean.mp4",
+ "shots": [
+  {"t": 0.0,   "img": "s01_roll",    "zoom": [1.10, 1.26], "pan": [-0.02, 0, 0.03, 0], "par": 22},
+  {"t": 1.72,  "img": "s02_lost",    "zoom": [1.22, 1.08], "pan": [0, -0.03, 0, 0.03], "par": 18, "par_dir": [0.2, 1]},
+  {"t": 2.66,  "clip": [17.4], "view": [0.5, 0.31, 0.60], "view_end": [0.5, 0.31, 0.52], "chip": "THE REAL TABLET"},
+  {"t": 4.28,  "img": "s03_city",    "zoom": [1.05, 1.16], "pan": [0.03, 0, -0.02, 0], "par": 24},
+  {"t": 5.52,  "img": "s04_store",   "zoom": [1.18, 1.06], "pan": [0, 0, 0, 0], "par": 20},
+  {"t": 7.12,  "img": "s05_draw",    "zoom": [1.08, 1.24], "pan": [0, -0.02, 0, 0.01], "par": 18},
+  {"t": 9.0,   "img": "s06_ration",  "zoom": [1.06, 1.15], "pan": [-0.03, 0, 0.03, 0], "par": 24},
+  {"t": 10.7,  "img": "s07_confused","zoom": [1.06, 1.20], "pan": [0, -0.02, 0, -0.03], "par": 16},
+  {"t": 12.58, "img": "s08_press",   "zoom": [1.10, 1.24], "pan": [0, 0, 0, 0], "par": 18},
+  {"t": 13.62, "clip": [12.6], "view": [0.42, 0.22, 0.50], "view_end": [0.40, 0.20, 0.42], "chip": "THE REAL TABLET"},
+  {"t": 15.16, "img": "s09_vouch",   "zoom": [1.05, 1.18], "pan": [0, 0, 0, 0], "par": 22},
+  {"t": 16.86, "img": "s10_neck",    "zoom": [1.08, 1.22], "pan": [0, 0.02, 0, -0.01], "par": 18},
+  {"t": 18.1,  "img": "s11_roll_top","zoom": [1.20, 1.08], "pan": [-0.03, 0, 0.03, 0], "par": 18},
+  {"t": 20.02, "img": "s12_hunt",    "zoom": [1.08, 1.18], "pan": [-0.04, 0, 0.04, 0], "par": 26},
+  {"t": 21.34, "clip": [19.6], "view": [0.5, 0.31, 0.56], "view_end": [0.5, 0.31, 0.50], "chip": "THE REAL SEAL PRINT"},
+  {"t": 23.32, "img": "s13_archive", "zoom": [1.05, 1.16], "pan": [0.02, 0, -0.02, 0], "par": 24},
+  {"t": 24.78, "clip": [25.2], "view": [0.5, 0.36, 0.74], "view_end": [0.5, 0.34, 0.64], "chip": "THE MET · 1988.433.1"},
+  {"t": 26.58, "img": "s14_hand",    "zoom": [1.08, 1.18], "pan": [0, 0, 0, 0], "par": 16},
+  {"t": 27.7,  "img": "s15_tablet",  "zoom": [1.06, 1.22], "pan": [0, 0, 0, 0], "par": 18}
+ ]
+}
