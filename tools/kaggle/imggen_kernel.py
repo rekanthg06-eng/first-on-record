@@ -27,18 +27,23 @@ else:
 ngpu = torch.cuda.device_count()
 print("gpus", ngpu, [torch.cuda.get_device_name(i) for i in range(ngpu)], flush=True)
 log["gpus"] = ngpu
-if ngpu >= 2:
-    # two T4s: spread text encoder / transformer / VAE over both cards
-    pipe = cls.from_pretrained(repo, torch_dtype=torch.bfloat16, device_map="balanced")
-else:
-    pipe = cls.from_pretrained(repo, torch_dtype=torch.bfloat16)
+# FLUX.2 klein 4B does not fit a 15 GB T4 with whole-model offload or a two-card split (measured 2026-11-11: OOM both ways),
+# so use sequential offload: slower per image, but safe on any card. Z-Image-Turbo fits with whole-model offload.
+pipe = cls.from_pretrained(repo, torch_dtype=torch.bfloat16)
+if model == "klein" or JOB.get("offload") == "sequential":
     pipe.enable_sequential_cpu_offload()
+else:
+    pipe.enable_model_cpu_offload()
 try: pipe.vae.enable_tiling()
 except Exception as e: print("no vae tiling", e)
 done = {}
-for s in JOB["shots"]:
-    for v in range(int(s.get("variants", JOB.get("variants", 1)))):
-        name = f"{s['id']}_v{v}" if int(s.get("variants", JOB.get("variants", 1))) > 1 else s["id"]
+NV = int(JOB.get("variants", 1))
+T0 = time.time()
+for v in range(NV):
+    for s in JOB["shots"]:
+        if v >= int(s.get("variants", NV)): continue
+        if time.time() - T0 > float(JOB.get("budget_min", 70)) * 60: print("time budget reached"); break
+        name = f"{s['id']}_v{v}" if NV > 1 else s["id"]
         prompt = (s["prompt"].strip() + " " + style).strip()
         seed = int(s.get("seed", 1000)) + v * 77
         kw = dict(prompt=prompt, height=int(s.get("height", H)), width=int(s.get("width", W)),
@@ -52,12 +57,13 @@ for s in JOB["shots"]:
             img = pipe(**kw).images[0]
             img.save(f"{OUT}/{name}.png")
             if v == 0: done[s["id"]] = img
-            log["shots"][name] = {"ok": True, "sec": round(time.time() - t, 1), "seed": seed, "refs": s.get("refs", [])}
+            log["shots"][name] = {"ok": True, "sec": round(time.time() - t, 1), "seed": seed}
         except Exception as e:
             traceback.print_exc()
             log["shots"][name] = {"ok": False, "err": str(e)[:300]}
             torch.cuda.empty_cache()
         print(name, log["shots"][name], flush=True)
+        json.dump(log, open(f"{OUT}/imggen_log.json", "w"), indent=1)
 del pipe; torch.cuda.empty_cache()
 try:
     from transformers import pipeline as tpipe
