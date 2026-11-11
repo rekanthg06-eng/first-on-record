@@ -3,6 +3,7 @@
 # Models (both Apache 2.0): black-forest-labs/FLUX.2-klein-4B (text-to-image + reference editing), Tongyi-MAI/Z-Image-Turbo.
 # Depth: depth-anything/Depth-Anything-V2-Small-hf (Apache 2.0).
 import json, os, subprocess, sys, time, traceback
+os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
 JOB = json.loads(r'''__JOB_JSON__''')
 OUT = "/kaggle/working"
 def sh(c): print("+", c, flush=True); subprocess.run(c, shell=True, check=False)
@@ -17,13 +18,23 @@ W, H = JOB.get("width", 864), JOB.get("height", 1536)
 log = {"model": model, "shots": {}}
 if model == "klein":
     from diffusers import Flux2KleinPipeline
-    pipe = Flux2KleinPipeline.from_pretrained("black-forest-labs/FLUX.2-klein-4B", torch_dtype=torch.bfloat16)
+    cls, repo = Flux2KleinPipeline, "black-forest-labs/FLUX.2-klein-4B"
     steps, guidance = 4, 1.0
 else:
     from diffusers import ZImagePipeline
-    pipe = ZImagePipeline.from_pretrained("Tongyi-MAI/Z-Image-Turbo", torch_dtype=torch.bfloat16)
+    cls, repo = ZImagePipeline, "Tongyi-MAI/Z-Image-Turbo"
     steps, guidance = 9, 0.0
-pipe.enable_model_cpu_offload()
+ngpu = torch.cuda.device_count()
+print("gpus", ngpu, [torch.cuda.get_device_name(i) for i in range(ngpu)], flush=True)
+log["gpus"] = ngpu
+if ngpu >= 2:
+    # two T4s: spread text encoder / transformer / VAE over both cards
+    pipe = cls.from_pretrained(repo, torch_dtype=torch.bfloat16, device_map="balanced")
+else:
+    pipe = cls.from_pretrained(repo, torch_dtype=torch.bfloat16)
+    pipe.enable_sequential_cpu_offload()
+try: pipe.vae.enable_tiling()
+except Exception as e: print("no vae tiling", e)
 done = {}
 for s in JOB["shots"]:
     for v in range(int(s.get("variants", JOB.get("variants", 1)))):
@@ -45,6 +56,7 @@ for s in JOB["shots"]:
         except Exception as e:
             traceback.print_exc()
             log["shots"][name] = {"ok": False, "err": str(e)[:300]}
+            torch.cuda.empty_cache()
         print(name, log["shots"][name], flush=True)
 del pipe; torch.cuda.empty_cache()
 try:

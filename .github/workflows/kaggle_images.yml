@@ -38,6 +38,7 @@ jobs:
           done
           kaggle kernels output "$ref" -p out
           ls -la out; tail -c 3000 out/*.log 2>/dev/null | python -c "import sys;print(sys.stdin.read()[-2500:])" || true
+          cat out/imggen_log.json 2>/dev/null | head -c 3000 || true
           ls out/*.png >/dev/null
       - name: Publish to img-out
         run: |
