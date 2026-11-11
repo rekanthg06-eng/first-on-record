@@ -1,155 +1,30 @@
 {
  "model": "klein",
  "shots": {
-  "s01_roll_v0": {
+  "s02_lost": {
    "ok": true,
-   "sec": 157.9,
-   "seed": 11
+   "sec": 138.2,
+   "seed": 112
   },
-  "s02_lost_v0": {
+  "s04_store": {
    "ok": true,
-   "sec": 144.6,
-   "seed": 12
+   "sec": 117.5,
+   "seed": 114
   },
-  "s03_city_v0": {
+  "s08_press": {
    "ok": true,
-   "sec": 144.1,
-   "seed": 13
+   "sec": 117.6,
+   "seed": 118
   },
-  "s04_store_v0": {
+  "s11_roll_top": {
    "ok": true,
-   "sec": 144.3,
-   "seed": 14
+   "sec": 117.4,
+   "seed": 121
   },
-  "s05_draw_v0": {
+  "s14_hand": {
    "ok": true,
-   "sec": 144.6,
-   "seed": 15
-  },
-  "s06_ration_v0": {
-   "ok": true,
-   "sec": 144.1,
-   "seed": 16
-  },
-  "s07_confused_v0": {
-   "ok": true,
-   "sec": 144.0,
-   "seed": 17
-  },
-  "s08_press_v0": {
-   "ok": true,
-   "sec": 144.4,
-   "seed": 18
-  },
-  "s09_vouch_v0": {
-   "ok": true,
-   "sec": 144.2,
-   "seed": 19
-  },
-  "s10_neck_v0": {
-   "ok": true,
-   "sec": 144.3,
-   "seed": 20
-  },
-  "s11_roll_top_v0": {
-   "ok": true,
-   "sec": 143.8,
-   "seed": 21
-  },
-  "s12_hunt_v0": {
-   "ok": true,
-   "sec": 144.2,
-   "seed": 22
-  },
-  "s13_archive_v0": {
-   "ok": true,
-   "sec": 143.8,
-   "seed": 23
-  },
-  "s14_hand_v0": {
-   "ok": true,
-   "sec": 144.3,
-   "seed": 24
-  },
-  "s15_tablet_v0": {
-   "ok": true,
-   "sec": 143.9,
-   "seed": 25
-  },
-  "s01_roll_v1": {
-   "ok": true,
-   "sec": 144.0,
-   "seed": 88
-  },
-  "s02_lost_v1": {
-   "ok": true,
-   "sec": 144.1,
-   "seed": 89
-  },
-  "s03_city_v1": {
-   "ok": true,
-   "sec": 144.0,
-   "seed": 90
-  },
-  "s04_store_v1": {
-   "ok": true,
-   "sec": 143.7,
-   "seed": 91
-  },
-  "s05_draw_v1": {
-   "ok": true,
-   "sec": 143.9,
-   "seed": 92
-  },
-  "s06_ration_v1": {
-   "ok": true,
-   "sec": 144.0,
-   "seed": 93
-  },
-  "s07_confused_v1": {
-   "ok": true,
-   "sec": 144.3,
-   "seed": 94
-  },
-  "s08_press_v1": {
-   "ok": true,
-   "sec": 144.2,
-   "seed": 95
-  },
-  "s09_vouch_v1": {
-   "ok": true,
-   "sec": 144.1,
-   "seed": 96
-  },
-  "s10_neck_v1": {
-   "ok": true,
-   "sec": 144.2,
-   "seed": 97
-  },
-  "s11_roll_top_v1": {
-   "ok": true,
-   "sec": 144.1,
-   "seed": 98
-  },
-  "s12_hunt_v1": {
-   "ok": true,
-   "sec": 143.9,
-   "seed": 99
-  },
-  "s13_archive_v1": {
-   "ok": true,
-   "sec": 143.9,
-   "seed": 100
-  },
-  "s14_hand_v1": {
-   "ok": true,
-   "sec": 144.3,
-   "seed": 101
-  },
-  "s15_tablet_v1": {
-   "ok": true,
-   "sec": 144.3,
-   "seed": 102
+   "sec": 117.4,
+   "seed": 124
   }
  },
  "gpus": 2,
