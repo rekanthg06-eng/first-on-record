@@ -32,6 +32,7 @@ jobs:
           ref=$(python -c "import json;print(json.load(open('kernel/kernel-metadata.json'))['id'])")
           for i in $(seq 1 200); do
             st=$(kaggle kernels status "$ref" 2>&1 | tail -1); echo "$i $st" | sed -E "s#$ref#KERNEL#"
+            st=$(echo "$st" | tr 'A-Z' 'a-z')
             case "$st" in *complete*) break;; *error*|*cancel*) echo FAILED; kaggle kernels output "$ref" -p out || true; tail -c 6000 out/*.log 2>/dev/null || true; exit 1;; esac
             sleep 30
           done
