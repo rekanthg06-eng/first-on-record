@@ -151,7 +151,7 @@ def blend(frame, rgba, cx, cy, scale=1.0, alpha=1.0):
     frame[ya:yb, xa:xb] = (roi * (1 - a) + sub[..., 2::-1].astype(np.float32) * a).astype(np.uint8)
 
 
-def chip_img(text, size=34):
+def chip_img(text, size=46):
     font = ImageFont.truetype(FONT, size)
     tw = int(font.getlength(text))
     im = Image.new("RGBA", (tw + 56, size + 34), (0, 0, 0, 0))
@@ -227,7 +227,7 @@ def main():
             if sh["chip"] not in chips:
                 chips[sh["chip"]] = chip_img(sh["chip"])
             a = ease(k / 0.18)
-            blend(fr, chips[sh["chip"]], W / 2, H * sh.get("chip_y", 0.145) + (1 - a) * 20, alpha=a)
+            blend(fr, chips[sh["chip"]], W / 2, H * sh.get("chip_y", 0.12) + (1 - a) * 20, alpha=a)
         for (cs, ce, c) in spans:
             if cs <= t < ce:
                 act = max([i for i, w in enumerate(c) if w["s"] <= t + 1e-6] or [0])
