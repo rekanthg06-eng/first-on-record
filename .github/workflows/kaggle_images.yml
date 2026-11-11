@@ -1,0 +1,47 @@
+name: kaggle_images
+# Generates the illustrated scene stills for one Short on a free Kaggle GPU and publishes them to branch img-out
+# under scenes/<slug>/. Input file: scenes/<slug>/shots.json. Models are Apache 2.0 (FLUX.2 klein 4B / Z-Image-Turbo).
+on:
+  workflow_dispatch:
+    inputs:
+      scene: { description: "slug (folder under scenes/)", required: true }
+      shots: { description: "shots file name inside the scene folder", required: false, default: "shots.json" }
+permissions:
+  contents: write
+jobs:
+  gen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      GH_TOKEN: "${{ github.token }}"
+      KAGGLE_API_TOKEN: "${{ secrets.KAGGLE_API_TOKEN }}"
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: Push kernel
+        run: |
+          pip install -q -U kaggle six
+          scene=$(echo "${{ inputs.scene }}" | tr -cd 'a-zA-Z0-9_-'); echo "SCENE=$scene" >> "$GITHUB_ENV"
+          python tools/kaggle/push_kernel.py "scenes/$scene/${{ inputs.shots }}" kernel
+          cat kernel/kernel-metadata.json | sed -E 's/"id": "[^/]+\//"id": "***\//'
+          kaggle kernels push -p kernel
+      - name: Wait
+        run: |
+          ref=$(python -c "import json;print(json.load(open('kernel/kernel-metadata.json'))['id'])")
+          for i in $(seq 1 200); do
+            st=$(kaggle kernels status "$ref" 2>&1 | tail -1); echo "$i $st" | sed -E "s#$ref#KERNEL#"
+            case "$st" in *complete*) break;; *error*|*cancel*) echo FAILED; kaggle kernels output "$ref" -p out || true; tail -c 6000 out/*.log 2>/dev/null || true; exit 1;; esac
+            sleep 30
+          done
+          kaggle kernels output "$ref" -p out
+          ls -la out; tail -c 3000 out/*.log 2>/dev/null | python -c "import sys;print(sys.stdin.read()[-2500:])" || true
+          ls out/*.png >/dev/null
+      - name: Publish to img-out
+        run: |
+          mkdir pub && cd pub && git init -q
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git ls-remote --exit-code --heads origin img-out >/dev/null 2>&1; then git fetch -q --depth 1 origin img-out && git checkout -q -b img-out FETCH_HEAD; else git checkout -q --orphan img-out; fi
+          mkdir -p "scenes/$SCENE" && cp ../out/*.png ../out/imggen_log.json "scenes/$SCENE/" 
+          git add -A && git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -q -m "scenes: $SCENE" && git push -q origin img-out
