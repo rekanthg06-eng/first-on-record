@@ -1,0 +1,84 @@
+{
+ "variants": 2,
+ "aspect_ratio": "9:16",
+ "style": "Flat 2D storybook illustration with bold simplified shapes and clean confident edges, soft two-tone cel shading, subtle visible paper grain, painted in a restrained palette of lapis night-blue and slate-blue shadows, warm cream highlights, oxblood-red accents and pale olive-green hills, with molten gold as the only saturated warm colour; low raking warm key light from one side, cool blue ambient fill, crisp warm rim light; distinct foreground, midground and background layers. Vertical composition with the main subject in the upper two thirds. No text, no letters, no watermark, no border.",
+ "shots": [
+  {
+   "id": "s01_coin_drop",
+   "seed": 101,
+   "prompt": "Extreme close-up of a single thumbnail-sized irregular oval lump of pale butter-yellow metal falling above the palm of a lean Lydian trader about 40 years old, sharp hooked nose, short curly black beard, black hair tied back with a thin oxblood-red headband, knee-length undyed cream wool tunic with an oxblood-red hem border, bare forearms, plain brown leather sandals. Only his one hand and wrist are in frame, fingers starting to curl. Dark lapis background, warm rim light on the lump."
+  },
+  {
+   "id": "s02_frozen_squint",
+   "seed": 102,
+   "prompt": "Close view of a lean Lydian trader about 40 years old, sharp hooked nose, short curly black beard, black hair tied back with a thin oxblood-red headband, knee-length undyed cream wool tunic with an oxblood-red hem border, bare forearms, plain brown leather sandals, three-quarter view, holding one small pale yellow metal lump between thumb and forefinger before one narrowed eye, other brow lifted. Blurred mudbrick wall and steep rocky hill behind in cool blue, warm low sun on his face."
+  },
+  {
+   "id": "s04_gold_to_sun",
+   "seed": 103,
+   "prompt": "Low-angle medium shot of a lean Lydian trader about 40 years old, sharp hooked nose, short curly black beard, black hair tied back with a thin oxblood-red headband, knee-length undyed cream wool tunic with an oxblood-red hem border, bare forearms, plain brown leather sandals, waist up, holding one small bright gold oval lump high between thumb and forefinger against the low sun, gold blazing, face lit warm in awe. Deep blue sky, rocky hill silhouette behind."
+  },
+  {
+   "id": "s05_marbled_lump",
+   "seed": 104,
+   "prompt": "Top-down extreme close-up of one irregular oval lump of metal about the size of a thumbnail, swirled bands of gold and cool grey silver like marbled stone, split by a clean crack down the middle, left half glowing gold, right half dull silver-grey, resting on dark blue wool cloth. Only the lump is in the frame. Warm raking light from the left."
+  },
+  {
+   "id": "s06_two_shades",
+   "seed": 105,
+   "prompt": "Wide low-angle view of a lean Lydian trader about 40 years old, sharp hooked nose, short curly black beard, black hair tied back with a thin oxblood-red headband, knee-length undyed cream wool tunic with an oxblood-red hem border, bare forearms, plain brown leather sandals at a market stall, both fists raised, one holding a deep gold lump and the other a pale yellow lump, shrugging. Mudbrick houses, a steep rocky hill and a small river behind. Low warm sun."
+  },
+  {
+   "id": "s07_balance",
+   "seed": 106,
+   "prompt": "Eye-level close shot of a small bronze hand balance held up by the fist of a lean Lydian trader about 40 years old, sharp hooked nose, short curly black beard, black hair tied back with a thin oxblood-red headband, knee-length undyed cream wool tunic with an oxblood-red hem border, bare forearms, plain brown leather sandals, beam tilted, a pale lump in one pan, a grey stone weight in the other. His doubtful eye is blurred at the edge. Warm light."
+  },
+  {
+   "id": "s08_touchstone",
+   "seed": 107,
+   "prompt": "Ground-level extreme close-up across a flat black stone: a fresh pale-yellow streak sharp in the foreground, the fingertips of a lean Lydian trader about 40 years old, sharp hooked nose, short curly black beard, black hair tied back with a thin oxblood-red headband, knee-length undyed cream wool tunic with an oxblood-red hem border, bare forearms, plain brown leather sandals still dragging a small lump across it, his squinting face blurred behind. Warm low light."
+  },
+  {
+   "id": "s09_salt_pot",
+   "seed": 108,
+   "prompt": "High-angle medium view of a broad heavy-set refiner about 55 years old, shaved head, thick short grey beard, soot-smudged cheeks, sleeveless slate-blue knee-length work tunic belted with rope, brown leather apron, bare feet, thick forearms kneeling beside a coarse brown clay pot filled with white salt and red brick dust, pressing thin pale yellow metal sheets into it with both hands partly closed. A reed basket of salt beside him; a small river beyond in cool evening blue."
+  },
+  {
+   "id": "s10_ovens",
+   "seed": 109,
+   "prompt": "Low wide view at dusk of three small dome-shaped mudbrick ovens glowing orange at their mouths, a broad heavy-set refiner about 55 years old, shaved head, thick short grey beard, soot-smudged cheeks, sleeveless slate-blue knee-length work tunic belted with rope, brown leather apron, bare feet, thick forearms as a dark silhouette sliding one lidded clay pot into the nearest oven with a long wooden paddle, sparks drifting into a deep blue sky."
+  },
+  {
+   "id": "s11_crust",
+   "seed": 110,
+   "prompt": "Top-down extreme close-up of one cracked clay pot, a flaky grey-white crust peeling back like bark with pale wisps of vapour lifting, revealing bright gold sheets shining beneath. Only the pot and the gold are in the frame. Warm firelight from one side, deep blue shadows, dark clay rim framing the gold."
+  },
+  {
+   "id": "s12_pure_grains",
+   "seed": 111,
+   "prompt": "Low-angle close view of a broad heavy-set refiner about 55 years old, shaved head, thick short grey beard, soot-smudged cheeks, sleeveless slate-blue knee-length work tunic belted with rope, brown leather apron, bare feet, thick forearms, one cupped partly closed palm in the foreground holding a small heap of bright gold grains, his bearded face above lit warm gold from below with a slow proud smile. Dark blue workshop behind."
+  },
+  {
+   "id": "s13_prove_it",
+   "seed": 112,
+   "prompt": "Eye-level medium shot of a lean Lydian trader about 40 years old, sharp hooked nose, short curly black beard, black hair tied back with a thin oxblood-red headband, knee-length undyed cream wool tunic with an oxblood-red hem border, bare forearms, plain brown leather sandals, waist up, square to camera, arms folded, one eyebrow raised high, staring straight into the lens. Plain cool blue wall behind, low warm light from one side."
+  },
+  {
+   "id": "s14_strike",
+   "seed": 113,
+   "prompt": "Side view at anvil height of the thick forearm and fist of a broad heavy-set refiner about 55 years old, shaved head, thick short grey beard, soot-smudged cheeks, sleeveless slate-blue knee-length work tunic belted with rope, brown leather apron, bare feet, thick forearms gripping a short iron hammer, slamming down on a square bronze punch standing on a small gold oval blank on a stone anvil, burst of warm sparks. Only forearm and hand are in frame."
+  },
+  {
+   "id": "s15_gold_and_silver",
+   "seed": 114,
+   "prompt": "Top-down close view of a stone anvil with two small freshly struck irregular oval lumps of metal about the size of a thumbnail side by side, the left bright gold, the right cool silver, each with a shallow stamped relief of a lion's head facing a bull's head. Only the two lumps are in the frame. Warm raking light."
+  },
+  {
+   "id": "s17_croesus_bow",
+   "seed": 115,
+   "prompt": "Low wide view in a columned stone hall with deep blue shadows: King Croesus, about 35 years old, tall and upright, long dark ringlet hair and long curled black beard, plain smooth gold band diadem, ankle-length deep purple robe with a narrow gold border, heavy plain gold bracelets rising slightly from a carved wooden throne, one hand on his chest, inclining his head in a modest bow. A single warm shaft of light falls on him."
+  }
+ ],
+ "model": "zimage",
+ "budget_min": 80
+}

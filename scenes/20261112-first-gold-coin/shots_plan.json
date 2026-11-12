@@ -1,0 +1,180 @@
+{
+ "palette": "Lapis night-blue and slate-blue shadows, warm cream paper highlights, oxblood-red cloth accents, pale olive-green hillsides; molten gold is the ONLY saturated warm colour in any frame, so the metal always pops; electrum drawn pale butter-yellow, silver cool grey.",
+ "light": "Low raking late-afternoon sun (and furnace fire for the refinery) as a single warm key from one side, cool blue ambient fill, crisp warm rim light on silhouettes and metal; deep blue cast shadows, no teal.",
+ "style_string": "Flat 2D storybook illustration with bold simplified shapes and clean confident edges, soft two-tone cel shading, subtle visible paper grain, painted in a restrained palette of lapis night-blue and slate-blue shadows, warm cream highlights, oxblood-red accents and pale olive-green hills, with molten gold as the only saturated warm colour; low raking warm key light from one side, cool blue ambient fill, crisp warm rim light; strong readable silhouettes, one clear focal subject filling the upper two thirds of a vertical 9:16 frame, distinct foreground, midground and background layers for parallax, Iron Age western Anatolia around 550 BCE. No text, no letters, no watermark, no border.",
+ "cast": [
+  {
+   "id": "trader",
+   "look": "a lean Lydian trader about 40 years old, sharp hooked nose, short curly black beard, black hair tied back with a thin oxblood-red headband, knee-length undyed cream wool tunic with an oxblood-red hem border, bare forearms, plain brown leather sandals"
+  },
+  {
+   "id": "refiner",
+   "look": "a broad heavy-set refiner about 55 years old, shaved head, thick short grey beard, soot-smudged cheeks, sleeveless slate-blue knee-length work tunic belted with rope, brown leather apron, bare feet, thick forearms"
+  },
+  {
+   "id": "croesus",
+   "look": "King Croesus, about 35 years old, tall and upright, long dark ringlet hair and long curled black beard, plain smooth gold band diadem, ankle-length deep purple robe with a narrow gold border, heavy plain gold bracelets"
+  }
+ ],
+ "notes": "18 shots is the cap. Lines 3 and 6 (7 words, about 2.3-2.6 s at Shorts pace) get one shot each with strong motion; every other line over 2.5 s gets two. Captions sit at 66% height: keep key subjects in the upper two thirds. Proof beats: s03 (line 2, ~2.1 s), s16 (line 12, ~1.5 s), s18 (line 14, ~1.9 s, last image = real coin, loops into s01 coin-into-palm). All coins drawn as small irregular oval lumps, never rimmed discs.",
+ "shots": [
+  {
+   "id": "s01_coin_drop",
+   "line": 1,
+   "type": "illustration",
+   "framing": "extreme close-up",
+   "see": "Frame 0, action already happening: a small irregular pale butter-yellow electrum lump caught mid-fall a finger-width above the trader's open calloused palm, a short warm motion streak above it, fingers already starting to curl; oxblood tunic hem edge and dark lapis background, hard warm rim light on the lump. Only the trader's hand and wrist (trader).",
+   "motion": "push-in",
+   "share": 0.5
+  },
+  {
+   "id": "s02_frozen_squint",
+   "line": 1,
+   "type": "illustration",
+   "framing": "close",
+   "see": "Trader's face, three-quarter view, frozen mid-step: he pinches the pale lump between thumb and forefinger right in front of one narrowed eye, other brow lifted in doubt; blurred market awning and steep acropolis hill behind in cool blue (trader).",
+   "motion": "pull-back",
+   "share": 0.5
+  },
+  {
+   "id": "s03_real_slam",
+   "line": 2,
+   "type": "real_coin",
+   "framing": "close",
+   "see": "The Met 26.59.2 gold stater photo, whole coin, on its plain dark background; slams in at 110% scale and settles, gentle warm glint sweep.",
+   "motion": "push-in",
+   "chip": "THE REAL COIN",
+   "crop": "whole coin",
+   "share": 0.55
+  },
+  {
+   "id": "s04_gold_to_sun",
+   "line": 2,
+   "type": "illustration",
+   "framing": "medium",
+   "see": "Low angle from below: the trader, waist up, holds a small bright pure-gold oval lump high against the low sun between thumb and forefinger, gold blazing with rays, his face lit warm in awe; deep blue sky and the acropolis hill silhouette behind (trader).",
+   "motion": "tilt-up",
+   "share": 0.45
+  },
+  {
+   "id": "s05_marbled_lump",
+   "line": 3,
+   "type": "illustration",
+   "framing": "top-down",
+   "see": "Top-down extreme close-up of one irregular oval lump made of swirled bands of gold and cool grey silver, like marbled stone, split by a clean crack down the middle: left half glowing gold, right half dull silver-grey, resting on dark blue wool cloth. No people.",
+   "motion": "push-in"
+  },
+  {
+   "id": "s06_two_shades",
+   "line": 4,
+   "type": "illustration",
+   "framing": "wide",
+   "see": "Wide from a low angle in the Sardis market: the trader large in the foreground at his stall, one fist raised on each side holding a lump, one deep gold and one pale washed-out yellow, shrugging; behind him mudbrick-and-stone houses with tiled roofs, the steep acropolis and the river Pactolus, two or three distant figures only (trader).",
+   "motion": "pan-right"
+  },
+  {
+   "id": "s07_balance",
+   "line": 5,
+   "type": "illustration",
+   "framing": "close",
+   "see": "Eye-level close shot of a bronze hand balance held up by the trader's fist on the beam: a pale lump in one pan and a small stone weight in the other, beam tilted; the trader's doubtful eye blurred at frame edge (trader).",
+   "motion": "pan-left",
+   "share": 0.45
+  },
+  {
+   "id": "s08_touchstone",
+   "line": 5,
+   "type": "illustration",
+   "framing": "extreme close-up",
+   "see": "Ground-level angle across a flat black touchstone: a fresh pale-yellow streak in sharp focus in the foreground, the trader's fingertips still dragging the lump across it; behind, out of focus, his squinting face leaning over the stone (trader).",
+   "motion": "push-in",
+   "share": 0.55
+  },
+  {
+   "id": "s09_salt_pot",
+   "line": 6,
+   "type": "illustration",
+   "framing": "medium",
+   "see": "High angle looking down: the refiner kneels by a coarse brown clay pot filled with white salt and red brick dust, pressing thin pale electrum sheets into it with both partly closed hands; beside him a reed basket of salt; beyond, the river Pactolus and the acropolis of Sardis in cool evening blue (refiner).",
+   "motion": "tilt-down"
+  },
+  {
+   "id": "s10_ovens",
+   "line": 7,
+   "type": "illustration",
+   "framing": "wide",
+   "see": "Low wide angle at dusk: a row of three small dome-shaped mudbrick ovens glowing orange from their mouths, the refiner a strong dark silhouette sliding one lidded clay pot into the nearest with a long wooden paddle, sparks drifting into a deep blue sky (refiner).",
+   "motion": "pull-back"
+  },
+  {
+   "id": "s11_crust",
+   "line": 8,
+   "type": "illustration",
+   "framing": "top-down",
+   "see": "Top-down extreme close-up of a cracked-open clay pot: a flaky grey-white crust peeling back like bark and pale wisps of vapour lifting off, revealing bright gold sheets shining underneath. No people.",
+   "motion": "push-in"
+  },
+  {
+   "id": "s12_pure_grains",
+   "line": 9,
+   "type": "illustration",
+   "framing": "close",
+   "see": "Low angle close: the refiner's cupped, partly closed palm in the foreground holding a small heap of bright gold grains glinting, his soot-smudged bearded face above lit warm gold from below, a slow proud smile; dark blue workshop behind (refiner).",
+   "motion": "tilt-up"
+  },
+  {
+   "id": "s13_prove_it",
+   "line": 10,
+   "type": "illustration",
+   "framing": "medium",
+   "see": "Eye-level medium, square to camera: the trader, waist up, arms folded, one eyebrow raised high, staring straight into the lens; plain cool blue wall behind for a clean silhouette (trader).",
+   "motion": "push-in"
+  },
+  {
+   "id": "s14_strike",
+   "line": 11,
+   "type": "illustration",
+   "framing": "extreme close-up",
+   "see": "Side angle at anvil height, the instant of impact: the refiner's thick soot-smudged forearm and fist on a short iron hammer slamming down on a square bronze punch sitting on a small gold oval blank on a stone anvil; a burst of warm sparks; only forearm and hand visible (refiner).",
+   "motion": "push-in"
+  },
+  {
+   "id": "s15_gold_and_silver",
+   "line": 12,
+   "type": "illustration",
+   "framing": "top-down",
+   "see": "Top-down close on the stone anvil: two small freshly struck irregular oval lumps side by side, left one bright gold, right one cool silver, both with the same simple lion-face-and-bull-face relief, the punch just lifting out of frame; no labels or marks of writing. No people.",
+   "motion": "pull-back",
+   "share": 0.5
+  },
+  {
+   "id": "s16_real_lion_bull",
+   "line": 12,
+   "type": "real_coin",
+   "framing": "extreme close-up",
+   "see": "The Met 26.59.2 photo cropped tight on the relief: starts on the lion forepart and pans across to the bull forepart, showing the real stamp.",
+   "motion": "pan-right",
+   "chip": "THE REAL COIN",
+   "crop": "lion",
+   "share": 0.5
+  },
+  {
+   "id": "s17_croesus_bow",
+   "line": 13,
+   "type": "illustration",
+   "framing": "wide",
+   "see": "Low wide angle in a columned stone hall with deep blue shadows: Croesus rising slightly from a carved wooden throne, one hand on his chest, inclining his head in a modest bow toward camera, a single warm shaft of light on him and his gold bracelets (croesus).",
+   "motion": "tilt-up"
+  },
+  {
+   "id": "s18_real_met",
+   "line": 14,
+   "type": "real_coin",
+   "framing": "close",
+   "see": "The Met 26.59.2 gold stater photo, whole coin on its dark background, starting tight and slowly pulling back to show the whole small lump; final image of the video, loops into s01's coin landing in the palm.",
+   "motion": "pull-back",
+   "chip": "THE MET · 26.59.2",
+   "crop": "whole coin slow pull-back"
+  }
+ ]
+}
