@@ -1,0 +1,21 @@
+{
+ "variants": 1,
+ "style": "Flat 2D storybook illustration, bold simplified shapes with clean edges, soft cel shading, subtle paper grain. Warm palette of ochre, terracotta and sand with deep teal shadows, strong warm rim light. Ancient Mesopotamia around 3100 BC; men are bare-chested with knee-length wrapped wool skirts and shaved heads. No text, no letters, no watermark, no border.",
+ "shots": [
+  {
+   "id": "s01_roll",
+   "seed": 11,
+   "prompt": "Extreme close-up of a man's fingers rolling a small carved stone cylinder, the size of a thumb, across a palm-sized slab of wet clay. Behind the cylinder a raised band of tiny carved animal figures appears in the clay. Low side light makes the relief glow, dark background."
+  },
+  {
+   "id": "s06_ration",
+   "seed": 16,
+   "prompt": "A queue of tired workers holding out clay bowls while an official pours golden barley grain from a jar into the first bowl. A scribe sits beside him with a small clay tablet. Courtyard of a mudbrick temple, late afternoon light. Medium wide shot."
+  },
+  {
+   "id": "s12_hunt",
+   "seed": 22,
+   "prompt": "A hunting scene in a reed marsh: a man in a kilt strides forward holding two lean hunting dogs straining on leashes, chasing two bristling wild boars that crash through tall reeds and shallow water. Side view like a frieze, everything moving left to right, golden backlight, splashes."
+  }
+ ]
+}

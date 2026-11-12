@@ -1,0 +1,36 @@
+name: hf_images
+# Scene stills through a Hugging Face Space (free ZeroGPU), published to branch img-out under scenes/<slug>/hf/.
+# Optional secret HF_TOKEN (a free Hugging Face read token) raises the daily GPU quota.
+on:
+  workflow_dispatch:
+    inputs:
+      scene: { description: "slug (folder under scenes/)", required: true }
+      shots: { description: "shots file name inside the scene folder", required: false, default: "shots.json" }
+permissions:
+  contents: write
+jobs:
+  gen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      GH_TOKEN: "${{ github.token }}"
+      HF_TOKEN: "${{ secrets.HF_TOKEN }}"
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: Generate
+        run: |
+          pip install -q -U gradio_client
+          scene=$(echo "${{ inputs.scene }}" | tr -cd 'a-zA-Z0-9_-'); echo "SCENE=$scene" >> "$GITHUB_ENV"
+          python tools/hf/space_images.py "scenes/$scene/${{ inputs.shots }}" out
+          cat out/hf_log.json; ls -la out
+          ls out | grep -v hf_log.json | grep -q .
+      - name: Publish to img-out
+        run: |
+          mkdir pub && cd pub && git init -q
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git ls-remote --exit-code --heads origin img-out >/dev/null 2>&1; then git fetch -q --depth 1 origin img-out && git checkout -q -b img-out FETCH_HEAD; else git checkout -q --orphan img-out; fi
+          mkdir -p "scenes/$SCENE/hf" && cp ../out/* "scenes/$SCENE/hf/"
+          git add -A && git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -q -m "scenes (hf): $SCENE" && git push -q origin img-out
