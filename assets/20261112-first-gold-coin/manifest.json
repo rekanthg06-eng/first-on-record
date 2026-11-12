@@ -1,0 +1,23 @@
+[
+ {
+  "id": "coin",
+  "file": "coin.jpg",
+  "license": "CC0",
+  "credit": "The Metropolitan Museum of Art, Gold stater, 26.59.2 (CC0)",
+  "source_page": "https://www.metmuseum.org/art/collection/search/252454"
+ },
+ {
+  "id": "coin_depth",
+  "file": "coin_depth.png",
+  "license": "derived",
+  "credit": "depth map from 'coin' (depth-anything/Depth-Anything-V2-Small-hf)",
+  "source_page": ""
+ },
+ {
+  "id": "coin_cut",
+  "file": "coin_cut.png",
+  "license": "derived",
+  "credit": "cut-out of 'coin'",
+  "source_page": ""
+ }
+]
