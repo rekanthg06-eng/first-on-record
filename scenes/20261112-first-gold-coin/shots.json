@@ -1,5 +1,5 @@
 {
- "variants": 2,
+ "variants": 1,
  "aspect_ratio": "9:16",
  "style": "Flat 2D storybook illustration with bold simplified shapes and clean confident edges, soft two-tone cel shading, subtle visible paper grain, painted in a restrained palette of lapis night-blue and slate-blue shadows, warm cream highlights, oxblood-red accents and pale olive-green hills, with molten gold as the only saturated warm colour; low raking warm key light from one side, cool blue ambient fill, crisp warm rim light; distinct foreground, midground and background layers. Vertical composition with the main subject in the upper two thirds. No text, no letters, no watermark, no border.",
  "shots": [
@@ -79,6 +79,6 @@
    "prompt": "Low wide view in a columned stone hall with deep blue shadows: King Croesus, about 35 years old, tall and upright, long dark ringlet hair and long curled black beard, plain smooth gold band diadem, ankle-length deep purple robe with a narrow gold border, heavy plain gold bracelets rising slightly from a carved wooden throne, one hand on his chest, inclining his head in a modest bow. A single warm shaft of light falls on him."
   }
  ],
- "model": "zimage",
+ "model": "klein",
  "budget_min": 80
 }

@@ -28,7 +28,7 @@ ngpu = torch.cuda.device_count()
 print("gpus", ngpu, [torch.cuda.get_device_name(i) for i in range(ngpu)], flush=True)
 log["gpus"] = ngpu
 # FLUX.2 klein 4B does not fit a 15 GB T4 with whole-model offload or a two-card split (measured 2026-11-11: OOM both ways),
-# so use sequential offload: slower per image, but safe on any card. Z-Image-Turbo fits with whole-model offload.
+# so use sequential offload: slower per image, but safe on any card. Z-Image-Turbo with whole-model offload ALSO runs out of memory on a T4 (measured 2026-11-12); untested with "offload": "sequential".
 pipe = cls.from_pretrained(repo, torch_dtype=torch.bfloat16)
 if model == "klein" or JOB.get("offload") == "sequential":
     pipe.enable_sequential_cpu_offload()
