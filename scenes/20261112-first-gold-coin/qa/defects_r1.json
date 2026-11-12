@@ -1,0 +1,17 @@
+[
+  {"image":"still_s01_coin_drop","defects":["2 closed brown leather shoes with straps, not sandals"],"defect_confidence":"medium","shot_match":"no","shot_match_why":"Planned extreme close-up of hand and wrist; image shows a full figure with legs.","verdict":"reroll"},
+  {"image":"still_s02_frozen_squint","defects":[],"defect_confidence":"none","shot_match":"no","shot_match_why":"Planned close three-quarter face; image is a full-body standing shot.","verdict":"reroll"},
+  {"image":"still_s04_gold_to_sun","defects":[],"defect_confidence":"none","shot_match":"partly","shot_match_why":"Gold lump against sky matches, but framing is full-body, not waist-up low angle.","verdict":"pass"},
+  {"image":"still_s05_marbled_lump","defects":[],"defect_confidence":"none","shot_match":"no","shot_match_why":"Planned top-down extreme close-up; image is a frontal view with landscape.","verdict":"reroll"},
+  {"image":"still_s06_two_shades","defects":[],"defect_confidence":"none","shot_match":"partly","shot_match_why":"Wide framing and two lumps match; distant figures and shrug are absent.","verdict":"pass"},
+  {"image":"still_s07_balance","defects":["3 spoons with handles used as balance pans"],"defect_confidence":"medium","shot_match":"no","shot_match_why":"Planned eye-level close shot of the balance; image is a full-body shot.","verdict":"reroll"},
+  {"image":"still_s08_touchstone","defects":[],"defect_confidence":"none","shot_match":"no","shot_match_why":"Planned extreme close-up across the touchstone; image is a full-body standing shot.","verdict":"reroll"},
+  {"image":"still_s09_salt_pot","defects":[],"defect_confidence":"none","shot_match":"yes","shot_match_why":"High-angle kneeling refiner, salt pot, basket and river all match the plan.","verdict":"pass"},
+  {"image":"still_s10_ovens","defects":["8 only two glowing oven mouths visible, plan calls for three"],"defect_confidence":"low","shot_match":"partly","shot_match_why":"Dusk wide shot with sparks matches, but the refiner is lit, not a silhouette.","verdict":"pass"},
+  {"image":"still_s11_crust","defects":[],"defect_confidence":"none","shot_match":"no","shot_match_why":"Planned top-down extreme close-up of the crust; image shows the whole pot from an angle.","verdict":"reroll"},
+  {"image":"still_s12_pure_grains","defects":["10 modern-looking kitchen cabinets, drawers and kettle in background"],"defect_confidence":"medium","shot_match":"no","shot_match_why":"Planned low-angle close on cupped palm; image is a full-body standing shot.","verdict":"reroll"},
+  {"image":"still_s13_prove_it","defects":[],"defect_confidence":"none","shot_match":"partly","shot_match_why":"Arms folded and direct stare match; full-body framing instead of waist-up.","verdict":"pass"},
+  {"image":"still_s14_strike","defects":[],"defect_confidence":"none","shot_match":"no","shot_match_why":"Planned extreme close-up of forearm and hammer; image is a full-figure shot.","verdict":"reroll"},
+  {"image":"still_s15_gold_and_silver","defects":["9 perfect oval pieces with raised rims and lion emblems, coin-like"],"defect_confidence":"high","shot_match":"partly","shot_match_why":"Top-down view and two struck pieces match; both show lions, no bull relief.","verdict":"reroll"},
+  {"image":"still_s17_croesus_bow","defects":[],"defect_confidence":"none","shot_match":"partly","shot_match_why":"Wide hall, light shaft and bow match; he is seated, not rising.","verdict":"pass"}
+]

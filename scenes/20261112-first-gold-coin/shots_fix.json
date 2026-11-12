@@ -1,0 +1,54 @@
+{
+ "variants": 1,
+ "aspect_ratio": "9:16",
+ "model": "klein",
+ "budget_min": 60,
+ "style": "Flat 2D storybook illustration with bold simplified shapes and clean confident edges, soft two-tone cel shading, subtle visible paper grain, painted in a restrained palette of lapis night-blue and slate-blue shadows, warm cream highlights, oxblood-red accents and pale olive-green hills, with molten gold as the only saturated warm colour; low raking warm key light from one side, cool blue ambient fill, crisp warm rim light; distinct foreground, midground and background layers. Vertical composition with the main subject in the upper two thirds. No text, no letters, no watermark, no border.",
+ "shots": [
+  {
+   "id": "s01_coin_drop",
+   "seed": 601,
+   "prompt": "Macro close-up of a man's open right hand and wrist, tanned calloused palm facing up, bare forearm, fingers just starting to curl. A small irregular bean-shaped lump of pale butter-yellow metal, uneven edges, no rim, about the size of a thumbnail, falls a finger-width above the palm with a short warm motion streak. The frame is filled by the hand. No full figure, no legs, no feet, no ground. Dark lapis background."
+  },
+  {
+   "id": "s02_frozen_squint",
+   "seed": 602,
+   "prompt": "Extreme close-up filling the frame: the face of a lean man about 40, sharp hooked nose, short curly black beard, thin oxblood-red headband, three-quarter view. He pinches a small pale yellow bean-shaped lump of metal between thumb and forefinger right before one narrowed eye, other brow lifted in doubt. Blurred cool blue market awning behind. The frame is filled by the face. No full figure, no legs, no feet, no ground."
+  },
+  {
+   "id": "s05_marbled_lump",
+   "seed": 604,
+   "prompt": "Top-down view looking straight down at one small irregular bean-shaped lump of metal, uneven edges, no rim, about the size of a thumbnail, swirled bands of gold and cool grey silver like marbled stone, split by a clean crack down the middle: left half glowing gold, right half dull silver-grey. Seen from directly above, flat lay, the lump lies on dark blue wool cloth. Nothing else in frame, no people, no landscape."
+  },
+  {
+   "id": "s07_balance",
+   "seed": 606,
+   "prompt": "Eye-level close-up of a small bronze hand-held balance scale: a horizontal bronze beam hanging from a cord held up in a man's fist, with two shallow round bronze pans hanging on three thin cords each. A small pale bean-shaped lump of metal sits in one pan, a small grey stone weight in the other, beam tilted. At the frame edge, blurred, one narrowed doubtful eye. The frame is filled by the balance and fist. No full figure, no legs, no feet."
+  },
+  {
+   "id": "s08_touchstone",
+   "seed": 607,
+   "prompt": "Extreme close-up at ground level across a flat black touchstone. In sharp focus in the foreground, a fresh pale-yellow streak on the stone, and a man's fingertips still dragging a small pale bean-shaped lump of metal across it. Far behind, out of focus, the squinting face of a lean man with a sharp hooked nose, short curly black beard and thin oxblood-red headband. The frame is filled by the stone and fingers. No full figure, no legs, no feet."
+  },
+  {
+   "id": "s11_crust",
+   "seed": 610,
+   "prompt": "Top-down view looking straight down at a cracked-open brown clay pot, seen from directly above, flat lay, the pot lies on dark stone. A flaky grey-white crust peels back like bark and pale wisps of vapour lift off, revealing bright thin gold sheets shining underneath. Warm firelight from one side, deep blue shadows. Nothing else in frame, no people, no hands."
+  },
+  {
+   "id": "s12_pure_grains",
+   "seed": 611,
+   "prompt": "Low-angle close-up: in the foreground a man's cupped, partly closed palm holding a small heap of tiny bright gold grains, glinting. Above it, the face of a broad older man, shaved head, thick short grey beard, soot-smudged cheeks, a slow proud smile, lit warm gold from below. Bare rough stone wall behind, nothing else. The frame is filled by palm and face. No full figure, no legs, no feet."
+  },
+  {
+   "id": "s14_strike",
+   "seed": 613,
+   "prompt": "Extreme close-up from the side at anvil height, the instant of impact: a thick soot-smudged forearm and fist gripping a short iron hammer slamming down on a square bronze punch. The punch stands on a small bean-shaped gold lump, uneven edges, no rim, resting on a stone anvil, with a burst of warm sparks. The frame is filled by forearm, hammer and anvil. No full figure, no legs, no feet, no ground."
+  },
+  {
+   "id": "s15_gold_and_silver",
+   "seed": 614,
+   "prompt": "Top-down view looking straight down at a stone anvil, seen from directly above, flat lay, two small bean-shaped lumps of metal lie side by side on it, uneven edges, no rim, about the size of a thumbnail: left one bright gold, right one cool silver. Each has a shallow sunken stamp showing the head of a lion facing the head of a bull. Warm raking light. Nothing else in frame, no people."
+  }
+ ]
+}

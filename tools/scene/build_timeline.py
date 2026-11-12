@@ -94,7 +94,10 @@ def main():
                     move = {"push-in": "pull-back", "pull-back": "push-in", "pan-left": "pan-right", "pan-right": "pan-left",
                             "tilt-up": "tilt-down", "tilt-down": "tilt-up"}[move]
                 prev_move = move
-                shot.update(img=f"{s['id']}_{picks.get(s['id'], 'v0')}", **MOVES[move])
+                name = f"{s['id']}_{picks.get(s['id'], 'v0')}"
+                if not os.path.exists(os.path.join(a.img_dir, name + ".png")) and os.path.exists(os.path.join(a.img_dir, s["id"] + ".png")):
+                    name = s["id"]  # single-variant runs have no _v0 suffix
+                shot.update(img=name, **MOVES[move])
             shots.append(shot)
     # drop accidental duplicate cut times and report the pacing
     shots = [s for k, s in enumerate(shots) if k == 0 or s["t"] > shots[k - 1]["t"] + 0.25]
