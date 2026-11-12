@@ -1,0 +1,14 @@
+{
+ "variants": 2,
+ "aspect_ratio": "9:16",
+ "model": "klein",
+ "budget_min": 30,
+ "style": "Flat 2D storybook illustration with bold simplified shapes and clean confident edges, soft two-tone cel shading, subtle visible paper grain, painted in a restrained palette of lapis night-blue and slate-blue shadows, warm cream highlights, oxblood-red accents and pale olive-green hills, with molten gold as the only saturated warm colour; low raking warm key light from one side, cool blue ambient fill, crisp warm rim light; distinct foreground, midground and background layers. Vertical composition with the main subject in the upper two thirds. No text, no letters, no watermark, no border.",
+ "shots": [
+  {
+   "id": "s15_gold_and_silver",
+   "seed": 915,
+   "prompt": "Top-down view looking straight down at a dark slate work surface, seen from directly above, flat lay. Two small rough nuggets lie side by side: on the left a lumpy bean-shaped nugget of bright yellow gold, on the right a lumpy bean-shaped nugget of pale grey silver. Each nugget is uneven and thick like a pebble, with cracked irregular edges and no rim, and each has the same small shallow dent pressed into its top showing two tiny animal heads facing each other. Only the two nuggets and the slate are in the frame. Raking warm light from the left, long soft shadows."
+  }
+ ]
+}
