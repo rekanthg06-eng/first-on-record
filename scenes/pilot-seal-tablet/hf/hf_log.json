@@ -1,0 +1,21 @@
+{
+ "space": "mcp-tools/Qwen-Image-Fast",
+ "token": false,
+ "shots": {
+  "s01_roll": {
+   "ok": true,
+   "sec": 8.6,
+   "seed": 11
+  },
+  "s06_ration": {
+   "ok": true,
+   "sec": 2.7,
+   "seed": 16
+  },
+  "s12_hunt": {
+   "ok": true,
+   "sec": 2.7,
+   "seed": 22
+  }
+ }
+}
