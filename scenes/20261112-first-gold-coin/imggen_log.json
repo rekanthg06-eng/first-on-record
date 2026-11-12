@@ -1,50 +1,15 @@
 {
  "model": "klein",
  "shots": {
-  "s01_coin_drop": {
+  "s15_gold_and_silver_v0": {
    "ok": true,
-   "sec": 143.2,
-   "seed": 601
+   "sec": 139.8,
+   "seed": 915
   },
-  "s02_frozen_squint": {
+  "s15_gold_and_silver_v1": {
    "ok": true,
-   "sec": 124.4,
-   "seed": 602
-  },
-  "s05_marbled_lump": {
-   "ok": true,
-   "sec": 124.0,
-   "seed": 604
-  },
-  "s07_balance": {
-   "ok": true,
-   "sec": 124.3,
-   "seed": 606
-  },
-  "s08_touchstone": {
-   "ok": true,
-   "sec": 124.2,
-   "seed": 607
-  },
-  "s11_crust": {
-   "ok": true,
-   "sec": 124.5,
-   "seed": 610
-  },
-  "s12_pure_grains": {
-   "ok": true,
-   "sec": 124.5,
-   "seed": 611
-  },
-  "s14_strike": {
-   "ok": true,
-   "sec": 124.2,
-   "seed": 613
-  },
-  "s15_gold_and_silver": {
-   "ok": true,
-   "sec": 124.2,
-   "seed": 614
+   "sec": 127.0,
+   "seed": 992
   }
  },
  "gpus": 2,
