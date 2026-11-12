@@ -1,0 +1,64 @@
+name: daily_ops
+# Weekday headless ops (runbook v4): upload health, analytics, new comments, weekly veto.
+# State lives in the private repo private-for-learning (secret PRIVATE_LEARNING_PAT).
+# The cron only does work once repo variable OPS_LIVE = true. Manual runs always work; dry_run writes nothing.
+on:
+  schedule:
+    - cron: "37 3 * * *"   # 09:07 IST
+  workflow_dispatch:
+    inputs:
+      dry_run: { description: "check only, write nothing", type: boolean, default: true }
+permissions:
+  contents: read
+  issues: write
+jobs:
+  ops:
+    if: github.event_name != 'schedule' || vars.OPS_LIVE == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID || secrets.YOUTUBE_CLIENT_ID }}
+      YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET || secrets.YOUTUBE_CLIENT_SECRET }}
+      YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN || secrets.YOUTUBE_REFRESH_TOKEN }}
+      GH_TOKEN: ${{ github.token }}
+      DRY: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check secrets
+        env:
+          PAT: ${{ secrets.PRIVATE_LEARNING_PAT }}
+        run: |
+          miss=""
+          for k in YT_CLIENT_ID YT_CLIENT_SECRET YT_REFRESH_TOKEN; do [ -n "${!k}" ] || miss="$miss $k"; done
+          [ -n "$PAT" ] || miss="$miss PRIVATE_LEARNING_PAT"
+          if [ -n "$miss" ]; then echo "FAIL: missing secrets:$miss"; exit 1; fi
+      - uses: actions/checkout@v4
+        with:
+          repository: rekanthg06-eng/private-for-learning
+          token: ${{ secrets.PRIVATE_LEARNING_PAT }}
+          path: state
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: Veto requests (issues titled "veto <slug>")
+        run: |
+          gh issue list --state open --search "veto in:title" --json number,title -q '.[] | "\(.number)\t\(.title)"' | while IFS=$'\t' read -r num title; do
+            slug=$(echo "$title" | sed -E 's/^[Vv]eto[: ]+//' | tr -cd 'a-zA-Z0-9_-')
+            vid=$(python3 tools/ops/tracker.py state/production.csv get "$slug" 2>/dev/null | python3 -c 'import json,sys; print(json.load(sys.stdin).get("video_id",""))' 2>/dev/null || true)
+            if [ -z "$vid" ]; then gh issue comment "$num" --body "No scheduled video found for slug '$slug'."; continue; fi
+            if [ "$DRY" = "true" ]; then echo "DRY: would set $vid ($slug) private"; continue; fi
+            python3 tools/ops/yt_api.py veto "$vid" && python3 tools/ops/tracker.py state/production.csv set "$slug" status=HELD note="vetoed by user" \
+              && gh issue close "$num" --comment "Done: $slug ($vid) is private and marked HELD."
+          done
+      - name: Health, analytics, comments
+        run: python3 tools/ops/yt_api.py daily state | tee daily.log
+      - name: Save state
+        if: env.DRY != 'true'
+        run: |
+          cd state && git add -A
+          git diff --cached --quiet || { git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -q -m "daily_ops $(date -u +%F)"; git push -q; }
+      - name: Alert issue
+        if: env.DRY != 'true'
+        run: |
+          if grep -q '^ALERT' daily.log; then
+            gh issue create --title "ALERT: channel check $(date -u +%F)" --body "$(grep '^ALERT' daily.log)"
+          fi

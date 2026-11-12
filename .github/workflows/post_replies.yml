@@ -1,0 +1,38 @@
+name: post_replies
+# Posts the comment replies drafted in the Saturday session (private-for-learning/replies_queue.csv, status=ready), max 5 per run.
+# The cron only does work once repo variable OPS_LIVE = true. Manual runs default to dry_run.
+on:
+  schedule:
+    - cron: "30 12 * * 3"   # Wednesday 18:00 IST
+  workflow_dispatch:
+    inputs:
+      dry_run: { description: "print what would be posted, post nothing", type: boolean, default: true }
+permissions:
+  contents: read
+jobs:
+  replies:
+    if: github.event_name != 'schedule' || vars.OPS_LIVE == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID || secrets.YOUTUBE_CLIENT_ID }}
+      YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET || secrets.YOUTUBE_CLIENT_SECRET }}
+      YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN || secrets.YOUTUBE_REFRESH_TOKEN }}
+      DRY: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: rekanthg06-eng/private-for-learning
+          token: ${{ secrets.PRIVATE_LEARNING_PAT }}
+          path: state
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: Post
+        run: |
+          if [ "$DRY" = "true" ]; then python3 tools/ops/yt_api.py replies state --dry-run; else python3 tools/ops/yt_api.py replies state; fi
+      - name: Save state
+        if: env.DRY != 'true'
+        run: |
+          cd state && git add -A
+          git diff --cached --quiet || { git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -q -m "post_replies $(date -u +%F)"; git push -q; }
