@@ -1,0 +1,17 @@
+[
+  {"image":"still_s01_roll","verdict":"pass","defects":[],"confidence":"high"},
+  {"image":"still_s02_lost","verdict":"pass","defects":[],"confidence":"high"},
+  {"image":"still_s03_city","verdict":"fail","defects":["4 olive garments on the carriers look short, shorts-like rather than knee-length skirts"],"confidence":"low"},
+  {"image":"still_s04_store","verdict":"pass","defects":[],"confidence":"high"},
+  {"image":"still_s05_draw","verdict":"fail","defects":["3 the stylus looks pencil-like, possibly a modern pen or pencil"],"confidence":"low"},
+  {"image":"still_s06_ration","verdict":"pass","defects":[],"confidence":"medium"},
+  {"image":"still_s07_confused","verdict":"fail","defects":["4 the seated man's green garment looks short, shorts-like"],"confidence":"low"},
+  {"image":"still_s08_press","verdict":"fail","defects":["3 the held brown slab resembles a smartphone"],"confidence":"low"},
+  {"image":"still_s09_vouch","verdict":"pass","defects":[],"confidence":"high"},
+  {"image":"still_s10_neck","verdict":"pass","defects":[],"confidence":"high"},
+  {"image":"still_s11_roll_top","verdict":"pass","defects":[],"confidence":"high"},
+  {"image":"still_s12_hunt","verdict":"fail","defects":["2 the walking man's feet appear to wear boots or shoes"],"confidence":"medium"},
+  {"image":"still_s13_archive","verdict":"fail","defects":["3 the oil lamp appears to have a glass chimney and metal-looking stand"],"confidence":"low"},
+  {"image":"still_s14_hand","verdict":"fail","defects":["7 the raised hand has two thumbs, one on each side of the palm (extra digit)"],"confidence":"high"},
+  {"image":"still_s15_tablet","verdict":"pass","defects":[],"confidence":"high"}
+]

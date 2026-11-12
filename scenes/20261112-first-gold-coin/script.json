@@ -1,0 +1,151 @@
+{
+ "title_working": "How do you pay with a coin when nobody knows what's in it?",
+ "lever": "share",
+ "word_count": 85,
+ "lines": [
+  {
+   "n": 1,
+   "kind": "H",
+   "text": "How do you pay with a coin when nobody knows what's in it?",
+   "see": "Trader's palm; pale coin lands, hand freezes",
+   "claims": [
+    "c3"
+   ]
+  },
+  {
+   "n": 2,
+   "kind": "F",
+   "text": "Make it pure gold. Like this.",
+   "see": "Real Met stater 26.59.2 slams in full-frame",
+   "claims": [
+    "c1",
+    "c7"
+   ]
+  },
+  {
+   "n": 3,
+   "kind": "H",
+   "text": "One of the earliest known. About 8 grams, found at Sardis.",
+   "see": "Slow zoom on lion and bull, '8 g' tag",
+   "claims": [
+    "c1",
+    "c7"
+   ]
+  },
+  {
+   "n": 4,
+   "kind": "P",
+   "text": "Before it, a trader's coin might be half silver.",
+   "see": "Trader tilts a pale coin, frowning",
+   "claims": [
+    "c2",
+    "c3"
+   ]
+  },
+  {
+   "n": 5,
+   "kind": "P",
+   "text": "Weigh it? Rub it on stone? Still guessing.",
+   "see": "Coin streaked on black stone, streak shifting colour",
+   "claims": [
+    "c3"
+   ]
+  },
+  {
+   "n": 6,
+   "kind": "F",
+   "text": "So Sardis refiners packed it in salt.",
+   "see": "Hands bury pale coins in salt-filled clay pot",
+   "claims": [
+    "c4",
+    "c5"
+   ]
+  },
+  {
+   "n": 7,
+   "kind": "F",
+   "text": "Baked it.",
+   "see": "Lidded pots glowing in small ovens",
+   "claims": [
+    "c5"
+   ]
+  },
+  {
+   "n": 8,
+   "kind": "F",
+   "text": "The silver drew off.",
+   "see": "Pot cracked open, grey crust peeling away",
+   "claims": [
+    "c5"
+   ]
+  },
+  {
+   "n": 9,
+   "kind": "H",
+   "text": "The gold: basically pure.",
+   "see": "Bright gold grain glinting in refiner's palm",
+   "claims": [
+    "c5"
+   ]
+  },
+  {
+   "n": 10,
+   "kind": "H",
+   "text": "Great. Now prove it.",
+   "see": "Sceptical trader's raised eyebrow",
+   "claims": []
+  },
+  {
+   "n": 11,
+   "kind": "F",
+   "text": "Stamp a lion and bull. Pure gold. Pure silver.",
+   "see": "Two die strikes: gold blank, then silver blank",
+   "claims": [
+    "c7",
+    "c8"
+   ]
+  },
+  {
+   "n": 12,
+   "kind": "L1",
+   "text": "Croesus gets the credit.",
+   "see": "Crowned king silhouette takes a bow",
+   "claims": [
+    "c7"
+   ]
+  },
+  {
+   "n": 13,
+   "kind": "L2",
+   "text": "Trust: solved. Before that...",
+   "see": "Gold coin drops into trader's palm (frame 1 match)",
+   "claims": []
+  }
+ ],
+ "hooks": [
+  "How do you pay with a coin when nobody knows what's in it?",
+  "Nobody trusted money. This is one of the earliest known coins of pure gold.",
+  "One of the earliest known coins of pure gold exists because nobody trusted money.",
+  "One of the earliest known pure-gold coins exists because the gold coins before it were a gamble.",
+  "This coin is about 1.6 centimetres long, and one of the earliest known coins of pure gold."
+ ],
+ "hook_styles": [
+  "premise/question (panel pick, avg 83/100, line 1)",
+  "stakes",
+  "superlative",
+  "contradiction",
+  "tiny-detail"
+ ],
+ "loop_note": "Line 13 'Trust: solved. Before that...' runs into line 1 on restart: 'Before that... how do you pay with a coin when nobody knows what's in it?' Final frame (gold coin landing in the trader's palm) matches frame 1 (pale coin landing in the same palm), so the picture loops too.",
+ "changes": [
+  "0.0-5.3 (high): replaced the museum-label hook with the panel hook (question, 12 words). Line 2 'Make it pure gold. Like this.' puts 'gold' at ~4s and the real Met coin full-frame as the line starts, so the caption points at an actual object.",
+  "5.3-8.9 (high): removed 'Lydia's older coins were electrum'. No 'Lydia', no 'electrum' (named zero times); replaced with a person: 'Before it, a trader's coin might be half silver.'",
+  "8.9-10.6 (medium): cut 'But the mix varied' and its row-of-shades picture; the variation is carried by 'might be half silver' plus the shifting streak on the stone, so the mixed-colour idea appears once.",
+  "10.6-15.2 (medium): tightened to 'Weigh it? Rub it on stone? Still guessing.' (8 words); scale shot dropped, single stone-streak shot.",
+  "15.2-21.6 (medium): split the refinery run-on into four caption-sized beats (packed in salt / Baked it / The silver drew off / The gold: basically pure), each with its own picture: packing, ovens, cracked pot, gold grain.",
+  "23.3-27.2 (medium): 'Stamp a lion and bull. Pure gold. Pure silver.' as three beats with two separate die strikes; silver is set up by the refinery beat that drew the silver off.",
+  "28.9-31.7 (medium): moved 'about 8 grams, found at Sardis' to line 3, attached to the real-coin reveal and the superlative; the real photo is used once only (lines 2-3), never repeated.",
+  "Ending: new L2 'Trust: solved. Before that...' lands the payoff with light sarcasm and loops grammatically into line 1; end frame matches frame 1.",
+  "Hedges kept: 'One of the earliest known' (paired with 'pure gold' on the same coin), 'Croesus gets the credit'; no 'first ever', no claim Croesus made this coin, weight only 'about 8 grams'."
+ ]
+}

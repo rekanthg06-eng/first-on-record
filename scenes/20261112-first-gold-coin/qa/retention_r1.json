@@ -1,0 +1,78 @@
+{
+  "marks": [
+    {
+      "t": "0.0-5.3",
+      "risk": "high",
+      "why": "'This is' points at nothing: picture is a trader, not the coin, so a sound-off viewer has no subject. 5.3s is a long, museum-label hook; 'one of the earliest known coins of pure gold' reads as a placard.",
+      "fix_line": "Nobody trusted money. / This coin? One of the earliest known in pure gold.",
+      "fix_picture": "Frame 1: extreme close-up of the gold coin glinting, then hard cut to trader squinting and scale tipping on 'nobody trusted money'. Coin must be on screen when 'This coin' caption lands."
+    },
+    {
+      "t": "5.3-8.9",
+      "risk": "high",
+      "why": "Two unfamiliar proper/jargon words back to back (Lydia, electrum) at the exact moment the hook needs to pay off. Textbook tone; strangers swipe here.",
+      "fix_line": "Lydia's older coins were electrum: gold and silver, mixed by nature.",
+      "fix_picture": "Keep the lump splitting into two colours but caption 'GOLD + SILVER' over the split, not 'ELECTRUM'."
+    },
+    {
+      "t": "8.9-10.6",
+      "risk": "medium",
+      "why": "Fine beat but restates the previous picture's idea (mixed colours) with another static row of coins.",
+      "fix_line": "But the mix varied.",
+      "fix_picture": "Fast push along the row of coins, each shade flashing as it passes, so the frame is moving."
+    },
+    {
+      "t": "10.6-15.2",
+      "risk": "medium",
+      "why": "4.6s for a problem the viewer already gets; 'test stone' slows it. Second scale shot repeats the 0s picture.",
+      "fix_line": "Weigh it? Test-stone it? Still guessing.",
+      "fix_picture": "Skip the scale (already used); single shot of coin streaked on black stone, streak colour shifting."
+    },
+    {
+      "t": "15.2-21.6",
+      "risk": "medium",
+      "why": "Payoff crammed into one 6.4s run-on line with a 'baked it in salt until...' clause; captions at 2-3 words lose the cause/effect.",
+      "fix_line": "So Sardis refiners packed it in salt and baked it. / Until the silver was gone. The gold, basically pure.",
+      "fix_picture": "Cut on the sentence break: glowing salt-packed pots, then pot cracked open revealing bright gold grain."
+    },
+    {
+      "t": "21.6-23.3",
+      "risk": "low",
+      "why": "Good pattern break; eyebrow reaction works.",
+      "fix_line": "",
+      "fix_picture": ""
+    },
+    {
+      "t": "23.3-27.2",
+      "risk": "medium",
+      "why": "Who stamps and why is implied only; 'pure gold, pure silver' crammed with commas; silver arrives unannounced.",
+      "fix_line": "Stamp a lion and a bull. On pure gold. On pure silver.",
+      "fix_picture": "Two separate die strikes timed to each 'On pure...' caption: gold strike, then silver strike."
+    },
+    {
+      "t": "27.2-28.9",
+      "risk": "low",
+      "why": "Short, name is cushioned by the crowned silhouette; hedge intact.",
+      "fix_line": "",
+      "fix_picture": ""
+    },
+    {
+      "t": "28.9-31.7",
+      "risk": "medium",
+      "why": "Weak, museum-label ending: weight and findspot after the climax. Only redeemed because the real photo is the first true reveal.",
+      "fix_line": "This one: about 8 grams, from Sardis.",
+      "fix_picture": "Real Met photo of stater 26.59.2 slams in full-frame with a slow zoom on the lion and bull, so it reads as the reveal."
+    },
+    {
+      "t": "31.7-32.7",
+      "risk": "low",
+      "why": "'All because...' into 'Nobody trusted money' is a clean loop; coin back into trader's hand matches frame 1 if frame 1 includes the trader.",
+      "fix_line": "",
+      "fix_picture": "End on the coin in the trader's palm, matching the new opening close-up."
+    }
+  ],
+  "biggest_drop_at": "5.3-8.9",
+  "predicted_avg_viewed_pct": 62,
+  "verdict": "send_back",
+  "rewrite": "Nobody trusted money.\nThis coin? One of the earliest known in pure gold.\nLydia's older coins were electrum: gold and silver, mixed by nature.\nBut the mix varied.\nWeigh it? Test-stone it? Still guessing.\nSo Sardis refiners packed it in salt and baked it.\nUntil the silver was gone. The gold, basically pure.\nGreat. Now prove it.\nStamp a lion and a bull. On pure gold. On pure silver.\nCroesus gets the credit.\nThis one: about 8 grams, from Sardis.\nAll because..."
+}

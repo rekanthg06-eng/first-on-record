@@ -1,0 +1,26 @@
+{
+  "scores": {
+    "first_frame": 5,
+    "materials": 6,
+    "lighting_depth": 7,
+    "composition": 7,
+    "legibility": 8,
+    "clarity": 6,
+    "polish": 6,
+    "frame0_stopping_power": 5,
+    "shot_variety": 7,
+    "caption_legibility_placement": 8,
+    "illustration_style_consistency": 6,
+    "real_object_beats_read_as_proof": 6,
+    "not_cheap_ai_slop": 4
+  },
+  "average": 6.23,
+  "would_you_scroll_past": true,
+  "verdict": "fail",
+  "top_3_fixes": [
+    "Make the proof land: the 'THE REAL SEAL PRINT' beat (s21-22) reuses the same murky, cropped tablet close-up as s3 and the procession isn't readable. Use a tight, well-lit crop of the actual seal impression on Met 1988.433.1 with a slow push-in and a thin outline/arrow tracing the man, dogs and boars. End on the REAL tablet, not the cartoon tablet held in glowing hands (s27-29).",
+    "Rebuild frame 0: a dim mid-shot of a generic hand plus the fragment 'THE STONE THAT' won't stop a thumb. Open on the real 5,000-year-old tablet, hard key light, with the rolled seal print visible and a complete hook caption (e.g. 'THE OLDEST SIGNATURE ISN'T INK').",
+    "Kill the stock-AI-cartoon look: every man is the same shirtless bald clone with shifting faces, plus clip-art props (a bun-shaped 'tablet', a wheat-sticker tablet, a seal floating in water at s2). Lock one character sheet, use period-correct clothing and correctly shaped tablets, and swap the near-duplicate 2 s holds (city, scribe, 'can't count', archive) for distinct angles or real-object inserts."
+  ],
+  "worst_frame": "s2 (LOST.): a lone cylinder seal floating on flat teal water. It's empty and cheap-looking, has no context and breaks the palette; it reads as AI filler right inside the hook window. Close runner-up: s28 'STAYS.', which ends on a cartoon tablet with clip-art animals, undercutting the 'real record' payoff."
+}

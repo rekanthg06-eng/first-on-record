@@ -1,0 +1,62 @@
+[
+ {
+  "id": "c1",
+  "claim": "The Met's gold stater 26.59.2 is catalogued as Lydian, dated ca. 560-546 BCE, weighs 8.087 g and measures about 1 x 1.6 x 0.3 cm.",
+  "note": "Met object page gives Lydian, ca. 560-546 BCE, 8.087 g, 1 x 1.6 x 0.3 cm; single source but it is the catalogue record itself (also: excavated at Sardis 13 April 1922)."
+ },
+ {
+  "id": "c2",
+  "claim": "Electrum is a natural gold-silver alloy, and Lydian electrum coins appeared in the late seventh century BCE, though the exact date is disputed.",
+  "note": "Met says 'apparently ... end of the seventh century' and 'exact date ... in dispute'; CEPR says around 630 BCE; the claim should carry the hedge."
+ },
+ {
+  "id": "c3",
+  "claim": "Because the gold-to-silver ratio in electrum varied, the value of electrum coins was unpredictable, and neither weighing nor the touchstone could reveal the exact gold share.",
+  "note": "Live Science: varying ratio made value unpredictable; CEPR: neither weighing nor touchstone gives the percentage precisely (CEPR alone for touchstone; both popular/secondary; royal Sardis electrum was steady ~55% gold)."
+ },
+ {
+  "id": "c4",
+  "claim": "At Sardis, near the Pactolus stream, excavators found a gold and silver refinery of the first half of the sixth century BCE.",
+  "note": "Sardis Expedition: refinery near the Pactolus, used in first half of 6th c. BC; BMCR's Ramage date ca. 575-550 BC is consistent."
+ },
+ {
+  "id": "c5",
+  "claim": "Refiners at Sardis separated gold from silver by cementation: electrum was packed in salt in pottery vessels and heated in small ovens until the silver was drawn off and the gold left basically pure.",
+  "note": "Greenewalt: electrum layered with salt in coarse pottery containers, heated in ovens, silver converted to silver chloride, gold 'basically pure'; BMCR agrees (lidded earthenware pot, 600-800 C). Harvard Magazine supports salt parting but not ovens."
+ },
+ {
+  "id": "c6",
+  "claim": "According to the Sardis Expedition, the Sardis furnaces and parting vessels are the earliest known archaeological evidence for the cementation process anywhere.",
+  "note": "One source only; Harvard Magazine says only 'not found elsewhere' and BMCR notes gold purification processes were known long before Sardis, so attribute it and say 'archaeological'."
+ },
+ {
+  "id": "c7",
+  "claim": "Croesus, traditionally dated c. 560-546 BCE, is commonly (though not unanimously) credited with issuing the first coins of pure gold and pure silver, which appeared shortly before the middle of the sixth century BCE.",
+  "note": "Attribution supported but disputed (BMCR 'not unanimously'); reign dates also disputed: Hesperia 2025 supports Wallace's view that Croesus's reign began in the 580s; Live Science gives 547 as end date."
+ },
+ {
+  "id": "c8",
+  "claim": "Both the gold and silver Croeseids carried the confronted foreparts of a lion and a bull; one source says the dies for gold and silver were interchangeable.",
+  "note": "Lion-bull design on both metals well supported (Met, Ashmolean, Sardis); interchangeable dies only on the Colorado page (John Nebel), from a single illustrated example."
+ },
+ {
+  "id": "c9",
+  "claim": "Heavy Croeseid gold and silver staters weighed about 10.7-10.9 g; the standard was later reduced to light gold staters of about 8.2 g and silver coins (sigloi) of about 5.3-5.4 g.",
+  "note": "Colorado gives 10.9 g heavy and 8.2/5.4 g light ('concurrently (and later on)', not a clean replacement); Live Science gives 10.7 g; Ashmolean/Harvard silver pieces 5.33/5.31 g. Met coin 8.087 g is light class, which Colorado thinks may be Persian-era."
+ },
+ {
+  "id": "c10",
+  "claim": "The reverse of a Croeseid stater carries two incuse square punches, on gold and silver alike.",
+  "note": "original failed; this corrected wording is what the sources support"
+ },
+ {
+  "id": "c11",
+  "claim": "Whether the lion-and-bull coins began under Croesus or under the Persian king Darius is debated: Michael Vickers (1985) argued Darius, Margaret Cool Root (1988) rejected that, and one source concludes they first appeared under Croesus with the lighter issues likely a Persian continuation at Sardis.",
+  "note": "Colorado page (John Nebel) reports Vickers 1985 (Darius), Root 1988 refutation and its Croesus conclusion; Hesperia 2025 independently finds silver croeseids in the 547 BCE destruction level. Debate details rest on one secondary page."
+ },
+ {
+  "id": "c12",
+  "claim": "Herodotus (Histories 1.94, Macaulay translation) says the Lydians were 'the first of men, so far as we know, who struck and used coin of gold or silver'.",
+  "note": "Lexundria Macaulay text matches the quote exactly; Met only paraphrases. Herodotus's claim is his own; modern dating of first coinage is disputed."
+ }
+]

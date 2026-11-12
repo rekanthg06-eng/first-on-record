@@ -1,0 +1,122 @@
+[
+ {
+  "id": "c1",
+  "claim": "The Met's gold stater 26.59.2 is catalogued as Lydian, dated ca. 560-546 BCE, weighs 8.087 g and measures about 1 x 1.6 x 0.3 cm.",
+  "sources": [
+   "https://www.metmuseum.org/art/collection/search/252454"
+  ],
+  "snippet_only": false,
+  "note": "One source (the object page itself, seen via fetch summary). Gift of the American Society for the Excavation of Sardis, 1926; Met page marks it Public Domain / Open Access."
+ },
+ {
+  "id": "c2",
+  "claim": "Electrum is a natural gold-silver alloy, and Lydian electrum coins appeared at the end of the seventh century BCE.",
+  "sources": [
+   "https://www.metmuseum.org/en/essays/sardis",
+   "https://cepr.org/voxeu/columns/reasons-lydian-electrum-coins-and-succeeding-greek-silver-coins-antiquity"
+  ],
+  "snippet_only": false,
+  "note": "Second source supports the natural-alloy point, not the date. Live Science also describes it as natural gold-silver alloy."
+ },
+ {
+  "id": "c3",
+  "claim": "Because the gold-to-silver ratio in electrum varied, the value of electrum coins was unpredictable, and neither weighing nor the touchstone could reveal the exact gold share.",
+  "sources": [
+   "https://cepr.org/voxeu/columns/reasons-lydian-electrum-coins-and-succeeding-greek-silver-coins-antiquity",
+   "https://www.livescience.com/archaeology/croesus-stater-the-2-500-year-old-coin-that-introduced-the-gold-standard"
+  ],
+  "snippet_only": false,
+  "note": "Touchstone point only from CEPR; Live Science and Atlanta Fed (frbatlanta.org) support the unpredictable-value point. All secondary or popular. Do not say all electrum coins were untrustworthy: BMCR/CEPR say royal Lydian electrum tested a steady c.55% gold."
+ },
+ {
+  "id": "c4",
+  "claim": "At Sardis, near the Pactolus stream, excavators found a gold and silver refinery of the first half of the sixth century BCE.",
+  "sources": [
+   "https://sardisexpedition.org/en/essays/latw-greenewalt-gold-silver-refining",
+   "https://sardisexpedition.org/en/essays/about-pn",
+   "https://bmcr.brynmawr.edu/?p=22490"
+  ],
+  "snippet_only": false,
+  "note": "Dating varies: Greenewalt says first half of 6th c.; BMCR review says Ramage dates the key period ca. 575-550 BCE. Say 'mid-sixth century BCE' to be safe."
+ },
+ {
+  "id": "c5",
+  "claim": "Refiners at Sardis separated gold from silver by cementation: electrum was packed in salt in pottery vessels and heated in small ovens until the silver was drawn off and the gold left basically pure.",
+  "sources": [
+   "https://sardisexpedition.org/en/essays/latw-greenewalt-gold-silver-refining",
+   "https://www.harvardmagazine.com/sites/default/files/html/1998/03/sardis3.html",
+   "https://bmcr.brynmawr.edu/?p=22490"
+  ],
+  "snippet_only": false,
+  "note": "Three sources, all via fetch summaries. Temperature: about 800 C (Greenewalt) vs 600-800 C (BMCR); avoid quoting a number or say 'around 800 C'."
+ },
+ {
+  "id": "c6",
+  "claim": "The Sardis cementation furnaces and parting vessels are the earliest known evidence for the cementation process anywhere.",
+  "sources": [
+   "https://sardisexpedition.org/en/essays/latw-greenewalt-gold-silver-refining"
+  ],
+  "snippet_only": false,
+  "note": "One source (Greenewalt). Harvard Magazine has Ramage saying the process has not been found elsewhere, which is weaker. Attribute to the Sardis Expedition."
+ },
+ {
+  "id": "c7",
+  "claim": "Croesus, who ruled roughly 560-546 BCE, is credited with issuing the first coins of pure gold and pure silver, the pure gold and silver coins appearing shortly before the middle of the sixth century BCE.",
+  "sources": [
+   "https://www.metmuseum.org/en/essays/sardis",
+   "https://sardisexpedition.org/en/essays/latw-greenewalt-gold-silver-refining",
+   "https://bmcr.brynmawr.edu/?p=22490"
+  ],
+  "snippet_only": false,
+  "note": "Keep the word 'credited'. BMCR: bimetallic system credited to Croesus 'commonly (although not unanimously)'. Editor: do not state flatly as fact. Also do not use 'first' for this coin; use 'among the earliest'."
+ },
+ {
+  "id": "c8",
+  "claim": "Both the gold and silver Croeseids carried the foreparts of a lion and a bull, and the same dies could be used for both metals.",
+  "sources": [
+   "https://www.colorado.edu/project/expressionsofidentity/media/455",
+   "https://www.livescience.com/archaeology/croesus-stater-the-2-500-year-old-coin-that-introduced-the-gold-standard"
+  ],
+  "snippet_only": false,
+  "note": "Colorado page is an unnamed-author educational page; same-dies point is only there. Meaning of lion and bull is speculation (Near Eastern motif, or the two metals) per Live Science only."
+ },
+ {
+  "id": "c9",
+  "claim": "Heavy Croeseid gold and silver staters weighed about 10.7-10.9 g and were later replaced by light gold staters of about 8.2 g and silver sigloi of about 5.4 g.",
+  "sources": [
+   "https://www.colorado.edu/project/expressionsofidentity/media/455",
+   "https://www.livescience.com/archaeology/croesus-stater-the-2-500-year-old-coin-that-introduced-the-gold-standard"
+  ],
+  "snippet_only": false,
+  "note": "Live Science gives only the 10.7 g original; LBMA gives 10.72 g for one coin. The Met coin (8.087 g) falls in the LIGHT class, which the colorado source says was likely a later Persian continuation. Flag to editor."
+ },
+ {
+  "id": "c10",
+  "claim": "The reverse of a Croeseid carries square punch marks, two on gold staters and one on silver.",
+  "sources": [
+   "https://www.livescience.com/archaeology/croesus-stater-the-2-500-year-old-coin-that-introduced-the-gold-standard"
+  ],
+  "snippet_only": false,
+  "note": "One source only. Not confirmed for 26.59.2 specifically; the Met text fetched did not describe its reverse. Check the Met image before stating it about this coin."
+ },
+ {
+  "id": "c11",
+  "claim": "Whether the lion-and-bull coins began under Croesus or under the Persian king Darius is debated: Michael Vickers (1985) argued Darius, Margaret Cool Root (1988) rejected that, and one source concludes they first appeared under Croesus with the lighter issues likely a Persian continuation at Sardis.",
+  "sources": [
+   "https://www.colorado.edu/project/expressionsofidentity/media/455",
+   "https://ascsa.edu.gr/publications/hesperia/article/94/2/143-183"
+  ],
+  "snippet_only": false,
+  "note": "Debate details only from the colorado page; Hesperia 2025 (Cahill, Kroll et al.) abstract independently attributes the silver croeseids to Croesus using the 547 BCE destruction level but does not discuss Vickers. Read Price 1984 and the Hesperia full text if more is needed."
+ },
+ {
+  "id": "c12",
+  "claim": "Herodotus (Histories 1.94, Macaulay translation) says the Lydians were 'the first of men, so far as we know, who struck and used coin of gold or silver'.",
+  "sources": [
+   "https://lexundria.com/hdt/1.94/mcly",
+   "https://www.metmuseum.org/en/essays/sardis"
+  ],
+  "snippet_only": false,
+  "note": "Quote from lexundria via fetch (Macaulay). Met only paraphrases and notes the date is in dispute. Perseus fetch was blocked."
+ }
+]
