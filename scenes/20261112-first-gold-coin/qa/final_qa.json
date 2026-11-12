@@ -1,0 +1,11 @@
+{"scores": {"first_frame": 6, "materials": 5, "lighting_depth": 6, "composition": 6, "legibility": 8, "clarity": 6, "polish": 5,
+ "frame0_stopping_power": 5, "shot_variety": 6, "caption_legibility_placement": 8, "illustration_style_consistency": 4, "real_object_beats_read_as_proof": 8, "period_plausibility": 5, "not_cheap_ai_slop": 4},
+ "average": 5.86,
+ "would_you_scroll_past": true,
+ "verdict": "fail",
+ "top_3_fixes": [
+  "Lock one character model and one render style: the headband protagonist changes face, age and rendering between 0s (semi-realistic close-up), 5s (flat cel full-body), 9s and 13s (soft painterly); the bald refiner swings from bloated cartoon (14-16s) to detailed portrait (19-20s). Regenerate all illustrated beats from one character sheet and one style prompt so it stops reading as mixed AI generations.",
+  "Rebuild the weakest beats: 13s 'still guessing' (blurred face, giant finger, unexplained green streak on a black void) should be a clear touchstone-streak test on a dark stone; 23s stamping uses a modern-looking square punch and grey anvil with clip-art sparks - show an ancient anvil die, punch and hammer blow; 7-9s gold/silver split coin is a generic vector egg held 3 s - replace with a real electrum stater photo or animate the split.",
+  "Strengthen the open and the end: frame0 is a generic squinting bearded man with a pale pebble - open on the real coin (or the electrum vs gold contrast) with a question; cut the 4 s of near-identical static Met-coin holds at 28-31s down to one push-in, and fix 'BEFORE THAT...' ending so it loops or pays off instead of trailing off."],
+ "worst_frame": "f13 (13s 'STILL GUESSING.'): incoherent composition - blurred off-model face, oversized finger and a stray green line on a black void; a viewer cannot tell it depicts a touchstone test, and it looks like an AI failure.",
+ "what_works": "The real Met coin photography with the source pill is genuinely striking proof, and captions are bold, well placed and readable throughout."}

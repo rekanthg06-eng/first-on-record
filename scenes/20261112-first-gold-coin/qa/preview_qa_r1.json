@@ -1,0 +1,14 @@
+{"scores":{"first_frame":5,"materials":6,"lighting_depth":5,"composition":6,"legibility":8,"clarity":6,"polish":5,"frame0_stopping_power":5,"shot_variety":7,"caption_legibility_placement":8,"style_consistency":6,"real_object_beats_read_as_proof":7,"period_plausibility":6,"not_cheap_ai_slop":5},
+"average":6.07,
+"would_you_scroll_past":true,
+"verdict":"fix",
+"fixes":[
+{"shot_or_second":"0-1 s (frame0)","problem":"Subject is a small white pebble over a giant cartoon hand on a blank navy sky; no clear 'coin', no hook object, dead upper half.","fix":"Re-prompt: a large gold coin with lion relief, rim-lit and glowing, hovering over the palm filling the upper third; or open on the real-coin macro with the hook caption."},
+{"shot_or_second":"7-9 s","problem":"Same split gold/silver egg shape held about 3 s, no lion stamp, reads as an egg or shield.","fix":"Cut to 1.5 s beats: add a push-in crop on the gold half then the silver half, or swap in a second image."},
+{"shot_or_second":"25-26 s","problem":"Two coins on a grey paddle shape; unclear object, flat and sticker-like.","fix":"Re-prompt: two stamped coins, gold and silver, on dark cloth with rim light and shadow; no paddle."},
+{"shot_or_second":"1, 5, 9-10, 21-22 s (hero)","problem":"Short-sleeved V-neck white tunic reads as a modern T-shirt; face drawn differently in close-up and full-body shots.","fix":"Re-prompt in a long-sleeved wool chiton with woven border, no V-neck; derive close-ups by cropping the full-body image instead of regenerating."},
+{"shot_or_second":"18-19, 23-24 s","problem":"Caption sits dead-centre over the focal point (OFF over the pot, STAMP A LION over the stamp).","fix":"Shift the caption block lower to about 72-75% height, still above the bottom 20%, or shift the subject up by 8%."},
+{"shot_or_second":"3-4 and 27-30 s","problem":"Same real-coin photo used four times, cropped at the left and right edges, with the bottom 40% an empty navy void.","fix":"Use a different macro crop for each (bull, lion eye, whole coin at 90% width), add a slow push-in, and centre the coin vertically."},
+{"shot_or_second":"13-14 s","problem":"Giant finger on black plus a blurred head looks AI-warped, and the streak reads as a smear.","fix":"Re-prompt as a touchstone with a thin gold streak, crisp hand scale, no head behind."}
+],
+"worst_frame":"frame0 (0 s): small pebble, blank navy sky and an oversized hand give no clear coin and no hook."}

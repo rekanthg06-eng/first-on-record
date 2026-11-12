@@ -1,0 +1,22 @@
+{
+ "scout": "claude-sonnet-5-5",
+ "greenlight": "claude-opus-5-5",
+ "researcher": "claude-sonnet-5-5",
+ "fact_checker": "claude-opus-5-5",
+ "writer": "claude-opus-5-5",
+ "hook_panel": [
+  "claude-opus-5-5",
+  "claude-sonnet-5-5",
+  "claude-haiku-5-5"
+ ],
+ "retention_editor": "claude-opus-5-5",
+ "art_director": "claude-opus-5-5",
+ "prompt_writer": "claude-sonnet-5-5",
+ "defect_screen": "claude-haiku-5-5",
+ "cold_viewer": "claude-haiku-5-5",
+ "preview_qa": "claude-sonnet-5-5",
+ "final_qa": "claude-opus-5-5",
+ "packager": "claude-sonnet-5-5",
+ "licence_check": "claude-haiku-5-5",
+ "note": "self-reported by each agent, interactive session 2026-11-12"
+}

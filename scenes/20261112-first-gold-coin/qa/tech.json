@@ -1,0 +1,11 @@
+{
+ "width": 1080,
+ "height": 1920,
+ "duration": 31.44,
+ "audio": true,
+ "lufs": -14.1,
+ "true_peak": -1.8,
+ "black": [],
+ "fails": [],
+ "verdict": "pass"
+}

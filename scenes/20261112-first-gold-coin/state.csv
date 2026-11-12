@@ -1,0 +1,2 @@
+slug,week,route,status,g1,g2a,g2b,g2c,g3a,g3b,g3c,g4,g5,video_id,tts_run,img_run,render_run,publish_at,escalations,note,updated
+20261112-first-gold-coin,2026-W46,STORY,HELD,pass,pass,pass,fail,pass,pass,fail,fail,pass,,,,,,,"supervised v4 run; retention editor sent back twice (locked at cap); preview QA 6.07; final QA 5.86 FAIL | held: final visual QA failed (style consistency 4, not-slop 4); not uploaded",2026-11-12T15:29Z

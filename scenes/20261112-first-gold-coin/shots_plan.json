@@ -19,21 +19,21 @@
  "notes": "18 shots is the cap. Lines 3 and 6 (7 words, about 2.3-2.6 s at Shorts pace) get one shot each with strong motion; every other line over 2.5 s gets two. Captions sit at 66% height: keep key subjects in the upper two thirds. Proof beats: s03 (line 2, ~2.1 s), s16 (line 12, ~1.5 s), s18 (line 14, ~1.9 s, last image = real coin, loops into s01 coin-into-palm). All coins drawn as small irregular oval lumps, never rimmed discs.",
  "shots": [
   {
-   "id": "s01_coin_drop",
-   "line": 1,
-   "type": "illustration",
-   "framing": "extreme close-up",
-   "see": "Frame 0, action already happening: a small irregular pale butter-yellow electrum lump caught mid-fall a finger-width above the trader's open calloused palm, a short warm motion streak above it, fingers already starting to curl; oxblood tunic hem edge and dark lapis background, hard warm rim light on the lump. Only the trader's hand and wrist (trader).",
-   "motion": "push-in",
-   "share": 0.5
-  },
-  {
    "id": "s02_frozen_squint",
    "line": 1,
    "type": "illustration",
    "framing": "close",
    "see": "Trader's face, three-quarter view, frozen mid-step: he pinches the pale lump between thumb and forefinger right in front of one narrowed eye, other brow lifted in doubt; blurred market awning and steep acropolis hill behind in cool blue (trader).",
    "motion": "pull-back",
+   "share": 0.5
+  },
+  {
+   "id": "s01_coin_drop",
+   "line": 1,
+   "type": "illustration",
+   "framing": "extreme close-up",
+   "see": "Frame 0, action already happening: a small irregular pale butter-yellow electrum lump caught mid-fall a finger-width above the trader's open calloused palm, a short warm motion streak above it, fingers already starting to curl; oxblood tunic hem edge and dark lapis background, hard warm rim light on the lump. Only the trader's hand and wrist (trader).",
+   "motion": "push-in",
    "share": 0.5
   },
   {
@@ -62,7 +62,38 @@
    "type": "illustration",
    "framing": "top-down",
    "see": "Top-down extreme close-up of one irregular oval lump made of swirled bands of gold and cool grey silver, like marbled stone, split by a clean crack down the middle: left half glowing gold, right half dull silver-grey, resting on dark blue wool cloth. No people.",
-   "motion": "push-in"
+   "motion": "push-in",
+   "share": 0.5,
+   "zoom": [
+    1.5,
+    1.7
+   ],
+   "pan": [
+    -0.06,
+    0,
+    -0.09,
+    0
+   ]
+  },
+  {
+   "id": "s05b_silver_half",
+   "img_of": "s05_marbled_lump",
+   "line": 3,
+   "type": "illustration",
+   "framing": "macro",
+   "see": "the grey silver half of the same lump",
+   "motion": "pan-right",
+   "share": 0.5,
+   "zoom": [
+    1.7,
+    1.5
+   ],
+   "pan": [
+    0.09,
+    0,
+    0.05,
+    0
+   ]
   },
   {
    "id": "s06_two_shades",
@@ -145,7 +176,17 @@
    "framing": "top-down",
    "see": "Top-down close on the stone anvil: two small freshly struck irregular oval lumps side by side, left one bright gold, right one cool silver, both with the same simple lion-face-and-bull-face relief, the punch just lifting out of frame; no labels or marks of writing. No people.",
    "motion": "pull-back",
-   "share": 0.5
+   "share": 0.5,
+   "zoom": [
+    1.35,
+    1.6
+   ],
+   "pan": [
+    0,
+    0.0,
+    0,
+    0.0
+   ]
   },
   {
    "id": "s16_real_lion_bull",
@@ -173,8 +214,12 @@
    "framing": "close",
    "see": "The Met 26.59.2 gold stater photo, whole coin on its dark background, starting tight and slowly pulling back to show the whole small lump; final image of the video, loops into s01's coin landing in the palm.",
    "motion": "pull-back",
-   "chip": "THE MET · 26.59.2",
+   "chip": "THE MET \u00b7 26.59.2",
    "crop": "whole coin slow pull-back"
   }
+ ],
+ "caption_y": 0.72,
+ "revisions": [
+  "preview QA round 1 (Sonnet, avg 6.07, fix): open on the face close-up (s02) then the coin drop (s01); split the 2.6 s marbled-lump hold into gold-half and silver-half crops; captions lowered to 72%; real coin no longer cropped at the edges; s15 re-rolled"
  ]
 }

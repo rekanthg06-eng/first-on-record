@@ -22,8 +22,8 @@ MOVES = {  # zoom [from,to], pan [x0,y0,x1,y1] in image fractions, parallax ampl
 }
 REAL = {  # crops on the real-object plate (object centred at x 0.5, y 0.40, about 80% of the width); the object stays
     # above the caption band (66% of frame height) and below the chip (12%)
-    "whole": dict(zoom=[1.30, 1.12], pan=[0, -0.008, 0, 0.007], par=0),          # slam in close, settle
-    "pullback": dict(zoom=[1.55, 1.05], pan=[0, -0.02, 0, 0.014], par=0),
+    "whole": dict(zoom=[1.20, 1.08], pan=[0, 0.0, 0, 0.01], par=0),          # slam in close, settle
+    "pullback": dict(zoom=[1.45, 1.02], pan=[0, -0.015, 0, 0.018], par=0),
     "lion": dict(zoom=[1.6, 1.75], pan=[-0.10, -0.028, -0.08, -0.03], par=0),
     "bull": dict(zoom=[1.6, 1.75], pan=[0.08, -0.028, 0.10, -0.03], par=0),
     "lion_to_bull": dict(zoom=[1.7, 1.7], pan=[-0.10, -0.03, 0.10, -0.03], par=0),
@@ -94,15 +94,18 @@ def main():
                     move = {"push-in": "pull-back", "pull-back": "push-in", "pan-left": "pan-right", "pan-right": "pan-left",
                             "tilt-up": "tilt-down", "tilt-down": "tilt-up"}[move]
                 prev_move = move
-                name = f"{s['id']}_{picks.get(s['id'], 'v0')}"
-                if not os.path.exists(os.path.join(a.img_dir, name + ".png")) and os.path.exists(os.path.join(a.img_dir, s["id"] + ".png")):
-                    name = s["id"]  # single-variant runs have no _v0 suffix
+                src = s.get("img_of", s["id"])  # "img_of": reuse another shot's still with a different move/crop
+                name = f"{src}_{picks.get(src, 'v0')}"
+                if not os.path.exists(os.path.join(a.img_dir, name + ".png")) and os.path.exists(os.path.join(a.img_dir, src + ".png")):
+                    name = src  # single-variant runs have no _v0 suffix
                 shot.update(img=name, **MOVES[move])
+                if s.get("zoom"): shot["zoom"] = s["zoom"]
+                if s.get("pan"): shot["pan"] = s["pan"]
             shots.append(shot)
     # drop accidental duplicate cut times and report the pacing
     shots = [s for k, s in enumerate(shots) if k == 0 or s["t"] > shots[k - 1]["t"] + 0.25]
     gaps = [round((shots[k + 1]["t"] if k + 1 < len(shots) else dur) - s["t"], 2) for k, s in enumerate(shots)]
-    tl = {"fps": 30, "duration": dur, "caption_y": 0.66, "audio": os.path.abspath(a.audio), "words": os.path.abspath(a.words) + ".norm.json",
+    tl = {"fps": 30, "duration": dur, "caption_y": float(plan.get("caption_y", 0.72)), "audio": os.path.abspath(a.audio), "words": os.path.abspath(a.words) + ".norm.json",
           "img_dir": os.path.abspath(a.img_dir), "shots": shots, "picks": picks}
     json.dump(words, open(tl["words"], "w"))
     out = a.out or os.path.join(a.scene, "timeline.json")
