@@ -1,0 +1,5 @@
+{"items": [
+ {"id": "coin", "kind": "met_image", "object_id": 252454},
+ {"id": "coin_depth", "kind": "depth", "from": "coin"},
+ {"id": "coin_cut", "kind": "cutout", "from": "coin"}
+]}
