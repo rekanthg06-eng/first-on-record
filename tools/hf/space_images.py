@@ -35,3 +35,20 @@ for v in range(nv):
                 time.sleep(20)
         print(name, log["shots"][name], flush=True)
         json.dump(log, open(os.path.join(out, "hf_log.json"), "w"), indent=1)
+
+# depth maps for 2.5D parallax (Depth Anything V2 Small, Apache 2.0), CPU
+try:
+    from transformers import pipeline as tpipe
+    from PIL import Image
+    dp = tpipe("depth-estimation", model="depth-anything/Depth-Anything-V2-Small-hf", device=-1)
+    for f in sorted(os.listdir(out)):
+        if f.rsplit(".", 1)[-1].lower() in ("png", "webp", "jpg", "jpeg") and "_depth" not in f:
+            im = Image.open(os.path.join(out, f)).convert("RGB")
+            stem = f.rsplit(".", 1)[0]
+            im.save(os.path.join(out, stem + ".png"))
+            dp(im)["depth"].save(os.path.join(out, stem + "_depth.png"))
+            if not f.endswith(".png"): os.remove(os.path.join(out, f))
+    log["depth"] = True
+except Exception as e:
+    log["depth"] = str(e)[:300]; print("depth failed", e)
+json.dump(log, open(os.path.join(out, "hf_log.json"), "w"), indent=1)

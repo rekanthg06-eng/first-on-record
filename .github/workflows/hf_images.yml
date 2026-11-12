@@ -22,10 +22,11 @@ jobs:
         with: { python-version: "3.11" }
       - name: Generate
         run: |
-          pip install -q -U gradio_client
+          pip install -q -U gradio_client pillow transformers
+          pip install -q torch --index-url https://download.pytorch.org/whl/cpu
           scene=$(echo "${{ inputs.scene }}" | tr -cd 'a-zA-Z0-9_-'); echo "SCENE=$scene" >> "$GITHUB_ENV"
           python tools/hf/space_images.py "scenes/$scene/${{ inputs.shots }}" out
-          cat out/hf_log.json; ls -la out
+          tail -c 1500 out/hf_log.json; ls out | wc -l
           ls out | grep -v hf_log.json | grep -q .
       - name: Publish to img-out
         run: |
