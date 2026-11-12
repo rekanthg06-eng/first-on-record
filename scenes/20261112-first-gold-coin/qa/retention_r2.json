@@ -1,0 +1,21 @@
+{
+  "marks": [
+    {"t": "0.0-4.9", "risk": "medium", "why": "4.9s is long for one question; 13 words means 5-6 caption flips before the payoff. The frozen hand is a good start, but the line is abstract with sound off.", "fix_line": "Pay with a coin nobody can read? What's in it?", "fix_picture": "Open mid-action: the coin is already hitting the palm at 0.0s. Burn a big '?' over the pale coin by 1.0s."},
+    {"t": "4.9-7.3", "risk": "medium", "why": "'Make it pure gold' answers the hook at 5s. The curiosity gap closes and lines 4-10 have to rebuild it.", "fix_line": "This coin fixed that.", "fix_picture": "Keep the Met stater slam, full-frame, with a hard cut and a hit sound."},
+    {"t": "7.3-11.5", "risk": "high", "why": "Museum-label dump (earliest known, 8 g, Sardis) on a slow zoom right after the reveal. Nothing is at stake and nothing moves. This is the biggest swipe point.", "fix_line": "One of the earliest known. Found at Sardis.", "fix_picture": "Replace the slow zoom with two fast push-ins (lion, then bull), 1.5s each. Drop the '8 g' tag or flash it for 0.5s at most."},
+    {"t": "11.5-15.0", "risk": "medium", "why": "Jumps back to the problem after the answer. A frowning trader is weak and doesn't show 'half silver' without sound.", "fix_line": "Before it? A coin might be half silver.", "fix_picture": "The pale coin splits on screen: the left half gold, the right half grey. Caption 'HALF SILVER?'"},
+    {"t": "15.0-18.1", "risk": "low", "why": "Two quick questions; the streak changing colour on the stone is a concrete visual."},
+    {"t": "18.1-25.1", "risk": "low", "why": "Fast process montage (salt, bake, crack, glint) with short lines and a change of picture every 1-2s. This is the strongest stretch."},
+    {"t": "25.1-26.7", "risk": "low", "why": "'Now prove it' re-hooks well before the last act."},
+    {"t": "26.7-30.2", "risk": "medium", "why": "'Pure silver' is confusing: silver was just the impurity being removed. A cold viewer stumbles here.", "fix_line": "Stamp a lion and bull. Pure gold, or pure silver.", "fix_picture": "Split-screen the two strikes side by side, labelled GOLD and SILVER, so the two coin types read as separate."},
+    {"t": "30.2-31.9", "risk": "low", "why": "A short credit beat with a bow gag."},
+    {"t": "31.9-33.5", "risk": "low", "why": "'Before that...' plus the matched frame 1 makes a clean loop into the hook."}
+  ],
+  "biggest_drop_at": "7.3",
+  "predicted_avg_viewed_pct": 68,
+  "verdict": "send_back",
+  "line_edits": [
+    {"n": 3, "text": "One of the earliest known. Found at Sardis."},
+    {"n": 12, "text": "Stamp a lion and bull. Pure gold, or pure silver."}
+  ]
+}

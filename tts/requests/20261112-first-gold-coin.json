@@ -1,0 +1,91 @@
+{
+ "slug": "20261112-first-gold-coin",
+ "provider": "chatterbox",
+ "seed": 21,
+ "sentences": [
+  {
+   "text": "How do you pay with a coin when nobody knows what's in it?",
+   "exaggeration": 0.8,
+   "cfg_weight": 0.4,
+   "pause": 0.45,
+   "kind": "H"
+  },
+  {
+   "text": "This is one of the earliest known coins of pure gold.",
+   "exaggeration": 0.8,
+   "cfg_weight": 0.4,
+   "pause": 0.45,
+   "kind": "H"
+  },
+  {
+   "text": "Before it, coins mixed gold and silver.",
+   "exaggeration": 0.7,
+   "cfg_weight": 0.45,
+   "pause": 0.4,
+   "kind": "P"
+  },
+  {
+   "text": "How much? Nobody knew.",
+   "exaggeration": 0.7,
+   "cfg_weight": 0.45,
+   "pause": 0.4,
+   "kind": "P"
+  },
+  {
+   "text": "Weigh it? Rub it on stone? Still guessing.",
+   "exaggeration": 0.7,
+   "cfg_weight": 0.45,
+   "pause": 0.4,
+   "kind": "P"
+  },
+  {
+   "text": "So Sardis refiners packed it in salt. Baked it.",
+   "exaggeration": 0.5,
+   "cfg_weight": 0.5,
+   "pause": 0.35,
+   "kind": "F"
+  },
+  {
+   "text": "The silver drew off. The gold: basically pure.",
+   "exaggeration": 0.8,
+   "cfg_weight": 0.4,
+   "pause": 0.45,
+   "kind": "H"
+  },
+  {
+   "text": "Great. Now prove it.",
+   "exaggeration": 0.8,
+   "cfg_weight": 0.4,
+   "pause": 0.45,
+   "kind": "H"
+  },
+  {
+   "text": "Stamp a lion and bull.",
+   "exaggeration": 0.5,
+   "cfg_weight": 0.5,
+   "pause": 0.35,
+   "kind": "F"
+  },
+  {
+   "text": "Pure silver got its own coin. Same stamp.",
+   "exaggeration": 0.5,
+   "cfg_weight": 0.5,
+   "pause": 0.35,
+   "kind": "F"
+  },
+  {
+   "text": "Croesus gets the credit.",
+   "exaggeration": 0.55,
+   "cfg_weight": 0.5,
+   "pause": 0.5,
+   "kind": "L1"
+  },
+  {
+   "text": "Trust: solved. Before that...",
+   "exaggeration": 0.65,
+   "cfg_weight": 0.4,
+   "pause": 0.0,
+   "kind": "L2"
+  }
+ ]
+}
