@@ -2,20 +2,306 @@
  "space": "mcp-tools/Qwen-Image-Fast",
  "token": false,
  "shots": {
-  "s01_roll": {
+  "s01_roll_v0": {
    "ok": true,
-   "sec": 8.6,
+   "sec": 8.3,
    "seed": 11
   },
-  "s06_ration": {
+  "s02_lost_v0": {
    "ok": true,
-   "sec": 2.7,
-   "seed": 16
+   "sec": 2.4,
+   "seed": 12
   },
-  "s12_hunt": {
+  "s03_city_v0": {
    "ok": true,
-   "sec": 2.7,
-   "seed": 22
+   "sec": 2.4,
+   "seed": 13
+  },
+  "s04_store_v0": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s05_draw_v0": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s06_ration_v0": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s07_confused_v0": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s08_press_v0": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s09_vouch_v0": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s10_neck_v0": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s11_roll_top_v0": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s12_hunt_v0": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s13_archive_v0": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s14_hand_v0": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s15_tablet_v0": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s01_roll_v1": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s02_lost_v1": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s03_city_v1": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s04_store_v1": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s05_draw_v1": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s06_ration_v1": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s07_confused_v1": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s08_press_v1": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s09_vouch_v1": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s10_neck_v1": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s11_roll_top_v1": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s12_hunt_v1": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s13_archive_v1": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s14_hand_v1": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s15_tablet_v1": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s01_roll_v2": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s02_lost_v2": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s03_city_v2": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s04_store_v2": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s05_draw_v2": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s06_ration_v2": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s07_confused_v2": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s08_press_v2": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s09_vouch_v2": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s10_neck_v2": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s11_roll_top_v2": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s12_hunt_v2": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s13_archive_v2": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s14_hand_v2": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s15_tablet_v2": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s01_roll_v3": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s02_lost_v3": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s03_city_v3": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s04_store_v3": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s05_draw_v3": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s06_ration_v3": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s07_confused_v3": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s08_press_v3": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s09_vouch_v3": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s10_neck_v3": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s11_roll_top_v3": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s12_hunt_v3": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s13_archive_v3": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s14_hand_v3": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
+  },
+  "s15_tablet_v3": {
+   "ok": false,
+   "err": "You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+   "attempt": 2
   }
- }
+ },
+ "depth": true
 }
