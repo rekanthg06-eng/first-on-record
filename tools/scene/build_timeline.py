@@ -20,12 +20,13 @@ MOVES = {  # zoom [from,to], pan [x0,y0,x1,y1] in image fractions, parallax ampl
     "tilt-up":   dict(zoom=[1.14, 1.18], pan=[0, 0.03, 0, -0.03], par=18, par_dir=[0.2, 1]),
     "tilt-down": dict(zoom=[1.14, 1.18], pan=[0, -0.03, 0, 0.03], par=18, par_dir=[0.2, 1]),
 }
-REAL = {  # crops on the real-object plate (object centred at x 0.5, y 0.40, about 80% of the width)
-    "whole": dict(zoom=[1.30, 1.12], pan=[0, -0.10, 0, -0.10], par=0),          # slam in close, settle
-    "pullback": dict(zoom=[1.55, 1.05], pan=[0, -0.10, 0, -0.085], par=0),
-    "lion": dict(zoom=[2.3, 2.5], pan=[-0.15, -0.105, -0.11, -0.105], par=0),
-    "bull": dict(zoom=[2.3, 2.5], pan=[0.11, -0.105, 0.15, -0.105], par=0),
-    "lion_to_bull": dict(zoom=[2.2, 2.2], pan=[-0.15, -0.105, 0.14, -0.105], par=0),
+REAL = {  # crops on the real-object plate (object centred at x 0.5, y 0.40, about 80% of the width); the object stays
+    # above the caption band (66% of frame height) and below the chip (12%)
+    "whole": dict(zoom=[1.30, 1.12], pan=[0, -0.008, 0, 0.007], par=0),          # slam in close, settle
+    "pullback": dict(zoom=[1.55, 1.05], pan=[0, -0.02, 0, 0.014], par=0),
+    "lion": dict(zoom=[1.6, 1.75], pan=[-0.10, -0.028, -0.08, -0.03], par=0),
+    "bull": dict(zoom=[1.6, 1.75], pan=[0.08, -0.028, 0.10, -0.03], par=0),
+    "lion_to_bull": dict(zoom=[1.7, 1.7], pan=[-0.10, -0.03, 0.10, -0.03], par=0),
 }
 
 
@@ -81,7 +82,7 @@ def main():
             shot = {"t": round(t, 2), "id": s["id"]}
             if s.get("type", "illustration").startswith("real"):
                 crop = (s.get("crop") or "whole").lower()
-                key = "lion_to_bull" if "lion" in crop and "bull" in crop else "pullback" if "pull" in crop else "lion" if "lion" in crop else "bull" if "bull" in crop else "whole"
+                key = "lion_to_bull" if ("lion" in crop and "bull" in crop) or (("lion" in crop or "bull" in crop) and s.get("motion", "").startswith("pan")) else "pullback" if "pull" in crop else "lion" if "lion" in crop else "bull" if "bull" in crop else "whole"
                 shot.update(img="real_coin", **REAL[key])
                 if s.get("chip"):
                     shot["chip"] = s["chip"]
