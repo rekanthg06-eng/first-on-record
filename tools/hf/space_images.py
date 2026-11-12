@@ -32,9 +32,13 @@ for v in range(nv):
                 break
             except Exception as e:
                 log["shots"][name] = {"ok": False, "err": str(e)[:300], "attempt": attempt}
+                if "ZeroGPU" in str(e) or "quota" in str(e).lower():
+                    log["stopped"] = "quota"; break
                 time.sleep(20)
         print(name, log["shots"][name], flush=True)
         json.dump(log, open(os.path.join(out, "hf_log.json"), "w"), indent=1)
+        if log.get("stopped"): break
+    if log.get("stopped"): print("STOPPED: GPU quota exhausted"); break
 
 # depth maps for 2.5D parallax (Depth Anything V2 Small, Apache 2.0), CPU
 try:
