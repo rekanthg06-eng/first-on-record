@@ -1,0 +1,31 @@
+{
+  "panels": {
+    "t1_trader_close": {
+      "same_person": "mostly",
+      "same_drawing_style": "mostly",
+      "same_clothes": "yes",
+      "modern_items": "none"
+    },
+    "t2_trader_full": {
+      "same_person": "mostly",
+      "same_drawing_style": "mostly",
+      "same_clothes": "no",
+      "modern_items": "blue denim-like trousers, leather shoes with soles"
+    },
+    "t3_refiner_close": {
+      "same_person": "yes",
+      "same_drawing_style": "yes",
+      "same_clothes": "yes",
+      "modern_items": "none"
+    },
+    "t4_refiner_full": {
+      "same_person": "mostly",
+      "same_drawing_style": "mostly",
+      "same_clothes": "mostly",
+      "modern_items": "none"
+    }
+  },
+  "trader_ok": false,
+  "refiner_ok": true,
+  "fix": "Put explicit period-correct lower garment and footwear (bare feet or simple sandals, knee-length tunic or wrapped cloth, no trousers) in the trader's reference and prompts, and keep line weight and shading matched across close and full shots."
+}
