@@ -1,0 +1,51 @@
+{
+ "variants": 1,
+ "aspect_ratio": "9:16",
+ "model": "klein",
+ "budget_min": 40,
+ "style": "Flat 2D storybook illustration with bold simplified shapes and clean confident edges, soft two-tone cel shading, subtle visible paper grain, painted in a restrained palette of lapis night-blue and slate-blue shadows, warm cream highlights, oxblood-red accents and pale olive-green hills, with molten gold as the only saturated warm colour; low raking warm key light from one side, cool blue ambient fill, crisp warm rim light; distinct foreground, midground and background layers. Vertical composition with the main subject in the upper two thirds. No text, no letters, no watermark, no border.",
+ "shots": [
+  {
+   "id": "cast_trader",
+   "seed": 7001,
+   "prompt": "Character reference portrait, waist-up, facing the viewer, neutral expression: a lean man about 40 with a sharp hooked nose, short curly black hair, a short curly black beard and a thin oxblood-red headband, wearing a long-sleeved cream wool tunic with a woven oxblood-red border at the neck and cuffs. Plain flat pale blue background, even soft light. Only this one man is in the frame."
+  },
+  {
+   "id": "cast_refiner",
+   "seed": 7002,
+   "prompt": "Character reference portrait, waist-up, facing the viewer, neutral expression: a heavy-set man about 55 with a shaved head, a thick short grey beard and soot smudges on his cheeks, wearing a sleeveless slate-blue wool tunic with a rope belt and a brown leather apron. Plain flat pale blue background, even soft light. Only this one man is in the frame."
+  },
+  {
+   "id": "t1_trader_close",
+   "seed": 7011,
+   "refs": [
+    "cast_trader"
+   ],
+   "prompt": "Extreme close-up filling the frame of the face of the same man from the reference image, same face, same beard, same headband, same drawing style. He squints with suspicion at a small pale yellow lump of metal pinched between his thumb and finger in front of one eye. Blurred rocky hill behind. No full figure, no legs, no feet."
+  },
+  {
+   "id": "t2_trader_full",
+   "seed": 7012,
+   "refs": [
+    "cast_trader"
+   ],
+   "prompt": "Wide low-angle full-body view of the same man from the reference image, same face, same beard, same headband, same clothes, same drawing style, standing at a wooden market stall in an ancient town of stone and mudbrick houses, shrugging with one closed fist raised on each side. A steep rocky hill and a small river behind. Brown leather sandals."
+  },
+  {
+   "id": "t3_refiner_close",
+   "seed": 7013,
+   "refs": [
+    "cast_refiner"
+   ],
+   "prompt": "Close low-angle view of the face and one cupped hand of the same man from the reference image, same face, same grey beard, same soot smudges, same drawing style. His cupped palm holds a small heap of glinting gold grains that light his smiling face from below. Bare rough stone wall behind, nothing else. No full figure, no legs, no feet."
+  },
+  {
+   "id": "t4_refiner_full",
+   "seed": 7014,
+   "refs": [
+    "cast_refiner"
+   ],
+   "prompt": "Medium high-angle full-body view of the same man from the reference image, same face, same grey beard, same clothes, same drawing style, kneeling on the ground and pressing pale metal sheets into a large terracotta pot filled with white salt. A small river and a steep rocky hill behind. Bare feet."
+  }
+ ]
+}
