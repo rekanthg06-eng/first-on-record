@@ -50,6 +50,10 @@ for v in range(NV):
                   guidance_scale=guidance, num_inference_steps=steps,
                   generator=torch.Generator(device="cpu").manual_seed(seed))
         refs = [done[r] for r in s.get("refs", []) if r in done]
+        if refs:  # full-size references run out of memory on a T4 (measured 2026-11-13): shrink them first
+            rm = int(JOB.get("ref_max", 640))
+            refs = [r.resize((max(16, int(r.width * rm / max(r.size)) // 16 * 16), max(16, int(r.height * rm / max(r.size)) // 16 * 16))) for r in refs]
+            torch.cuda.empty_cache()
         if refs and model == "klein":
             kw["image"] = refs if len(refs) > 1 else refs[0]
         t = time.time()
