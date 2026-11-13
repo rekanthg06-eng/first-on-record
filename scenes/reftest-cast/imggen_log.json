@@ -3,29 +3,33 @@
  "shots": {
   "cast_trader": {
    "ok": true,
-   "sec": 141.4,
+   "sec": 156.5,
    "seed": 7001
   },
   "cast_refiner": {
    "ok": true,
-   "sec": 132.1,
+   "sec": 137.5,
    "seed": 7002
   },
   "t1_trader_close": {
-   "ok": false,
-   "err": "CUDA out of memory. Tried to allocate 8.54 GiB. GPU 0 has a total capacity of 14.56 GiB of which 4.99 GiB is free. Including non-PyTorch memory, this process has 9.56 GiB memory in use. Of the allocated memory 9.32 GiB is allocated by PyTorch, and 119.71 MiB is reserved by PyTorch but unallocated. I"
+   "ok": true,
+   "sec": 164.6,
+   "seed": 7011
   },
   "t2_trader_full": {
-   "ok": false,
-   "err": "CUDA out of memory. Tried to allocate 8.54 GiB. GPU 0 has a total capacity of 14.56 GiB of which 4.99 GiB is free. Including non-PyTorch memory, this process has 9.56 GiB memory in use. Of the allocated memory 9.32 GiB is allocated by PyTorch, and 119.71 MiB is reserved by PyTorch but unallocated. I"
+   "ok": true,
+   "sec": 164.9,
+   "seed": 7012
   },
   "t3_refiner_close": {
-   "ok": false,
-   "err": "CUDA out of memory. Tried to allocate 8.54 GiB. GPU 0 has a total capacity of 14.56 GiB of which 4.99 GiB is free. Including non-PyTorch memory, this process has 9.56 GiB memory in use. Of the allocated memory 9.32 GiB is allocated by PyTorch, and 119.71 MiB is reserved by PyTorch but unallocated. I"
+   "ok": true,
+   "sec": 164.5,
+   "seed": 7013
   },
   "t4_refiner_full": {
-   "ok": false,
-   "err": "CUDA out of memory. Tried to allocate 8.54 GiB. GPU 0 has a total capacity of 14.56 GiB of which 4.99 GiB is free. Including non-PyTorch memory, this process has 9.56 GiB memory in use. Of the allocated memory 9.32 GiB is allocated by PyTorch, and 119.71 MiB is reserved by PyTorch but unallocated. I"
+   "ok": true,
+   "sec": 165.3,
+   "seed": 7014
   }
  },
  "gpus": 2,
